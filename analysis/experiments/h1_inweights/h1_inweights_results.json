@@ -1,0 +1,810 @@
+{
+  "update": {
+    "k": 10,
+    "n": 10,
+    "p": 1.0,
+    "wilson95": [
+      0.7224598312333834,
+      1.0
+    ]
+  },
+  "fact": {
+    "k": 17,
+    "n": 20,
+    "p": 0.85,
+    "wilson95": [
+      0.6395767041130426,
+      0.9476322080405041
+    ]
+  },
+  "all": {
+    "k": 27,
+    "n": 30,
+    "p": 0.9,
+    "wilson95": [
+      0.7437855868473339,
+      0.9654007400402839
+    ]
+  },
+  "changed_new_first": {
+    "k": 10,
+    "n": 10,
+    "p": 1.0,
+    "wilson95": [
+      0.7224598312333834,
+      1.0
+    ]
+  },
+  "per_case": {
+    "recall-0": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    },
+    "recall-1": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    },
+    "recall-2": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    },
+    "recall-3": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 1,
+        "n": 2,
+        "p": 0.5,
+        "wilson95": [
+          0.09452865480086614,
+          0.9054713451991339
+        ]
+      },
+      "all": {
+        "k": 2,
+        "n": 3,
+        "p": 0.6666666666666666,
+        "wilson95": [
+          0.2076549551264879,
+          0.9385096847238394
+        ]
+      }
+    },
+    "recall-4": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 1,
+        "n": 2,
+        "p": 0.5,
+        "wilson95": [
+          0.09452865480086614,
+          0.9054713451991339
+        ]
+      },
+      "all": {
+        "k": 2,
+        "n": 3,
+        "p": 0.6666666666666666,
+        "wilson95": [
+          0.2076549551264879,
+          0.9385096847238394
+        ]
+      }
+    },
+    "recall-5": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    },
+    "recall-6": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    },
+    "recall-7": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 1,
+        "n": 2,
+        "p": 0.5,
+        "wilson95": [
+          0.09452865480086614,
+          0.9054713451991339
+        ]
+      },
+      "all": {
+        "k": 2,
+        "n": 3,
+        "p": 0.6666666666666666,
+        "wilson95": [
+          0.2076549551264879,
+          0.9385096847238394
+        ]
+      }
+    },
+    "recall-8": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    },
+    "recall-9": {
+      "update": {
+        "k": 1,
+        "n": 1,
+        "p": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1.0
+        ]
+      },
+      "fact": {
+        "k": 2,
+        "n": 2,
+        "p": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "all": {
+        "k": 3,
+        "n": 3,
+        "p": 1.0,
+        "wilson95": [
+          0.43849391955098227,
+          1.0
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "turns": 70,
+    "seconds": 909.71,
+    "head_mismatch": 0,
+    "lock_errors": [
+      {
+        "at": 228,
+        "got": "V(0)",
+        "want": "F0(32716)",
+        "recent": [
+          "F1(1)",
+          "F0(0)",
+          "F0(1)",
+          "F0(254)",
+          "F0(81)",
+          "F0(10)",
+          "F0(10)",
+          "NT",
+          "V(17)",
+          "F1(1)",
+          "J(1384)",
+          "V(0)"
+        ]
+      },
+      {
+        "at": 249,
+        "got": "V(0)",
+        "want": "F0(32716)",
+        "recent": [
+          "F1(1)",
+          "F0(0)",
+          "F0(1)",
+          "F0(254)",
+          "F0(81)",
+          "F0(10)",
+          "F0(10)",
+          "NT",
+          "V(17)",
+          "F1(1)",
+          "J(1384)",
+          "V(0)"
+        ]
+      },
+      {
+        "at": 232,
+        "got": "V(0)",
+        "want": "F0(32716)",
+        "recent": [
+          "F1(1)",
+          "F0(0)",
+          "F0(1)",
+          "F0(254)",
+          "F0(81)",
+          "F0(10)",
+          "F0(10)",
+          "NT",
+          "V(17)",
+          "F1(1)",
+          "J(1384)",
+          "V(0)"
+        ]
+      }
+    ],
+    "n_cases": 10,
+    "cases_with_lock_or_head_error": [
+      "recall-1",
+      "recall-2",
+      "recall-5"
+    ]
+  },
+  "store_diagnostic_authority": "completed tool-call transcripts, inferred; raw store_after tuple-key decoder failed",
+  "transcript_store_views": {
+    "recall-0": [
+      {},
+      {
+        "user_location": "Perth",
+        "user_dog": "Waffles"
+      },
+      {
+        "user_location": "Perth",
+        "user_dog": "Waffles",
+        "partner_name": "Tobias",
+        "favorite_food": "dumplings"
+      },
+      {
+        "user_location": "Perth",
+        "user_dog": "Waffles",
+        "partner_name": "Tobias",
+        "favorite_food": "dumplings",
+        "car": "Subaru Outback",
+        "job": "architect",
+        "hobby": "chess",
+        "gym_day": "Tuesday"
+      }
+    ],
+    "recall-1": [
+      {
+        "hobby": "birdwatching",
+        "job": "welder"
+      },
+      {
+        "hobby": "birdwatching",
+        "job": "welder",
+        "partner_name": "Ingrid",
+        "city": "Denver"
+      },
+      {
+        "hobby": "birdwatching",
+        "job": "welder",
+        "partner_name": "Ingrid",
+        "city": "Denver",
+        "favorite_food": "risotto",
+        "dog_name": "Pickle"
+      },
+      {
+        "hobby": "sailing",
+        "job": "architect",
+        "partner_name": "Ingrid",
+        "city": "Denver",
+        "favorite_food": "risotto",
+        "dog_name": "Pickle",
+        "gym_day": "Friday",
+        "sister_name": "Lucia"
+      }
+    ],
+    "recall-2": [
+      {
+        "partner_name": "Tobias",
+        "profession": "pastry chef"
+      },
+      {
+        "partner_name": "Tobias",
+        "profession": "pastry chef"
+      },
+      {
+        "partner_name": "Tobias",
+        "profession": "pastry chef",
+        "hobby": "pottery",
+        "car": "Fiat 500"
+      },
+      {
+        "partner_name": "Tobias",
+        "profession": "pastry chef",
+        "hobby": "pottery",
+        "car": "Fiat 500",
+        "location": "Austin",
+        "dog": "Waffles",
+        "gym_day": "Wednesday",
+        "favorite_food": "paella"
+      }
+    ],
+    "recall-3": [
+      {
+        "user_location": "Lisbon",
+        "user_sister": "Greta"
+      },
+      {
+        "user_location": "Lisbon",
+        "user_sister": "Greta"
+      },
+      {
+        "user_location": "Lisbon",
+        "user_sister": "Greta",
+        "car": "Mazda 3",
+        "job": "architect"
+      },
+      {
+        "user_location": "Lisbon",
+        "user_sister": "Greta",
+        "car": "Mazda 3",
+        "job": "architect",
+        "dog": "Mochi",
+        "hobby": "salsa dancing",
+        "favorite_food": "falafel",
+        "home": "Porto"
+      }
+    ],
+    "recall-4": [
+      {},
+      {},
+      {
+        "car": "Honda Civic"
+      },
+      {
+        "car": "Honda Civic",
+        "gym_day": "Sunday",
+        "sister_name": "Yara",
+        "current_job": "translator",
+        "favorite_food": "paella"
+      }
+    ],
+    "recall-5": [
+      {
+        "car": "Mazda 3",
+        "allergy": "penicillin"
+      },
+      {
+        "car": "Mazda 3",
+        "allergy": "penicillin",
+        "partner_name": "Amara",
+        "main_hobby": "bouldering"
+      },
+      {
+        "car": "Mazda 3",
+        "allergy": "penicillin",
+        "partner_name": "Amara",
+        "main_hobby": "bouldering"
+      },
+      {
+        "car": "Mazda 3",
+        "allergy": "penicillin",
+        "partner_name": "Amara",
+        "main_hobby": "bouldering",
+        "user_job": "carpenter",
+        "user_gym_day": "Saturday",
+        "user_car": "Ford Ranger",
+        "user_hobby": "sailing"
+      }
+    ],
+    "recall-6": [
+      {
+        "location": "Porto",
+        "hobby": "chess"
+      },
+      {
+        "location": "Porto",
+        "hobby": "chess"
+      },
+      {
+        "location": "Porto",
+        "hobby": "chess",
+        "user_car": "Toyota Yaris",
+        "user_partner": "Felix"
+      },
+      {
+        "location": "Porto",
+        "hobby": "birdwatching",
+        "user_car": "Toyota Yaris",
+        "user_partner": "Felix",
+        "sister": "Greta",
+        "dog": "Pepper",
+        "gym_day": "Monday"
+      }
+    ],
+    "recall-7": [
+      {
+        "job": "translator"
+      },
+      {
+        "job": "translator"
+      },
+      {
+        "job": "translator",
+        "partner_name": "Tobias",
+        "gym_days": "Tuesday"
+      },
+      {
+        "job": "pharmacist",
+        "partner_name": "Tobias",
+        "gym_days": "Tuesday",
+        "dog": "Ziggy",
+        "car": "Mazda 3",
+        "favorite_food": "ramen"
+      }
+    ],
+    "recall-8": [
+      {},
+      {
+        "user_car": "Subaru Outback",
+        "user_dog": "Pepper"
+      },
+      {
+        "user_car": "Subaru Outback",
+        "user_dog": "Pepper",
+        "favorite_food": "biryani",
+        "partner_name": "Amara"
+      },
+      {
+        "user_car": "Subaru Outback",
+        "user_dog": "Pepper",
+        "favorite_food": "biryani",
+        "partner_name": "Amara",
+        "allergies": "shellfish",
+        "location": "Krakow",
+        "hobby": "pottery",
+        "car": "Ford Ranger"
+      }
+    ],
+    "recall-9": [
+      {
+        "partner_name": "Priya",
+        "hobby": "pottery"
+      },
+      {
+        "partner_name": "Priya",
+        "hobby": "pottery",
+        "sister_name": "Dalia",
+        "profession": "architect"
+      },
+      {
+        "partner_name": "Priya",
+        "hobby": "pottery",
+        "sister_name": "Dalia",
+        "profession": "architect",
+        "favorite_food": "pierogi",
+        "car": "Fiat 500"
+      },
+      {
+        "partner_name": "Priya",
+        "hobby": "birdwatching",
+        "sister_name": "Dalia",
+        "profession": "architect",
+        "favorite_food": "pierogi",
+        "car": "Fiat 500",
+        "dog": "Pickle",
+        "allergy": "latex",
+        "job": "translator"
+      }
+    ]
+  },
+  "changed_diagnostics": [
+    {
+      "key": "recall-0/1",
+      "gold": "chess",
+      "old": "astronomy",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": false
+    },
+    {
+      "key": "recall-1/1",
+      "gold": "architect",
+      "old": "welder",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": true
+    },
+    {
+      "key": "recall-2/1",
+      "gold": "Wednesday",
+      "old": "Saturday",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": false
+    },
+    {
+      "key": "recall-3/1",
+      "gold": "falafel",
+      "old": "pho",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": false
+    },
+    {
+      "key": "recall-4/1",
+      "gold": "translator",
+      "old": "geologist",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": false
+    },
+    {
+      "key": "recall-5/1",
+      "gold": "Ford Ranger",
+      "old": "Mazda 3",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": true,
+      "old_ever_stored": true
+    },
+    {
+      "key": "recall-6/1",
+      "gold": "Monday",
+      "old": "Saturday",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": false
+    },
+    {
+      "key": "recall-7/1",
+      "gold": "pharmacist",
+      "old": "translator",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": true
+    },
+    {
+      "key": "recall-8/1",
+      "gold": "pottery",
+      "old": "chess",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": false
+    },
+    {
+      "key": "recall-9/1",
+      "gold": "birdwatching",
+      "old": "pottery",
+      "correct": true,
+      "new_first": true,
+      "gold_in_store": true,
+      "old_in_store": false,
+      "old_ever_stored": true
+    }
+  ],
+  "lock_clean_subset": {
+    "update": {
+      "k": 7,
+      "n": 7,
+      "p": 1.0,
+      "wilson95": [
+        0.6456611570247934,
+        1.0
+      ]
+    },
+    "fact": {
+      "k": 11,
+      "n": 14,
+      "p": 0.7857142857142857,
+      "wilson95": [
+        0.5241027622679172,
+        0.9242875166308363
+      ]
+    },
+    "all": {
+      "k": 18,
+      "n": 21,
+      "p": 0.8571428571428571,
+      "wilson95": [
+        0.6536350585077049,
+        0.950190782017865
+      ]
+    }
+  },
+  "five_case_checkpoint": {
+    "update": {
+      "k": 5,
+      "n": 5,
+      "p": 1.0,
+      "wilson95": [
+        0.5655085052479191,
+        1.0000000000000002
+      ]
+    },
+    "fact": {
+      "k": 8,
+      "n": 10,
+      "p": 0.8,
+      "wilson95": [
+        0.49015684672072335,
+        0.9433190520193067
+      ]
+    },
+    "all": {
+      "k": 13,
+      "n": 15,
+      "p": 0.8666666666666667,
+      "wilson95": [
+        0.6211750079348376,
+        0.9626395301086407
+      ]
+    }
+  }
+}

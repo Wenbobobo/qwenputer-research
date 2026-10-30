@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阶段二：权重内文件系统 = 更好的参数化记忆？</title>
+<style>
+:root{--bg:#080b10;--bg2:#0c1118;--panel:#101823;--panel2:#0d141d;--line:#1d2a3a;--line2:#27374d;
+--fg:#e6edf6;--muted:#93a4ba;--dim:#6b7c93;--violet:#a78bfa;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--red:#f87171;
+--mono:'JetBrains Mono','Cascadia Code',ui-monospace,monospace;--sans:'Inter','Noto Sans SC',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1a1430 0%,transparent 55%),radial-gradient(900px 500px at 10% 0%,#0d1f2e 0%,transparent 50%),var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.75;font-size:16px}
+a{color:var(--violet);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.3;letter-spacing:-.01em}
+code{font-family:var(--mono);font-size:.86em;background:#0a121b;border:1px solid var(--line);padding:.12em .4em;border-radius:5px;color:#d8ccff}
+pre{background:#080f16;border:1px solid var(--line);border-radius:12px;padding:18px 20px;overflow:auto;font-family:var(--mono);font-size:13px;line-height:1.6}
+pre code{background:none;border:none;padding:0;color:#cbd5e1}
+.wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:44px;max-width:1380px;margin:0 auto;padding:0 32px}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:32px 0 48px;border-right:1px solid var(--line)}
+nav .brand{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--violet)}
+nav .sub{color:var(--dim);font-size:12px;margin:4px 0 24px}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+nav li{counter-increment:toc;margin:2px 0}
+nav a{display:block;padding:5px 10px 5px 34px;border-left:2px solid transparent;color:var(--muted);font-size:13px;position:relative}
+nav a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:8px;color:var(--dim);font-size:11px;font-family:var(--mono)}
+nav a:hover{color:var(--fg);background:#0e1620;text-decoration:none}
+nav a.active{color:var(--violet);border-left-color:var(--violet);background:#151024}
+main{padding:40px 0 120px;min-width:0}
+.hero{padding:44px 0 30px;border-bottom:1px solid var(--line);margin-bottom:42px}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--violet);border:1px solid #3b2d63;background:#140f22;padding:5px 12px;border-radius:999px;margin-bottom:20px}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--violet);box-shadow:0 0 12px var(--violet)}
+h1{font-size:clamp(30px,4vw,50px);margin:0 0 16px;font-weight:850;background:linear-gradient(92deg,#f8fafc 10%,#a78bfa 55%,#60a5fa 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:#b9c8da;max-width:820px;margin:0 0 22px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--dim);font-size:13px;font-family:var(--mono)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:30px 0 6px}
+.stat{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.stat .v{font-size:24px;font-weight:800;font-family:var(--mono)}
+.stat .k{font-size:12px;color:var(--dim);margin-top:2px}
+section{margin:0 0 68px;scroll-margin-top:24px}
+h2{font-size:29px;margin:0 0 8px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--mono);font-size:14px;color:var(--violet);font-weight:600;letter-spacing:.1em}
+.sec-lede{color:var(--muted);font-size:16px;margin:0 0 24px;max-width:880px}
+h3{font-size:20px;margin:34px 0 12px;color:#e2e8f0}
+p{color:#c3d0e0;margin:0 0 16px}
+ul,ol{color:#c3d0e0;padding-left:22px}li{margin:6px 0}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:18px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.note{border-left:3px solid var(--blue);background:#0b1622;padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0;color:#bfd3ea}
+.warn{border-left:3px solid var(--amber);background:#1a1408;padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0;color:#f3dfb0}
+.good{border-left:3px solid var(--green);background:#08150f;padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0;color:#c2f0d4}
+.bad{border-left:3px solid var(--red);background:#1a0c0c;padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0;color:#f3c1c1}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#0d1622;color:#cfe0f2;font-weight:650;font-size:13px}
+tr:nth-child(even) td{background:#0a1119}
+.mono{font-family:var(--mono)}.small{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);margin:0 4px 4px 0}
+.tag.v{color:var(--violet);border-color:#3b2d63}.tag.g{color:var(--green);border-color:#166534}.tag.a{color:var(--amber);border-color:#5a4410}.tag.r{color:var(--red);border-color:#5b1a1a}
+figure{margin:24px 0}figcaption{font-size:13px;color:var(--dim);margin-top:10px;text-align:center;font-family:var(--mono)}
+.diagram{background:#070d14;border:1px solid var(--line);border-radius:16px;padding:18px;overflow-x:auto}
+svg{max-width:100%;height:auto;display:block;margin:0 auto}
+footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--dim);font-size:13px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr;gap:0;padding:0 20px}nav.toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px 0}nav ol{columns:2;column-gap:20px}main{padding-top:8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Qwenputer · 阶段二</div>
+  <div class="sub">参数化记忆与持续学习研究</div>
+  <ol>
+    <li><a href="#q">问题：记忆的三种幻想</a></li>
+    <li><a href="#position">定位：可编程外设</a></li>
+    <li><a href="#params">真实参数与限制</a></li>
+    <li><a href="#cost">成本模型与效率窗口</a></li>
+    <li><a href="#fake">90 vs 30 的统计打假</a></li>
+    <li><a href="#engram">与 Engram / RAG 的分工</a></li>
+    <li><a href="#cl">持续学习：四层判定</a></li>
+    <li><a href="#exp">原创新实验（H2/H3）</a></li>
+    <li><a href="#verdict">结论：什么时候用哪种记忆</a></li>
+    <li><a href="#refs">参考</a></li>
+  </ol>
+  <div class="tag v" style="margin-top:24px">Stage 2 · v1<br>2026-10-29 · Qcompute</div>
+</nav>
+<main>
+<div class="hero">
+  <div class="kicker"><span class="dot"></span>PARAMETRIC MEMORY · CONTINUAL LEARNING</div>
+  <h1>权重里的文件系统，<br>是更好的"记忆"吗？</h1>
+  <p class="lede">Qwenputer 的文件系统把内容存进 Gated DeltaNet 状态，2–3 个 trace token 就能按名字精确读回，快照可跨会话。
+  它看起来像"比 RAG / 知识图谱 / Engram 更高效的记忆"。本报告拆开这个说法：<strong>它对，但只在很窄的窗口里对</strong>，
+  而且它根本不是"记忆"——它是一块<strong>内存映射的可编程外设</strong>。</p>
+  <div class="meta"><span>基于：rv-store.md / 模型卡 / 作者博客 / 本机复现 / 独立定量实验</span><span>配套：docs/research/parametric-memory.md · expert-assessment.md</span></div>
+  <div class="stats">
+    <div class="stat"><div class="v">2–3</div><div class="k">一次 get 的 trace token（外加正文）</div></div>
+    <div class="stat"><div class="v">512<small> 文件</small></div><div class="k">≈ 53k tokens 地址空间</div></div>
+    <div class="stat"><div class="v">2.6×</div><div class="k">稠密执行时每 token 的"合并税"（τ）</div></div>
+    <div class="stat"><div class="v">p≈0.71</div><div class="k">与主机 Python 工具在"变更事实"上的差异（不显著）</div></div>
+    <div class="stat"><div class="v">0</div><div class="k">编译式写入的遗忘（构造上零干扰）</div></div>
+  </div>
+</div>
+
+<section id="q">
+  <h2><span class="no">01</span>问题：记忆的三种幻想</h2>
+  <p class="sec-lede">"让模型记住"有四种完全不同的工程路线，它们经常被混为一谈。</p>
+  <div class="grid2">
+    <div class="card"><h4>幻想一 · "上下文足够长"</h4><p class="small">长上下文能记住原文，但读取不精确（100k 时 needle 37/50），更新冲突（新旧并存），且每轮都要付 KV 成本。</p></div>
+    <div class="card"><h4>幻想二 · "编辑权重 = 写入记忆"</h4><p class="small">ROME/MEMIT 能改单条事实，但编辑互相干扰、不可枚举、不可撤销；上千条之后就不可控。</p></div>
+    <div class="card"><h4>幻想三 · "查表 = 记忆"</h4><p class="small">Engram / Memory Layers 把知识存成可训练查找表：读便宜、容量大，但只在训练时写、推理时不可写、不可审计。</p></div>
+    <div class="card"><h4>本工作给的"第四个选项"</h4><p class="small">把<strong>精确、可写、可寻址、可快照</strong>的 KV 存储做进推理时状态——代价是容量小、要编译器、要模型主动调用。</p></div>
+  </div>
+  <div class="note">判断一个"记忆系统"要看七个维度：<strong>容量、写入成本、读取延迟、精确性、更新/遗忘、可审计性、可移植性</strong>。
+  任何只吹其中一个维度的方案都值得怀疑。</div>
+</section>
+
+<section id="position">
+  <h2><span class="no">02</span>定位：它是"可编程外设"，不是联想记忆</h2>
+  <p class="sec-lede">这是整份报告最重要的判断。把 Qwenputer FS 叫"参数化记忆"会误导：参数（编译出来的权重）定义的是<strong>接口</strong>，内容住在<strong>状态</strong>里。</p>
+  <table>
+    <tr><th>类型</th><th>代表</th><th>内容在哪</th><th>何时写</th><th>精确性</th><th>可审计</th></tr>
+    <tr><td>上下文 / KV</td><td>长上下文模型</td><td>注意力缓存</td><td>推理时追加</td><td>原文在场、读取近似</td><td>高</td></tr>
+    <tr><td>外部检索</td><td>RAG / 向量库 / KG / MemGPT</td><td>外部索引</td><td>推理时增删</td><td>文本精确、召回近似</td><td>高</td></tr>
+    <tr><td>参数化编辑</td><td>ROME / MEMIT</td><td>MLP 权重</td><td>离线求解</td><td>概率性、互相干扰</td><td>低</td></tr>
+    <tr><td>条件记忆</td><td>Memory Layers / Engram</td><td>可训练查找表</td><td><b>只在训练时</b></td><td>概率性（嵌入）</td><td>低</td></tr>
+    <tr><td>循环状态</td><td>DeltaNet / Mamba / Titans</td><td>状态矩阵</td><td>每 token 更新</td><td>默认近似、会衰减</td><td>低</td></tr>
+    <tr><td><b>编译式</b></td><td>Qwenputer FS</td><td>GDN 状态行</td><td>推理时 2–3 token</td><td><b>逐 token 精确</b></td><td><b>高</b></td></tr>
+  </table>
+  <div class="warn"><strong>换个说法：</strong>它像一块"内存映射设备"——按名字精确寻址、有协议、会满、会耗尽名字、不泛化、可快照、可逐行解码。
+  把它当"记忆"会高估它的泛化能力；把它当"外设"才能正确评估它的价值。</div>
+</section>
+
+<section id="params">
+  <h2><span class="no">03</span>真实参数与限制</h2>
+  <table>
+    <tr><th>项</th><th>数值</th><th>来源/备注</th></tr>
+    <tr><td>目录</td><td>1024 槽；key = 前 6 token × 18 bit + 长度 3 bit（111 bit）→ 随机 GF(2) 映射到 10 bit；线性探测；墓碑</td><td>rv-store.md</td></tr>
+    <tr><td>容量</td><td>512 chunks × 104 tokens = <b>53,248 tokens</b>；≤512 个名字（曾创建过都算）</td><td>rv-store.md</td></tr>
+    <tr><td>每 op trace token</td><td>put 新 3.15 / 覆盖 2.15；get 命中 2.15；未命中 1.38；delete 2.05；list 每个名字 1</td><td>rv-store.md（256/448 名均值）</td></tr>
+    <tr><td>精确性</td><td>17,612 位置 teacher-forced 0 错；IR 回放 453,152 位置 0 错</td><td>rv-store.md</td></tr>
+    <tr><td>持久化</td><td>持久 heads 的 recurrent state；4B 版 169 个 value heads；约 11–30 MB（口径不同）</td><td>q35-store.md（11MB）/ 模型卡（30MB）</td></tr>
+    <tr><td>额外成本</td><td>比纯 CPU+bridge 多 1 层、61 key head；hidden 3968→4608；checkpoint 22.3GB</td><td>rv-store.md</td></tr>
+    <tr><td>限制</td><td>每 put ≤104 token；名字只比前 6 token + 长度；512 块硬上限；不能对内容做计算；依赖工具调用；一个模型一个 store。<br><strong>本机实测</strong>：A="the locker code for the safe room in" 与 B="the locker code for the safe in room" 前 6 token + 长度相同 ⇒ 互相覆盖，get(A) 返回 B 的内容；list 只显示前 6 token。</td><td>rv-store.md + 本机 D 实验</td></tr>
+  </table>
+</section>
+
+<section id="cost">
+  <h2><span class="no">04</span>成本模型：它只在很窄的窗口里更省</h2>
+  <p class="sec-lede">把一次"读查询"的代价按基座前向 E≈2N 归一化，可以得到一个可以证伪的比较。</p>
+  <table>
+    <tr><th>方案</th><th>每次查询成本</th><th>1k 事实</th><th>10k 事实</th><th>100k 事实</th></tr>
+    <tr><td>RAG（检索+粘贴 k=5×100 token）</td><td>C≈530 E；召回随 F 下降</td><td>≈530 E</td><td>≈530 E（需重排）</td><td>≈530 E + 检索</td></tr>
+    <tr><td>上下文（KV）</td><td>预填 20F + 每查询 a·ρ·20F</td><td>20k：≈10 E/查询 + 20k E 预填</td><td>200k：≈96 E + 200k E 预填</td><td>不可行</td></tr>
+    <tr><td><b>Qwenputer get</b></td><td>τ·(t_call+t_print+t_wrap+λ·4·n_names) + (τ−1)·S/Q</td><td>512 名上限；λ=0 时 <b>≈79 E</b></td><td><b>不可行</b>（53k 容量）</td><td>不可行</td></tr>
+    <tr><td>Engram</td><td>≈0 额外 token（&lt;3% 吞吐）</td><td>训练后 ≈0；<b>推理不可写</b></td><td>同左</td><td>同左</td></tr>
+  </table>
+  <div class="good"><strong>它赢的四个条件（必须同时满足）：</strong>① ≤512 文件（约 2k 条短事实）；② 键名可约定、不需要 list；③ 执行端稀疏/压缩（τ≈1）；④ 跨会话且不允许外部服务。
+  此时一次查询 ≈50–80 token，RAG ≈530 token，快 6–10 倍且回读精确。</div>
+  <div class="bad"><strong>它输的场景：</strong>① 需要 list/语义检索（约 120 个名字以上 list 就超过 RAG）；② τ≈2.6 时合并税摊到每个 token；③ 事实数上万装不下；④ 语义查询（没有向量检索）。</div>
+</section>
+
+<section id="fake">
+  <h2><span class="no">05</span>90 vs 30 的统计打假</h2>
+  <p>作者的多会话基准：变更事实上 store 27/30（90%）vs 粘贴上下文 9/30（30%）。这看起来是"介质"的胜利。但：</p>
+  <ul>
+    <li>与<strong>同语义的主机 Python 工具</strong>相比：27/30 vs 25/30，Fisher 双侧 <b>p≈0.71</b>；全部题 75/90 vs 71/90，<b>p≈0.57</b>——没有显著差异。</li>
+    <li>拉高收益的是<strong>覆盖式 put + 提示词 nudge</strong>；30% 的基线是"直接粘贴、无时间戳"，给了时间戳后上下文能到 75%。</li>
+    <li>普通事实题上，粘贴上下文 <b>60/60</b> 明显好于 store 的 48/60（p≈3e-4）。</li>
+    <li>数据是合成的、单 seed、30 道变更题；两个工具条件跑在不同 GPU 上；判分是大小写不敏感子串匹配。</li>
+  </ul>
+  <div class="warn"><strong>结论：</strong>"90 vs 30"证明的是<em>覆盖式工具记忆 &gt; 直接粘贴上下文</em>，<b>没有</b>证明"权重内介质本身更优"。
+  要证明后者，需要 H1（时间戳/append-only 消融）与 H5（LongMemEval 语义查询对照）。</div>
+  <div class="good"><strong>H1 补充实验（Stage 4，seed 0，n=30；见阶段四报告）：</strong>我们真的做了这个消融。给上下文加时间戳 + "以最新为准"后，严格评分（旧值不得出现）只到 <strong>12/30（40%）</strong>，但放宽为"新值先于旧值"后是 <strong>30/30（100%）</strong>；作者基线（普通上下文）strict 9/30、lenient 18/30。
+  逐条看，strict 漏判全部是模型<strong>先给新值、再把旧值作为历史提一句</strong>。也就是说：<strong>30% 这个数字至少部分是评分器/回答长度的产物</strong>，不完全是"上下文不会更新"。
+  这给"90 vs 30"增加了第二个混淆项（评分方式与回答风格）。<br>
+  <strong>覆盖语义对照（已完成 seed 0）：</strong>同为主机工具，覆盖式 C4 <strong>27/30=90%</strong>，append-only C2 只有 <strong>7/30=23%</strong>（与上下文 30% 同档）。<br>
+  <strong>更关键的是 brevity 变体（pooled seeds）：</strong>同一份<strong>普通上下文</strong>只加一句"Answer in one short sentence."，更新题从 pooled <strong>14/90=15.6%</strong> 直接变成 <strong>56/60=93.3%</strong>（C3s）；时间戳版 <strong>82/82=100%</strong>（C1s）。
+  结合 C4 是纯 Python 主机工具（无 in-weights 介质）也拿 90%，可以下结论：<strong>90 vs 30 的绝大部分差距来自回答格式/评分方式，而非记忆介质；覆盖语义只在"用工具"时起作用</strong>。</div>
+</section>
+
+<section id="engram">
+  <h2><span class="no">06</span>与 Engram / RAG 的分工</h2>
+  <div class="grid2">
+    <div class="card"><h4>Engram：训练时的静态知识</h4><p class="small">哈希 n-gram 条件记忆，O(1) 查表、容量到 100B 参数级、推理时不可写。优化"世界知识"。</p></div>
+    <div class="card"><h4>Qwenputer FS：推理时的精确状态</h4><p class="small">按名寻址、覆盖式更新、快照持久、逐位精确。优化"用户/任务状态"。</p></div>
+  </div>
+  <p>两者<strong>正交</strong>，不是竞争：一个解决"模型知道什么"，一个解决"模型此刻记着什么"。理想架构是 Engram 做常识 + 编译式 store 做情景缓冲，
+  再定期用稀疏记忆微调把高频情景巩固进记忆层（类似海马–新皮层分工，这是假设）。</p>
+  <table>
+    <tr><th>维度</th><th>RAG / 向量库 / KG</th><th>Qwenputer FS</th></tr>
+    <tr><td>容量</td><td>10^6–10^9 块</td><td>512 文件 / 53k token</td></tr>
+    <tr><td>读延迟</td><td>检索 10–100ms + 粘贴</td><td>2–3 chip token + 逐字打印（5–6s 实测）</td></tr>
+    <tr><td>精确性</td><td>召回归一化近似；文本精确</td><td>按名精确；无语义检索</td></tr>
+    <tr><td>可审计/可移植</td><td>高 / 高（外部系统）</td><td>高 / 低（快照绑定编译与 hash seed）</td></tr>
+    <tr><td>依赖</td><td>外部服务/编码器</td><td>模型权重 + 驱动；无外部运行时</td></tr>
+  </table>
+</section>
+
+<section id="cl">
+  <h2><span class="no">07</span>持续学习：四层判定</h2>
+  <table>
+    <tr><th>层</th><th>内容</th><th>今天</th><th>说明</th></tr>
+    <tr><td>(a)</td><td>把事实写进状态、跨会话读回</td><td>✅ 已实现</td><td>新会话 50/50、200 条 100%；但保存率 78%、名字会耗尽</td></tr>
+    <tr><td>(b)</td><td>把程序/固件编译进权重</td><td>✅ 原型</td><td>离线重编译+merge（4 min、峰值 44.7GB RAM）；改 checkpoint，不是运行时学习</td></tr>
+    <tr><td>(c)</td><td>编译器生产新能力（无需训练）</td><td>🟡 1–2 年</td><td>需要 DSL/ISA/验证/资源预算/回归自动化；能力边界仍由人工原语决定</td></tr>
+    <tr><td>(d)</td><td>元学习自动生成电路</td><td>❌ 研究</td><td>从自然语言规格综合可验证电路 + 保证 bf16/kernel 不变量，近期近似幻想</td></tr>
+  </table>
+  <div class="good"><strong>编译式写入的独特价值 = 零干扰：</strong>新电路占独立残差槽与 heads，Qwen 权重不动，KL 落在噪声底内。
+  对照：稀疏记忆微调学同样多新知识 NQ F1 掉 11%，LoRA 掉 71%，全量微调掉 89%（arXiv:2510.15103）。
+  这是"加知识"的一个严格上界参照。</div>
+  <div class="note"><strong>真正的瓶颈不是存储，而是决策：</strong>保存率 78%、长对话里几乎不调用工具、工具定义在 100k token 前被"忘记"。
+  这只能靠学习/后训练解决（RL 目标：何时写、何时读），是比"把存储做大"更值得投入的方向。</div>
+</section>
+
+<section id="exp">
+  <h2><span class="no">08</span>原创新实验（H2 / H3）</h2>
+  <p class="sec-lede">为了不让结论停留在文献里，我们在本机跑了两个纯 CPU 实验（脚本在 <span class="mono">analysis/experiments/</span>，原始数据在 <span class="mono">h2h3_results.json</span>）。</p>
+  <div class="card"><h4>H2 · 名字键的别名与探测成本</h4>
+    <p class="small">用 Qwen tokenizer 编码 2000 个真实风格名字（snake_case、短名 s1..s200、前缀对抗名），测 6-token+长度键的别名率、线性探测命中/未命中的探测数、以及 get 的期望 chip token。</p>
+    <p class="mono" id="h2-result">结果（2000 个名字，Qwen tokenizer 实测）：<br>
+    · 真实风格名前缀：snake_case 770 个 <b>0%</b> 别名；短名 s1..s200 <b>0%</b> 别名；<br>
+    · 对抗性同前缀名 400 个：<b>100%</b> 别名（前 6 token + 长度相同，符合协议定义）；<br>
+    · 基准里 Qwen 实际生成的 630 个短名：<b>0</b> 别名，平均 2.19 token/名；<br>
+    · 命中时平均探测数 2.05–2.49（负载 0.1–0.5），与线性探测解析值 ½(1+1/(1−α))≈2.17 吻合；<br>
+    · 512 个 distinct-key 后耗尽：50 次试验平均 512 创建 / 1138 被拒 / 350 次别名覆盖。</p></div>
+  <div class="card"><h4>H3 · list/get 与 RAG 的 token 交叉点</h4>
+    <p class="small">用 tokenizer 精确统计 list(n) 与 get(name) 的完整工具调用/响应 token，与 RAG（k=5×100 token 粘贴）比较，求交叉点 n*。</p>
+    <p class="mono" id="h3-result">结果（tokenizer 精确计数，RAG = k5×c100 + 20 token 问题 ≈ 520 token）：<br>
+    · get("user_city")：调用 24 token（含 2 token 名字）+ 响应包装 11 token ⇒ 10-token 内容的 get 总开销 <b>45 token</b>；chip 侧 ~2.05 token；<br>
+    · list()：调用 12 token + 响应包装 11 token + 每个名字打印 <b>3.55 token</b>；<br>
+    · 交叉点 n*：list+get(L10)=<b>128</b>，L20=125，L40=119，list-only=141 —— 与解析式 124.5、文档预测 100–150 一致；<br>
+    · 结论：n_names &gt; ~120 后，list 遍历就比"RAG 粘 5 块"更贵。</p></div>
+  <h3>8.3 容量账：状态里到底装了多少信息？</h3>
+  <table>
+    <tr><th>量</th><th>数值</th><th>说明</th></tr>
+    <tr><td>store 逻辑信息量</td><td><b>1,104,896 bit = 134.9 KiB</b></td><td>目录 1024×130 bit + 内容 512×8×234 bit + 链/长度/order（按 store.py 的数据结构计）</td></tr>
+    <tr><td>同样 512×104 token 的 UTF-8 文本</td><td>157 KiB（3.02 B/token 实测）</td><td>信息密度比 ≈ <b>1.16×</b>：状态存储几乎"不失真"</td></tr>
+    <tr><td>同样 53,248 token 的 KV cache</td><td><b>1.625 GiB</b></td><td>32 KB/token（8 层全注意力 × 4 KV heads × 256 dim × 2B）→ 是 store 逻辑量的 12,633 倍</td></tr>
+    <tr><td>全部线性层的 GDN 递归状态（fp32）</td><td>72 MiB</td><td>固定大小，与上下文长度无关；这是"物理介质"成本</td></tr>
+  </table>
+  <div class="note">这张表解释了为什么它"看起来高效"又不完全高效：<b>逻辑上</b>它把 53k token 的文本压进 135 KiB 的可寻址状态（与文本同量级），
+  远胜 KV；但<b>物理上</b>这份状态是 72 MiB 的稠密矩阵——介质本身比 payload 大 ~500 倍。压缩空间在执行端（稀疏/量化），不在协议。</div>
+
+<h3>8.4 本机端到端复现（发布 checkpoint，纯 CPU）</h3>
+  <p>上面的 H2/H3 是协议级测量。我们也在 22.3GB 发布 checkpoint 上直接复现了跨会话记忆（Ryzen 5700X / 48GB RAM / 纯 CPU，
+  torch 2.14.1+cpu，单 token ~4.7s）：</p>
+  <div class="diagram" style="font-family:var(--mono);font-size:12.5px;line-height:1.9">
+    <strong>会话 1（put，204.6s，69 text + 3 chip tokens，0 mismatch）：</strong><br>
+    Qwen 自发写 <span style="color:#60a5fa">&lt;tool_call&gt;&lt;function=put&gt;locker_code…&lt;/function&gt;&lt;/tool_call&gt;</span><br>
+    编译电路在权重内回答 <span style="color:#4ade80">ok</span>；Qwen：<span style="color:#e6edf6">"I've saved your locker code as 4471-AZ."</span><br>
+    → 快照 <span style="color:#fbbf24">store.npz = 11.5 KB</span>（只存被写过的 state 行）<br><br>
+    <strong>会话 2（空上下文，加载快照，170.4s，54 text + 2 chip tokens，0 mismatch）：</strong><br>
+    Qwen 自发写 <span style="color:#60a5fa">&lt;function=get&gt;locker_code&lt;/function&gt;</span><br>
+    电路打印 <span style="color:#4ade80">4471-AZ</span>；Qwen：<span style="color:#e6edf6">"Your locker code is 4471-AZ."</span>
+  </div>
+  <div class="good"><strong>为什么这条证据重要：</strong>它把"跨会话、空上下文、按名精确回读、逐字符正确"四件事同时坐实，
+  而且是在没有 GPU、没有外部工具服务器的普通 CPU 机器上——说明这条技术路线不依赖特殊硬件；同时也暴露了代价：
+  端到端每个 text token ~4.7s，一次 get 往返 170s（作者 L4 GPU 上是 5–6s）。</div>
+  <table>
+    <tr><th>实验</th><th>问题</th><th>资源</th><th>判据</th></tr>
+    <tr><td>H1</td><td>90 vs 30 是否只是覆盖语义 + 基线设计？</td><td>合成数据 + 4B（ROCm/CPU）</td><td>时间戳上下文 ≥80% ⇒ 收益主要来自基线</td></tr>
+    <tr><td>H5</td><td>精确键寻址在语义查询上落后向量检索多少？</td><td>LongMemEval_S 100 题 + bge-small（CPU）</td><td>多会话/时间推理低 ≥15 分；更新题持平或更高</td></tr>
+    <tr><td>H4</td><td>编译式 put vs LoRA 的遗忘对比</td><td>4B + LoRA（ROCm）</td><td>LoRA 回读 100% 且 ΔPPL&lt;0.5% ⇒ 编译优势只在精确性</td></tr>
+  </table>
+</section>
+
+<section id="verdict">
+  <h2><span class="no">09</span>结论：什么时候用哪种记忆</h2>
+  <table>
+    <tr><th>需求</th><th>首选</th><th>理由</th></tr>
+    <tr><td>大规模世界知识 / 语义检索</td><td>RAG / 向量库 / KG</td><td>容量、模糊召回、可更新</td></tr>
+    <tr><td>训练时静态知识、极致推理效率</td><td>Engram / Memory Layers</td><td>O(1) 查表、容量大</td></tr>
+    <tr><td>少量、精确、跨会话的用户/任务状态</td><td><b>Qwenputer FS（或同类精确 KV）</b></td><td>按名精确、覆盖更新、快照、无外部依赖</td></tr>
+    <tr><td>需要精确计算 + 状态</td><td>编译式协处理器（本工作）</td><td>计算与存储同在前向内</td></tr>
+    <tr><td>要"泛化地记住"</td><td>仍需 SGD / 稀疏记忆微调</td><td>编译式写入不泛化</td></tr>
+  </table>
+  <div class="warn"><strong>最终判断：</strong>"in-weights 文件系统是更高效的参数化记忆"——<b>过强</b>。准确表述：
+  它是<strong>一个精确、零干扰、可审计的 KV 外设</strong>，在窄场景比 RAG 省 token，为参数化记忆研究提供了"精确写入"的上界参照。
+  它对"持续学习"的真实贡献是：证明了<em>不遗忘的写入是可能的</em>，并把瓶颈暴露在"何时写/读"的决策层。</div>
+</section>
+
+<section id="refs">
+  <h2><span class="no">10</span>参考</h2>
+  <ul class="small">
+    <li>Qwenputer rv-store 设计：<span class="mono">.research/upstream/qwenputer-rv/experimental/riscv/docs/rv-store.md</span></li>
+    <li>本仓库研究笔记：<span class="mono">docs/research/parametric-memory.md</span>、<span class="mono">docs/research/prior-work.md</span>、<span class="mono">docs/research/expert-assessment.md</span></li>
+    <li>Engram: arXiv:2601.07372 · Memory Layers: arXiv:2412.09764 · Titans: arXiv:2501.00663</li>
+    <li>ROME: arXiv:2202.05262 · MEMIT: arXiv:2210.07229 · MemGPT: arXiv:2310.08560 · LongMemEval: arXiv:2410.10813</li>
+    <li>RAG: arXiv:2005.11401 · Sparse memory finetuning: arXiv:2510.15103 · Gated DeltaNet: arXiv:2412.06464</li>
+  </ul>
+</section>
+
+<footer>Qcompute · 阶段二报告 · 2026-10-29 · 所有数字标注来源；未复现的作者数字按"作者声明"处理。</footer>
+</main>
+</div>
+<script>
+(function(){var links=[].slice.call(document.querySelectorAll('nav a'));var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+function on(){var y=window.scrollY+120,idx=0;for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=y)idx=i}links.forEach(function(a,i){a.classList.toggle('active',i===idx)})}
+window.addEventListener('scroll',on,{passive:true});on();})();
+</script>
+</body>
+</html>

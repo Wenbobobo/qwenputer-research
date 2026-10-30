@@ -1,0 +1,134 @@
+{
+  "config": {
+    "ask": "Hi",
+    "max_new": 12,
+    "memory": null,
+    "output": "gpu/out/hip_int8_hi.json",
+    "head_trim": false,
+    "hf": false
+  },
+  "chip": "bf16 exact (fast.compact qwen=False)",
+  "qwen": "lossless trim 2561 cols / 2560 rows",
+  "fast": true,
+  "cpu_load_s": 1.1257139449880924,
+  "zero_check": {
+    "checked_matrices": 248,
+    "nonzero_dropped": []
+  },
+  "trim": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "compact": {
+    "dense_weights": 2305695744,
+    "compact_weights": 324708406,
+    "chip_deltanet_heads": [
+      [
+        18,
+        32
+      ],
+      [
+        10,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        28,
+        32
+      ]
+    ]
+  },
+  "int8_head": {
+    "quantized_rows": 248320,
+    "quantized_cols": 2560,
+    "exact_chip_cols": 40,
+    "text_only": false,
+    "chunk_rows": 16384,
+    "buffer_bytes": 675476800,
+    "dequant_chunk_bytes": 83886080,
+    "embedding": "unchanged BF16 tied original; separate compact head adds storage"
+  },
+  "param_bytes_cpu": 12260537740,
+  "buffer_bytes_cpu": 675477056,
+  "to_cuda_s": 33.016309784012265,
+  "load_s": 134.67294660299376,
+  "loaded_memory_bytes": 13046243840,
+  "all_parameters_cuda": true,
+  "init_s": 148.12758821999887,
+  "after_init_memory_bytes": 13436335616,
+  "prompt_len": 803,
+  "tokens": [
+    248058,
+    198,
+    27,
+    1628,
+    39619,
+    29,
+    198,
+    510,
+    1628,
+    29,
+    198,
+    248059
+  ],
+  "text_tokens": 12,
+  "chip_tokens": 0,
+  "seconds": 1.2398712635040283,
+  "head_mismatch": 0,
+  "lock_error": null,
+  "verify_mismatch": null,
+  "chip_seconds": 0.0,
+  "text_seconds": 1.24,
+  "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+  "wall_s": 4.790997739997692,
+  "text_tokens_per_s": 9.678424166462676,
+  "wall_text_tokens_per_s": 2.5046974870845546,
+  "memory_loaded": false,
+  "warm": {
+    "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+    "seconds": 1.1084601879119873,
+    "wall_s": 3.2199541159934597,
+    "text_tokens_per_s": 10.825828596157763,
+    "same_tokens": true
+  },
+  "status": "ok",
+  "max_memory_allocated_bytes": 14062523904,
+  "max_memory_reserved_bytes": 14340325376
+}

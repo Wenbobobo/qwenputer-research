@@ -1,0 +1,12 @@
+[
+  {
+    "dtype": "torch.float8_e4m3fn",
+    "status": "ok",
+    "error": 1.9073486328125e-06
+  },
+  {
+    "dtype": "torch.float8_e5m2",
+    "status": "ok",
+    "error": 1.9073486328125e-06
+  }
+]

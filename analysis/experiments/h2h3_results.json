@@ -1,0 +1,379 @@
+{
+ "H2": {
+  "description": "H2 name-key/alias statistics (reference store.py protocol: 6 tokens + length, linear probing, 1024 slots, 512 names)",
+  "corpus": {
+   "names": 2000,
+   "distinct_keys": 1640,
+   "aliased_names": 400,
+   "alias_rate_corpus": 0.2,
+   "largest_key_group": 10,
+   "by_category": {
+    "snake": {
+     "names": 770,
+     "aliased_names": 0,
+     "alias_rate": 0.0
+    },
+    "short_sN": {
+     "names": 200,
+     "aliased_names": 0,
+     "alias_rate": 0.0
+    },
+    "adversarial_prefix": {
+     "names": 400,
+     "aliased_names": 400,
+     "alias_rate": 1.0
+    },
+    "bench_short": {
+     "names": 630,
+     "aliased_names": 0,
+     "alias_rate": 0.0
+    }
+   },
+   "name_token_length_hist": {
+    "1": 57,
+    "2": 793,
+    "3": 567,
+    "4": 179,
+    "5": 4,
+    "12": 162,
+    "13": 180,
+    "14": 54,
+    "15": 4
+   },
+   "names_over_5_tokens_truncated_in_list": 400,
+   "slot_distinct_used_by_all_keys": 821
+  },
+  "load_factors": {
+   "all_2000": {
+    "0.1": {
+     "names_inserted": 102,
+     "alpha": 0.099609375,
+     "trials": 50,
+     "alias_rate_within_subset": 0.07333,
+     "wrong_get_rate_within_subset": 0.03941,
+     "overwrites_per_trial_mean": 4.02,
+     "insert_probes_mean": 1.048,
+     "hit_probes_mean": 1.048,
+     "hit_probes_max": 4,
+     "miss_probes_mean": 1.0995,
+     "miss_probes_max": 5,
+     "false_hit_rate_on_miss": 0.0764,
+     "get_chip_tokens_hit_mean": 2.048,
+     "get_chip_tokens_miss_mean": 1.0995,
+     "analytic_hit_probes_linear_probing": 1.0553,
+     "analytic_miss_probes_linear_probing": 1.1167
+    },
+    "0.25": {
+     "names_inserted": 256,
+     "alpha": 0.25,
+     "trials": 50,
+     "alias_rate_within_subset": 0.14555,
+     "wrong_get_rate_within_subset": 0.08648,
+     "overwrites_per_trial_mean": 22.14,
+     "insert_probes_mean": 1.127,
+     "hit_probes_mean": 1.127,
+     "hit_probes_max": 7,
+     "miss_probes_mean": 1.2721,
+     "miss_probes_max": 11,
+     "false_hit_rate_on_miss": 0.14527,
+     "get_chip_tokens_hit_mean": 2.127,
+     "get_chip_tokens_miss_mean": 1.2721,
+     "analytic_hit_probes_linear_probing": 1.1667,
+     "analytic_miss_probes_linear_probing": 1.3889
+    },
+    "0.5": {
+     "names_inserted": 512,
+     "alpha": 0.5,
+     "trials": 50,
+     "alias_rate_within_subset": 0.18504,
+     "wrong_get_rate_within_subset": 0.12609,
+     "overwrites_per_trial_mean": 64.56,
+     "insert_probes_mean": 1.3098,
+     "hit_probes_mean": 1.3098,
+     "hit_probes_max": 12,
+     "miss_probes_mean": 1.8243,
+     "miss_probes_max": 18,
+     "false_hit_rate_on_miss": 0.188,
+     "get_chip_tokens_hit_mean": 2.3098,
+     "get_chip_tokens_miss_mean": 1.8243,
+     "analytic_hit_probes_linear_probing": 1.5,
+     "analytic_miss_probes_linear_probing": 2.5
+    }
+   },
+   "realistic_no_adversarial": {
+    "0.1": {
+     "names_inserted": 102,
+     "alpha": 0.099609375,
+     "trials": 50,
+     "alias_rate_within_subset": 0.0,
+     "wrong_get_rate_within_subset": 0.0,
+     "overwrites_per_trial_mean": 0.0,
+     "insert_probes_mean": 1.0541,
+     "hit_probes_mean": 1.0541,
+     "hit_probes_max": 5,
+     "miss_probes_mean": 1.1113,
+     "miss_probes_max": 7,
+     "false_hit_rate_on_miss": 0.0,
+     "get_chip_tokens_hit_mean": 2.0541,
+     "get_chip_tokens_miss_mean": 1.1113,
+     "analytic_hit_probes_linear_probing": 1.0553,
+     "analytic_miss_probes_linear_probing": 1.1167
+    },
+    "0.25": {
+     "names_inserted": 256,
+     "alpha": 0.25,
+     "trials": 50,
+     "alias_rate_within_subset": 0.0,
+     "wrong_get_rate_within_subset": 0.0,
+     "overwrites_per_trial_mean": 0.0,
+     "insert_probes_mean": 1.1667,
+     "hit_probes_mean": 1.1667,
+     "hit_probes_max": 14,
+     "miss_probes_mean": 1.3851,
+     "miss_probes_max": 11,
+     "false_hit_rate_on_miss": 0.0,
+     "get_chip_tokens_hit_mean": 2.1667,
+     "get_chip_tokens_miss_mean": 1.3851,
+     "analytic_hit_probes_linear_probing": 1.1667,
+     "analytic_miss_probes_linear_probing": 1.3889
+    },
+    "0.5": {
+     "names_inserted": 512,
+     "alpha": 0.5,
+     "trials": 50,
+     "alias_rate_within_subset": 0.0,
+     "wrong_get_rate_within_subset": 0.0,
+     "overwrites_per_trial_mean": 0.0,
+     "insert_probes_mean": 1.4895,
+     "hit_probes_mean": 1.4895,
+     "hit_probes_max": 28,
+     "miss_probes_mean": 2.4814,
+     "miss_probes_max": 38,
+     "false_hit_rate_on_miss": 0.0,
+     "get_chip_tokens_hit_mean": 2.4895,
+     "get_chip_tokens_miss_mean": 2.4814,
+     "analytic_hit_probes_linear_probing": 1.5,
+     "analytic_miss_probes_linear_probing": 2.5
+    }
+   }
+  },
+  "exhaustion_full_corpus_insert": {
+   "trials": 50,
+   "created_mean": 512.0,
+   "overwritten_by_alias_mean": 350.28,
+   "rejected_full_mean": 1137.72,
+   "note": "512-name cap (n_names) is reached after 512 distinct-key creates; alias puts overwrite instead of creating"
+  },
+  "benchmark_short_names": {
+   "bench_names": 630,
+   "aliased_with_corpus": 0,
+   "aliased_examples": [],
+   "over_5_tokens": 0,
+   "collide_with_snake_or_short": 0,
+   "short_names_tokens_mean": 2.19,
+   "slot_collisions_bench_vs_corpus_mean_probe": 0.8159
+  }
+ },
+ "H3": {
+  "description": "H3 token-cost crossing: list-based recall vs RAG (k=5, c=100)",
+  "protocol_source": "repro/qwenputer/experimental/riscv/chipformer/rv/store.py (call_tokens, respond list/get)",
+  "tokenizer": "Qwen3.5 tokenizer.json (tokens counted as the store writes them)",
+  "name_example": "user_city",
+  "name_example_tokens": 2,
+  "get_call_breakdown": {
+   "tool_call_tokens_total": 24,
+   "wrapper_and_op_tokens": 22,
+   "name_tokens": 2
+  },
+  "get_costs": [
+   {
+    "content_tokens": 10,
+    "qwen_call_tokens": 24,
+    "tool_response_wrapper_tokens": 11,
+    "tool_response_total_tokens": 21,
+    "get_total_context_tokens": 45,
+    "chip_tokens_expected_hit_LF0.1": 2.05,
+    "chip_tokens_note": "1 SP probe + 1 SG per chunk (best case 2; H2 realistic hit probes give 2.05-2.49)"
+   },
+   {
+    "content_tokens": 20,
+    "qwen_call_tokens": 24,
+    "tool_response_wrapper_tokens": 11,
+    "tool_response_total_tokens": 31,
+    "get_total_context_tokens": 55,
+    "chip_tokens_expected_hit_LF0.1": 2.05,
+    "chip_tokens_note": "1 SP probe + 1 SG per chunk (best case 2; H2 realistic hit probes give 2.05-2.49)"
+   },
+   {
+    "content_tokens": 40,
+    "qwen_call_tokens": 24,
+    "tool_response_wrapper_tokens": 11,
+    "tool_response_total_tokens": 51,
+    "get_total_context_tokens": 75,
+    "chip_tokens_expected_hit_LF0.1": 2.05,
+    "chip_tokens_note": "1 SP probe + 1 SG per chunk (best case 2; H2 realistic hit probes give 2.05-2.49)"
+   }
+  ],
+  "list_call_tokens": 12,
+  "list_wrapper_tokens_no_names": 11,
+  "list_rows": [
+   {
+    "n_names": 1,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 14.54,
+    "list_call_plus_response_tokens_mean": 26.55,
+    "list_plus_get_L10_mean": 72.09,
+    "list_plus_get_L20_mean": 82.09,
+    "list_plus_get_L40_mean": 102.09,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": -493.45,
+    "list_plus_get_L20_minus_rag": -437.91
+   },
+   {
+    "n_names": 5,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 28.93,
+    "list_call_plus_response_tokens_mean": 40.94,
+    "list_plus_get_L10_mean": 86.47,
+    "list_plus_get_L20_mean": 96.47,
+    "list_plus_get_L40_mean": 116.47,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": -479.06,
+    "list_plus_get_L20_minus_rag": -423.53
+   },
+   {
+    "n_names": 10,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 46.59,
+    "list_call_plus_response_tokens_mean": 58.59,
+    "list_plus_get_L10_mean": 104.13,
+    "list_plus_get_L20_mean": 114.13,
+    "list_plus_get_L40_mean": 134.13,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": -461.41,
+    "list_plus_get_L20_minus_rag": -405.87
+   },
+   {
+    "n_names": 20,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 82.36,
+    "list_call_plus_response_tokens_mean": 94.36,
+    "list_plus_get_L10_mean": 139.96,
+    "list_plus_get_L20_mean": 149.96,
+    "list_plus_get_L40_mean": 169.96,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": -425.64,
+    "list_plus_get_L20_minus_rag": -370.04
+   },
+   {
+    "n_names": 50,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 188.63,
+    "list_call_plus_response_tokens_mean": 200.63,
+    "list_plus_get_L10_mean": 246.16,
+    "list_plus_get_L20_mean": 256.17,
+    "list_plus_get_L40_mean": 276.17,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": -319.37,
+    "list_plus_get_L20_minus_rag": -263.83
+   },
+   {
+    "n_names": 100,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 367.06,
+    "list_call_plus_response_tokens_mean": 379.06,
+    "list_plus_get_L10_mean": 424.66,
+    "list_plus_get_L20_mean": 434.66,
+    "list_plus_get_L40_mean": 454.66,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": -140.94,
+    "list_plus_get_L20_minus_rag": -85.34
+   },
+   {
+    "n_names": 200,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 720.79,
+    "list_call_plus_response_tokens_mean": 732.79,
+    "list_plus_get_L10_mean": 778.31,
+    "list_plus_get_L20_mean": 788.31,
+    "list_plus_get_L40_mean": 808.31,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": 212.79,
+    "list_plus_get_L20_minus_rag": 268.31
+   },
+   {
+    "n_names": 400,
+    "list_call_tokens": 12,
+    "list_tool_response_tokens_mean": 1430.6,
+    "list_call_plus_response_tokens_mean": 1442.6,
+    "list_plus_get_L10_mean": 1488.17,
+    "list_plus_get_L20_mean": 1498.17,
+    "list_plus_get_L40_mean": 1518.17,
+    "rag_context_tokens": 520,
+    "list_only_minus_rag": 922.6,
+    "list_plus_get_L20_minus_rag": 978.17
+   }
+  ],
+  "realistic_name_pool_size": 1600,
+  "printed_tokens_per_name_mean": 3.55,
+  "parametric_memory_doc_assumption_tokens_per_name": 4,
+  "rag": {
+   "k": 5,
+   "c": 100,
+   "query_tokens_assumed": 20,
+   "rag_context_tokens": 520,
+   "measured_example_question_tokens": 16,
+   "measured_example_question": "What city does the user live in, and what is their dog's name?"
+  },
+  "crossing_n_star": {
+   "list_plus_get_L10": 128,
+   "list_plus_get_L20": 125,
+   "list_plus_get_L40": 119,
+   "list_only": 141,
+   "analytic_list_only_approx": 140.0,
+   "analytic_list_plus_get_L20_approx": 124.5
+  },
+  "doc_prediction_range": [
+   100,
+   150
+  ]
+ },
+ "capacity": {
+  "config_source": "C:/Projects/Qcompute/.data/Qwen3.5-4B-Qwenputer-Filesystem/config.json",
+  "layers": {
+   "total": 44,
+   "full_attention": 8,
+   "linear_attention": 36
+  },
+  "kv_heads": 4,
+  "head_dim": 256,
+  "kv_dtype_bytes": 2,
+  "kv_bytes_per_token": 32768,
+  "docs_assumption_kv_bytes_per_token": 32768,
+  "docs_assumption_note": "docs/research/parametric-memory.md assumes 8 full-attention layers (32 KB/token); config has 8",
+  "files": 512,
+  "tokens_per_file_cmax": 104,
+  "total_tokens": 53248,
+  "store_logical_bits": {
+   "content": 958464,
+   "directory": 133120,
+   "order": 5120,
+   "lengths": 3584,
+   "next_pointers": 4608,
+   "total": 1104896
+  },
+  "store_logical_bytes": 138112.0,
+  "store_logical_kib": 134.88,
+  "text_utf8_bytes_per_token_measured": 3.0196,
+  "text_bytes_for_512x104_tokens": 160787,
+  "text_kib": 157.0,
+  "kv_cache_bytes_for_53248_tokens": 1744830464,
+  "kv_cache_gib_for_53248_tokens": 1.625,
+  "gdn_fixed_recurrent_state_bytes_fp32_all_linear_layers": 75497472,
+  "gdn_fixed_recurrent_state_mib": 72.0,
+  "ratio_kv_over_store_logical": 12633.4,
+  "ratio_kv_over_text": 10851.8,
+  "ratio_text_over_store_logical": 1.164,
+  "note": "store_logical_* counts the id/key/directory bits the reference dicts hold (store.py Device/Entry); the physical GDN state layout (bit packing, fp32 vs bf16 heads) is not in store.py and is not measured here."
+ }
+}

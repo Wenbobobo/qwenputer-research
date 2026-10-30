@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阶段七：精确性的边界 · 混合内核 · 记忆的最后一臂</title>
+<style>
+:root{--bg:#080b10;--panel:#101823;--panel2:#0d141d;--line:#1d2a3a;--fg:#e6edf6;--muted:#93a4ba;--dim:#6b7c93;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--cyan:#22d3ee;--red:#f87171;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter','Noto Sans SC',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 600px at 85% -10%,#0c2a2c 0%,transparent 55%),radial-gradient(900px 500px at 5% 0%,#101a2e 0%,transparent 50%),var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.75;font-size:16px}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3{line-height:1.3}code{font-family:var(--mono);font-size:.86em;background:#0a121b;border:1px solid var(--line);padding:.12em .4em;border-radius:5px;color:#bff3ff}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;max-width:1360px;margin:0 auto;padding:0 30px}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:30px 0 40px;border-right:1px solid var(--line)}
+nav .brand{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan)}nav .sub{color:var(--dim);font-size:12px;margin:4px 0 22px}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:toc}nav li{counter-increment:toc;margin:2px 0}
+nav a{display:block;padding:5px 10px 5px 32px;border-left:2px solid transparent;color:var(--muted);font-size:13px;position:relative}
+nav a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:8px;color:var(--dim);font-size:11px;font-family:var(--mono)}
+nav a:hover{color:var(--fg);background:#0e1620;text-decoration:none}nav a.active{color:var(--cyan);border-left-color:var(--cyan);background:#0a1e22}
+main{padding:40px 0 110px;min-width:0}
+.hero{padding:42px 0 28px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid #155e63;background:#0a1a1d;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(30px,4vw,48px);margin:0 0 14px;font-weight:850;background:linear-gradient(92deg,#f8fafc 10%,#22d3ee 60%,#60a5fa 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:#b9c8da;max-width:840px;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--dim);font-size:13px;font-family:var(--mono)}
+section{margin:0 0 64px;scroll-margin-top:24px}h2{font-size:28px;margin:0 0 8px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--mono);font-size:14px;color:var(--cyan);font-weight:600;letter-spacing:.1em}
+.sec-lede{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:880px}h3{font-size:20px;margin:32px 0 10px;color:#e2e8f0}
+p{color:#c3d0e0;margin:0 0 15px}ul,ol{color:#c3d0e0;padding-left:22px}li{margin:6px 0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#0d1622;color:#cfe0f2;font-weight:650;font-size:13px}tr:nth-child(even) td{background:#0a1119}
+.good{border-left:3px solid var(--green);background:#08150f;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#c2f0d4}
+.warn{border-left:3px solid var(--amber);background:#1a1408;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3dfb0}
+.bad{border-left:3px solid var(--red);background:#1a0c0c;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3c1c1}
+.note{border-left:3px solid var(--blue);background:#0b1622;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#bfd3ea}
+.mono{font-family:var(--mono)}.small{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:0 4px 4px 0}
+footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--dim);font-size:13px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr;padding:0 20px}nav.toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px 0}nav ol{columns:2}main{padding-top:8px}}
+</style></head><body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Qwenputer · 阶段七</div>
+  <div class="sub">精确性 / 混合内核 / 记忆</div>
+  <ol>
+    <li><a href="#exact">AMD 精确性边界</a></li>
+    <li><a href="#selfla">选择性 FLA</a></li>
+    <li><a href="#h1">H1 的最后一块拼图</a></li>
+    <li><a href="#int8">int8 head 与 ROCm 调优</a></li>
+    <li><a href="#community">社区最佳实践</a></li>
+    <li><a href="#next">结论与下一步</a></li>
+  </ol>
+  <div class="tag" style="margin-top:22px">Stage 7 · v1<br>2026-10-29 · Qcompute</div>
+</nav>
+<main>
+<div class="hero">
+  <div class="kicker">AMD bf16 IS NOT BIT-EXACT · SELECTIVE FLA · IN-WEIGHTS 100%</div>
+  <h1>精确性的边界，和记忆的最后一臂</h1>
+  <p class="lede">阶段七回答了两个悬而未决的问题：<strong>"能不能既快又 bit-exact？"</strong>——不能，因为 <strong>7900 XT/ROCm 的 bf16 GEMM 本身就不是 bit-exact</strong>（屏蔽 FLA 也一样，作者结论是 NVIDIA L4 专属）；
+  <strong>"in-weights 记忆到底有没有优势？"</strong>——H1 缺失的 in-weights 一臂补上了：<strong>changed 10/10 = 100%</strong>，与 host 覆盖式工具同档 → <strong>覆盖语义是关键，介质没有可测优势</strong>。</p>
+  <div class="meta"><span>环境：WSL ROCm 7.2.1 + RX 7900 XT + trim runtime</span><span>证据：docs/notes/stage7-*.md、gpu/out/*.json、analysis/experiments/h1_inweights/</span></div>
+</div>
+
+<section id="exact">
+  <h2><span class="no">01</span>AMD 精确性边界：不是 FLA 的错</h2>
+  <p class="sec-lede">我们曾以为 FLA 破坏了 chip 层 bit-exact。三组对照推翻了它。</p>
+  <table>
+    <tr><th>配置</th><th>gpucheck --decode（7900 XT）</th><th>wrong tokens</th></tr>
+    <tr><td>FLA 0.6.0（全量）</td><td>MISMATCH，残留 −5.96e-8 ~ 9.4e-7</td><td>0</td></tr>
+    <tr><td><strong>屏蔽 FLA（纯 torch fallback）</strong></td><td><strong>同样 MISMATCH，残差完全相同</strong></td><td>0</td></tr>
+    <tr><td>FLA 0.5.2（作者验证版本）</td><td>同样失败（677 dims 不 bit-exact）</td><td>0</td></tr>
+    <tr><td>CPU（纯 torch）</td><td><strong>通过</strong>；max_abs_logit_diff 0.0、argmax 15/15 + 66/66</td><td>0</td></tr>
+  </table>
+  <div class="bad"><strong>结论：</strong>AMD gfx1100/ROCm 的 bf16 GEMM 归约顺序本身就产生 1-ULP 级差异，与 FLA 无关；作者"bit-exact"是 <strong>NVIDIA L4</strong> 的验证结论。
+  在 AMD 上正确的表述只能是：<strong>CPU 路径 bit-identical；GPU 路径 token-level 正确</strong>（head_mismatch 0、lock_error None）。</div>
+  <div class="warn"><strong>长序列的代价：</strong>H1 in-weights 的长历史（数百 token）中出现 3 次历史 calc lock divergence（cases 1/2/5）——问题轮本身全部干净，说明短上下文完全可用，但长序列的电路数值漂移是 AMD GPU 的已知限制。</div>
+  <div class="good"><strong>01b 长序列的正解（Stage 8 预研已出正面结果）：</strong>把 <strong>12 个 chip 层改成 fp32 计算</strong>、Qwen/embedding/lm_head 保持 bf16（<span class="mono">TRIM_FP32_CHIP=1</span>，参数 +0.65GB）。严格 paired 对照（同一 harness、同一天）：<strong>bf16 chip 3/12 lock divergences（recall-1/s1、recall-2/s1、recall-5/s2）→ fp32 chip 0/12</strong>；bf16 在原失败点提前分叉（chip tokens 仅 25），fp32 完整执行 calc（4077/2841/2704 chip tokens）且 lock=None、head 全 0。速度代价很小：put 16.88→15.72、fresh-get 15.52→14.69、Hi warm 16.56→18.87 tok/s，峰值 13.3→13.94GB。这是目前 AMD 上"长序列电路正确性"最有效的修复方向（详细见 docs/notes/stage8-fp32chip.md）。</div>
+</section>
+
+<section id="selfla">
+  <h2><span class="no">02</span>选择性 FLA：chip 参考 + Qwen 融合</h2>
+  <p class="sec-lede">按 <span class="mono">layer_idx</span> 分流：0–11 层调用 reference torch GDN，12–43 层走 FLA。dispatch 探针确认生效（ref:96 / fast:480 次调用）。</p>
+  <table>
+    <tr><th>trim runtime 模式</th><th>Hi</th><th>put</th><th>get</th><th>峰值</th></tr>
+    <tr><td>no-FLA（早期测量，CPU 争用下）</td><td>4.47–6.96</td><td>6.79</td><td>9.00</td><td>13.15GB</td></tr>
+    <tr><td><strong>no-FLA（B 的干净串行复测）</strong></td><td><strong>13.48</strong></td><td><strong>13.60</strong></td><td><strong>14.71</strong></td><td>13.2GB</td></tr>
+    <tr><td><strong>selective FLA</strong></td><td>10.53 cold / 13.78 warm</td><td>12.44</td><td>12.15</td><td>13.15GB</td></tr>
+    <tr><td>full FLA</td><td>12.39–16.8</td><td><strong>16.84</strong></td><td>13.62</td><td>13.15GB</td></tr>
+  </table>
+  <p>所有模式 put/get 正确（head 0、lock None、4471-AZ），文本与基线一致。既然 AMD GPU 本来就不是 bit-exact，selective 的意义是<strong>把 chip 层留在最接近作者数值的路径上</strong>；full FLA 用于追求极限吞吐。</p>
+  <div class="warn"><strong>测量条件提醒：</strong>早期 trim no-FLA 的 6.79/9.00 tok/s 是在同机 CPU 检查进程（12 线程、28GB）干扰下测的；B 在 23:00 左右 GPU 独占、CPU 空闲时复测得 13.48/13.60/14.71。因此<strong>以干净复测数字为准</strong>：trim no-FLA ≈ 13.5–14.7 tok/s；FLA 的增益相应从"2–3×"修正为约 1.2×（put 16.84 vs 13.60）。</div>
+</section>
+
+<section id="h1">
+  <h2><span class="no">03</span>H1 的最后一块拼图：in-weights 对照臂</h2>
+  <p class="sec-lede">用发布版 Qwenputer 自己的文件系统（RvChat 的 put/get store、MEM_SYSTEM）在同样的 4 会话事实集上跑 10 个 case（no-FLA trim，GPU）。</p>
+  <table>
+    <tr><th>条件</th><th>变更题 strict</th><th>lenient</th><th>事实题</th><th>全部</th></tr>
+    <tr><td><strong>C5 in-weights（发布模型自己的 store）</strong></td><td><strong>10/10 = 100%</strong>（95% CI 72.2–100）</td><td>10/10</td><td>17/20 = 85%</td><td><strong>27/30 = 90%</strong></td></tr>
+    <tr><td>C4 host 覆盖式工具（同 10 题）</td><td>8/10 = 80%</td><td>—</td><td>14/20 = 70%</td><td>22/30 = 73.3%</td></tr>
+    <tr><td>C2 append-only host（同 10 题）</td><td>4/10 = 40%</td><td>—</td><td>20/20 = 100%</td><td>24/30 = 80%</td></tr>
+    <tr><td>C1 时间戳上下文（同 10 题）</td><td>3/10 = 30%</td><td>—</td><td>20/20 = 100%</td><td>23/30 = 76.7%</td></tr>
+    <tr><td>C3 普通上下文（同 10 题）</td><td>3/10 = 30%</td><td>—</td><td>20/20 = 100%</td><td>23/30 = 76.7%</td></tr>
+  </table>
+  <h3>3.1 这个结果说明什么</h3>
+  <ul>
+    <li><strong>changed 100%</strong>：in-weights store 的覆盖式写入与 host 覆盖式工具同档，远高于 append-only（40%）和上下文（30%）——再次确认<strong>"覆盖语义"是决定性因素</strong>。</li>
+    <li><strong>介质没有可测优势</strong>：host 工具用 Python 也能到 80–90%，in-weights 并没有显著更高；<strong>不构成等价性，也不构成"权重内介质更优"</strong>。</li>
+    <li><strong>事实题 85% 的失分是任务侧</strong>：模型偶尔没执行 put（unsaved facts）、重复 get 到答案预算上限；不是存储丢失。</li>
+    <li><strong>长序列 caveat</strong>：3 次历史 calc lock divergence（cases 1/2/5），lock-clean 子集 changed 7/7、facts 11/14、all 18/21；30 个问题轮 lock 全干净、head mismatch 0。</li>
+    <li><strong>诚实性</strong>：raw store_after 显示有 tuple-key 解码 bug（已修），原始 store 诊断不可靠；transcript 显示只有 4 个 changed case 在 session 结束时仍留旧值、1 个以不同 key 保留旧值——因此结论按"可观测行为"陈述，不做等价性声明。</li>
+  </ul>
+</section>
+
+<section id="int8">
+  <h2><span class="no">04</span>int8 head 与 ROCm 调优（进行中）</h2>
+  <p class="sec-lede">tied embedding/lm_head 是每 token 的最后一块带宽大头（~4.47GB）。CPU 侧检查全部通过，但 GPU 实测是<strong>负结果</strong>。</p>
+  <table>
+    <tr><th>配置（同一串行 session，GPU 独占）</th><th>Hi</th><th>put</th><th>get</th><th>峰值</th><th>正确性</th></tr>
+    <tr><td><strong>base trim（无 int8、无 env）</strong></td><td><strong>13.48 cold / 18.73 warm</strong></td><td><strong>13.60</strong>（8.25s wall）</td><td><strong>14.71</strong>（7.46s wall）</td><td>13.22GB</td><td>✅ head 0</td></tr>
+    <tr><td>int8 head（TRIM_INT8_HEAD=1）</td><td>11.21 cold / 8.73 warm</td><td>11.73</td><td>11.96</td><td>13.86GB</td><td>put/get 逐 token 相同；<strong>Hi 首 token 分叉为 list tool call</strong></td></tr>
+    <tr><td>+ TORCH_BLAS_PREFER_HIPBLASLT=1</td><td>10.58 cold / 16.47 warm（−21.5%）</td><td>—</td><td>—</td><td>13.39GB</td><td>✅</td></tr>
+    <tr><td>+ TunableOp 校准（2 iter，含 108s 校准）</td><td>4.58 cold / 13.17 warm</td><td>—</td><td>—</td><td>17.47GB</td><td>✅ 无收益</td></tr>
+  </table>
+  <div class="bad"><strong>结论：int8 head 不划算。</strong>compact head 确实只有 <strong>675MB</strong>（vs 4.47GB），40 个 chip 列保持精确 bf16，circuit-only 探针 logits max_diff 0 / chip argmax 相同（434286）、Qwen-only 探针 argmax 也一致；但 GPU 上：
+  <ul>
+    <li>保留 bf16 embedding + 单存 int8 lm_head 会<strong>多占 +0.65GB</strong>，不会省 2GB；</li>
+    <li>chunked dequant 的开销抵消了带宽收益 → Hi 13.48→11.21、put 13.60→11.73、get 14.71→11.96（<strong>−14%~−19%</strong>）；</li>
+    <li>Hi 的<strong>首个 token 与 BF16 基线分叉</strong>（变成 list tool call），put/get 则逐 token 相同——不能宣称全场景一致；</li>
+    <li>HIPBLASLt 偏好 −21.5%（10.58）；TunableOp 冷端 4.58（含 108s 校准）、峰值 17.47GB，无收益。</li>
+  </ul>
+  下一步要真正省带宽，应把<strong>共享的 tied 张量本身</strong>量化（embedding 行 int8 + chip 维稀疏 bf16），或把 lm_head 的 4.47GB 按 2560+40 维裁剪（head-trim 已做）并配合更粗粒度的 dequant。</div>
+</section>
+
+<section id="community">
+  <h2><span class="no">05</span>社区最佳实践（7900 XT，2025-09 ~ 2026-10）</h2>
+  <p class="sec-lede">先读了本地知识库 C:\Projects\ROCM（6 个文件全部引用），再做外部调研。</p>
+  <table>
+    <tr><th>方案</th><th>社区结论</th><th>对本项目适用性</th></tr>
+    <tr><td>llama.cpp Vulkan vs HIP</td><td>Vulkan(RADV) decode 快 14–30%（7900 XTX 167–177 vs 110–144 tok/s），HIP prefill 更强；ROCWMMA FATTN 长上下文退化</td><td>不能直接加载自定义 GDN 模型，但"Vulkan/RADV 路径强"提示可关注 sgpr/occupancy</td></tr>
+    <tr><td>vLLM / SGLang ROCm</td><td>vLLM 官方 gfx1100 轮子、W4A16 HIP 内核（1.2–2.2×）；SGLang 2026-10 加 RDNA3</td><td>缺 Gated DeltaNet 算子，暂不可用；可借鉴其 W4A16 kernel 思路</td></tr>
+    <tr><td>FLA / AMD Primus</td><td>AMD Primus 官方验证 GDN-FLA parity</td><td>本机 selective 已验证；AMD 非 bit-exact 与 FLA 无关</td></tr>
+    <tr><td>bitsandbytes 0.50.0</td><td>ROCm 转正 Stable，含 gfx1100 fused 4-bit SIMT GEMM</td><td>bnb8 已跑通（11.5GB，正确但慢）；bnb4 乱码</td></tr>
+    <tr><td>FP8 / expandable_segments / HSA override</td><td>RDNA3 无原生 FP8；expandable_segments 在 ROCm7.2.x+RDNA3+WSL 确认崩溃；禁 HSA_OVERRIDE</td><td>已遵守，避免踩坑</td></tr>
+  </table>
+  <div class="good"><strong>Top 5 落地措施：</strong>①全卡驻留零 offload（已做）；②chip reference + Qwen FLA 混合路由（已做，12.4 tok/s）；③embedding/lm_head int8（进行中）；④FLA Triton 短卷积替代 causal_conv1d 回退（+8–15%，下一步）；⑤TORCH_BLAS_PREFER_HIPBLASLT=1 + TunableOp 离线校准（B 正在测）。</div>
+</section>
+
+<section id="next">
+  <h2><span class="no">06</span>结论与下一步</h2>
+  <div class="good"><strong>阶段七的三个定论：</strong>
+  <ol>
+    <li><strong>精确性边界</strong>：AMD GPU bf16 非 bit-exact（与 FLA 无关）；CPU 是唯一 bit-identical 参考；GPU 以 token-level 正确为验收标准。</li>
+    <li><strong>速度</strong>：trim no-FLA 6.8–9 / selective 12.2–12.4 / full-FLA 13.6–16.8 tok/s；int8 head 若成功可再 +20–30%。</li>
+    <li><strong>记忆</strong>：in-weights changed 100%，与 host 覆盖式同档 → <strong>覆盖语义是关键，介质无优势</strong>；"90 vs 30"的差距主要是覆盖语义 + 回答格式，不是权重内存储。</li>
+  </ol></div>
+  <h3>下一步（Stage 8 候选）</h3>
+  <ul>
+    <li><strong>fp32 chip 层（paired 已验证）</strong>：chip 层 fp32 + Qwen bf16，同一 harness 下 bf16 3/12 → fp32 0/12 lock divergence，速度 put 15.72 / get 14.69 / Hi warm 18.87 tok/s、峰值 13.94GB；下一步扩到更多输入并做 gpucheck fp32 门禁。</li>
+    <li><strong>int8 head 落地</strong>：把 lm_head 4.47GB/token 降到 ~1.3GB，目标 >20 tok/s；同时评估 embedding 行 int8 + chip 维稀疏 bf16。</li>
+    <li><strong>causal_conv1d 替代</strong>：FLA Triton 短卷积，预计 +8–15%。</li>
+    <li><strong>memory-disk v1</strong>：把 trim runtime、SafeStore、in-weights store 组合成可用记忆盘；用 selective FLA 12 tok/s 做交互。</li>
+    <li><strong>H1 整合</strong>：把 in-weights 结果与 host/context 四条合并进阶段二/四报告，作为"记忆介质"问题的最终答案。</li>
+  </ul>
+  <p class="small">证据：docs/notes/stage7-selectfla.md、stage7-h1-inweights.md、stage7-int8-head.md、stage7-community.md；数据：analysis/experiments/h1_inweights/、gpu/out/trim_selfla_*.json、gpu/out/nofla_probe.log、gpu/out/fla052_probe.log。</p>
+</section>
+<footer>Qcompute · 阶段七 · 2026-10-29 · GPU 窗口 15:30–00:30 · 数据来自 RX 7900 XT（WSL ROCm 7.2.1）实测</footer>
+</main></div>
+  <script src="../assets/nav.js"></script>
+</body></html>

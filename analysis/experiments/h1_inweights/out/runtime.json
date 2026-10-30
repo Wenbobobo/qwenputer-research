@@ -1,0 +1,75 @@
+{
+ "fla_allowed": false,
+ "cpu_load_s": 1.0118995689990697,
+ "zero_check": {
+  "checked_matrices": 248,
+  "nonzero_dropped": []
+ },
+ "trim": {
+  "qwen_dense_numel": 6424363008,
+  "qwen_trimmed_numel": 3570058752,
+  "saved_numel": 2854304256,
+  "slim_linear_count": 248
+ },
+ "compact": {
+  "dense_weights": 2305695744,
+  "compact_weights": 324708406,
+  "chip_deltanet_heads": [
+   [
+    18,
+    32
+   ],
+   [
+    10,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    24,
+    32
+   ],
+   [
+    24,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    32,
+    32
+   ],
+   [
+    28,
+    32
+   ]
+  ]
+ },
+ "param_bytes_cpu": 12260537740,
+ "buffer_bytes_cpu": 256,
+ "to_cuda_s": 61.531494063994614,
+ "load_s": 117.9089442800032,
+ "loaded_memory_bytes": 12370766848,
+ "all_parameters_cuda": true,
+ "init_s": 131.7382709569938
+}

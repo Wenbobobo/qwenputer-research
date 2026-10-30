@@ -1,0 +1,200 @@
+/* Hub page styles - matching report dark theme */
+:root {
+  --bg: #080b10;
+  --bg2: #0c1118;
+  --panel: #101823;
+  --panel2: #0d141d;
+  --line: #1d2a3a;
+  --line2: #27374d;
+  --fg: #e6edf6;
+  --muted: #93a4ba;
+  --dim: #6b7c93;
+  --green: #4ade80;
+  --green-dim: #166534;
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --amber: #fbbf24;
+  --red: #f87171;
+  --pink: #f472b6;
+  --mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace;
+  --sans: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1, h2, h3 { color: var(--fg); margin-bottom: 1rem; }
+h1 { font-size: 2.5rem; border-bottom: 2px solid var(--line2); padding-bottom: 1rem; }
+h2 { font-size: 1.8rem; margin-top: 2rem; color: var(--blue); }
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, var(--panel) 0%, var(--bg2) 100%);
+  border-radius: 12px;
+  margin-bottom: 3rem;
+  border: 1px solid var(--line);
+}
+
+.hero h1 {
+  border: none;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--blue), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p { color: var(--muted); font-size: 1.1rem; }
+
+.stage-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stage-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--fg);
+  display: block;
+}
+
+.stage-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.15);
+}
+
+.stage-card .stage-number {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stage-card h3 {
+  color: var(--blue);
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.stage-card p {
+  color: var(--dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.quick-results {
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.quick-results ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quick-results li {
+  padding: 0.75rem;
+  background: var(--panel);
+  border-left: 3px solid var(--green);
+  border-radius: 4px;
+}
+
+.quick-results li strong {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+}
+
+code {
+  font-family: var(--mono);
+  background: var(--panel2);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--green);
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Navigation styles for stage pages */
+#stage-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  z-index: 1000;
+  height: 50px;
+}
+
+#stage-nav .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  height: 100%;
+  gap: 2rem;
+}
+
+#stage-nav a {
+  color: var(--muted);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 0.9rem;
+}
+
+#stage-nav a:hover {
+  color: var(--blue);
+}
+
+#stage-nav a.active {
+  color: var(--green);
+  font-weight: 600;
+}
+
+#stage-nav .nav-home {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+#stage-nav .nav-stages {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  body { padding: 1rem; }
+  h1 { font-size: 2rem; }
+  .stage-timeline { grid-template-columns: 1fr; }
+  #stage-nav .nav-stages { font-size: 0.8rem; }
+}

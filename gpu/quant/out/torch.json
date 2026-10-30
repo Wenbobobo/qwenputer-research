@@ -1,0 +1,102 @@
+[
+  {
+    "name": "torch.bfloat16_4096",
+    "status": "ok",
+    "shape": [
+      4096,
+      4096,
+      4096
+    ],
+    "ms": 1.8121046066284179,
+    "tflops": 75.84493354813408
+  },
+  {
+    "name": "torch.float16_4096",
+    "status": "ok",
+    "shape": [
+      4096,
+      4096,
+      4096
+    ],
+    "ms": 1.7659767150878907,
+    "tflops": 77.82602811111234
+  },
+  {
+    "name": "torch.float32_4096",
+    "status": "ok",
+    "shape": [
+      4096,
+      4096,
+      4096
+    ],
+    "ms": 7.139192199707031,
+    "tflops": 19.251331190893005
+  },
+  {
+    "name": "torch.bfloat16_8192",
+    "status": "ok",
+    "shape": [
+      8192,
+      8192,
+      8192
+    ],
+    "ms": 14.051187133789062,
+    "tflops": 78.25044370322212
+  },
+  {
+    "name": "torch.float16_8192",
+    "status": "ok",
+    "shape": [
+      8192,
+      8192,
+      8192
+    ],
+    "ms": 14.088839721679687,
+    "tflops": 78.04131848303226
+  },
+  {
+    "name": "torch.float32_8192",
+    "status": "ok",
+    "shape": [
+      8192,
+      8192,
+      8192
+    ],
+    "ms": 58.88399658203125,
+    "tflops": 18.672503423647054
+  },
+  {
+    "name": "torch.float8_e4m3fn",
+    "status": "ok",
+    "creation_cast": true,
+    "matmul_error": "NotImplementedError('\"addmm_cuda\" not implemented for \\'Float8_e4m3fn\\'')"
+  },
+  {
+    "name": "torch.float8_e5m2",
+    "status": "ok",
+    "creation_cast": true,
+    "matmul_error": "NotImplementedError('\"addmm_cuda\" not implemented for \\'Float8_e5m2\\'')"
+  },
+  {
+    "name": "torch_int_mm_4096",
+    "status": "ok",
+    "shape": [
+      4096,
+      4096,
+      4096
+    ],
+    "ms": 1.9524051666259765,
+    "tops": 70.39468847007475
+  },
+  {
+    "name": "torch_int_mm_8192",
+    "status": "ok",
+    "shape": [
+      8192,
+      8192,
+      8192
+    ],
+    "ms": 17.49803771972656,
+    "tops": 62.836281724119054
+  }
+]

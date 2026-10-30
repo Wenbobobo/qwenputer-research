@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阶段四：GPU 路径、H1 实验、memory-disk v0 与设备树</title>
+<style>
+:root{--bg:#080b10;--panel:#101823;--panel2:#0d141d;--line:#1d2a3a;--line2:#27374d;--fg:#e6edf6;--muted:#93a4ba;--dim:#6b7c93;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--violet:#a78bfa;--red:#f87171;--cyan:#22d3ee;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter','Noto Sans SC',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 600px at 85% -10%,#0c2a2c 0%,transparent 55%),radial-gradient(900px 500px at 5% 0%,#101a2e 0%,transparent 50%),var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.75;font-size:16px}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.3}code{font-family:var(--mono);font-size:.86em;background:#0a121b;border:1px solid var(--line);padding:.12em .4em;border-radius:5px;color:#bff3ff}
+pre{background:#080f16;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-family:var(--mono);font-size:13px;line-height:1.6}pre code{background:none;border:none;padding:0;color:#cbd5e1}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;max-width:1360px;margin:0 auto;padding:0 30px}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:30px 0 40px;border-right:1px solid var(--line)}
+nav .brand{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan)}nav .sub{color:var(--dim);font-size:12px;margin:4px 0 22px}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:toc}nav li{counter-increment:toc;margin:2px 0}
+nav a{display:block;padding:5px 10px 5px 32px;border-left:2px solid transparent;color:var(--muted);font-size:13px;position:relative}
+nav a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:8px;color:var(--dim);font-size:11px;font-family:var(--mono)}
+nav a:hover{color:var(--fg);background:#0e1620;text-decoration:none}nav a.active{color:var(--cyan);border-left-color:var(--cyan);background:#0a1e22}
+main{padding:40px 0 110px;min-width:0}
+.hero{padding:42px 0 28px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid #155e63;background:#0a1a1d;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(30px,4vw,48px);margin:0 0 14px;font-weight:850;background:linear-gradient(92deg,#f8fafc 10%,#22d3ee 60%,#60a5fa 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:#b9c8da;max-width:840px;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--dim);font-size:13px;font-family:var(--mono)}
+section{margin:0 0 64px;scroll-margin-top:24px}h2{font-size:28px;margin:0 0 8px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--mono);font-size:14px;color:var(--cyan);font-weight:600;letter-spacing:.1em}
+.sec-lede{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:880px}h3{font-size:20px;margin:32px 0 10px;color:#e2e8f0}
+p{color:#c3d0e0;margin:0 0 15px}ul,ol{color:#c3d0e0;padding-left:22px}li{margin:6px 0}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.note{border-left:3px solid var(--blue);background:#0b1622;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#bfd3ea}
+.good{border-left:3px solid var(--green);background:#08150f;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#c2f0d4}
+.warn{border-left:3px solid var(--amber);background:#1a1408;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3dfb0}
+.bad{border-left:3px solid var(--red);background:#1a0c0c;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3c1c1}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#0d1622;color:#cfe0f2;font-weight:650;font-size:13px}tr:nth-child(even) td{background:#0a1119}
+.mono{font-family:var(--mono)}.small{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);margin:0 4px 4px 0}
+.tag.g{color:var(--green);border-color:#166534}.tag.a{color:var(--amber);border-color:#5a4410}.tag.r{color:var(--red);border-color:#5b1a1a}.tag.c{color:var(--cyan);border-color:#155e63}
+footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--dim);font-size:13px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr;gap:0;padding:0 20px}nav.toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px 0}nav ol{columns:2;column-gap:20px}main{padding-top:8px}}
+</style></head><body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Qwenputer · 阶段四</div>
+  <div class="sub">GPU / H1 / memory-disk / 设备树</div>
+  <ol>
+    <li><a href="#gpu">GPU 路径：43–45 tok/s 与"条件性 bit-exact"</a></li>
+    <li><a href="#h1">H1：时间戳 vs append-only</a></li>
+    <li><a href="#disk">memory-disk v0</a></li>
+    <li><a href="#device">设备树：2 层的小设备</a></li>
+    <li><a href="#next">结论与下一步</a></li>
+  </ol>
+  <div class="tag c" style="margin-top:22px">Stage 4 · v1<br>2026-10-29 · Qcompute</div>
+</nav>
+<main>
+<div class="hero">
+  <div class="kicker">FOLLOW-UP EXPERIMENTS · 2026-10-29</div>
+  <h1>从"能跑"到"知道边界"</h1>
+  <p class="lede">阶段一复现、阶段二定位、阶段三给创意；阶段四把四件后续事情做实：<strong>GPU 路径验证</strong>、
+  <strong>H1 记忆实验</strong>、<strong>memory-disk v0</strong>、<strong>设备树小原型</strong>。核心结论：GPU 快约 40× 但"bit-exact"依赖 kernel；
+  专用设备只有 2 层/~千个非零权重；memory-disk 能把"记忆"变成可校验、可迁移的文件。</p>
+  <div class="meta"><span>环境：WSL ROCm 7.2.1 + RX 7900 XT 19.96GB + CPU（Ryzen 5700X / 48GB）</span><span>数据：gpu/、analysis/device/、analysis/memory_disk/、analysis/experiments/h1/</span></div>
+</div>
+
+<section id="gpu">
+  <h2><span class="no">01</span>GPU 路径：43–45 tok/s，与"条件性 bit-exact"</h2>
+  <p class="sec-lede">同一份 rv-tiny 权重，从 CPU 搬到 AMD RX 7900 XT（ROCm）后，速度提升约 40 倍，但中间残差的逐位一致性变了——这是一个重要的独立发现。</p>
+  <h3>1.1 速度与正确性</h3>
+  <table>
+    <tr><th>程序</th><th>生成 token</th><th>GPU 墙钟</th><th>GPU tok/s</th><th>与参考 trace 一致</th></tr>
+    <tr><td>signext</td><td>44</td><td>3.2 s</td><td>13.6*</td><td>✅</td></tr>
+    <tr><td>memcpy</td><td>159</td><td>6.0 s</td><td>26.6</td><td>✅</td></tr>
+    <tr><td>call</td><td>474</td><td>10.4 s</td><td>45.4</td><td>✅</td></tr>
+    <tr><td>rv32ui-add</td><td>501</td><td>11.1 s</td><td>45.3</td><td>✅</td></tr>
+    <tr><td>c-strops</td><td>1,073</td><td>24.5 s</td><td>43.7</td><td>✅</td></tr>
+    <tr><td>c-crc32</td><td>4,165</td><td>95.9 s</td><td>43.4</td><td>✅</td></tr>
+  </table>
+  <p class="small">* 短程序包含启动开销。CPU 基线 0.7–1.4 tok/s（docs/notes/repro-log.md），GPU 约 <strong>40×</strong>。显存峰值 4.2 GiB（rv-tiny 4.3GB 权重）。
+  kernel 走 torch 参考实现（无 flash-linear-attention / causal-conv1d），若安装 fla 还能更快。
+  <strong>7/7 程序 free-running 与参考逐 token 一致</strong>（含 4,165 token 的 c-crc32）。</p>
+  <h3>1.2 关键发现：ROCm 上 residual 不是 bit-exact，但 token 仍 exact</h3>
+  <div class="card">
+    <table>
+      <tr><th>检查</th><th>CPU</th><th>ROCm（7900XT）</th></tr>
+      <tr><td>signext prefill：118,800 个 cell 中不一致</td><td><strong>0</strong></td><td><strong>14,192（663 dims）</strong>，max|d| 1.21e-3</td></tr>
+      <tr><td>memcpy prefill：422,400 个 cell 中不一致</td><td>—（CPU 已验证 0）</td><td><strong>56,272（674 dims）</strong>，max|d| 1.43e-3</td></tr>
+      <tr><td>free-running 生成 token</td><td>完全一致</td><td><strong>完全一致</strong>（包括 4,165 token 的 c-crc32）</td></tr>
+    </table>
+  </div>
+  <div class="warn"><strong>解释：</strong>同一 checkpoint、同一 dtype（bf16），CPU 的 residual 与 IR 逐位一致；ROCm 上因 kernel 累加顺序不同，中间值出现 ~1e-3 的噪声。
+  A 进一步定位到 <strong>第一个 FFN 的 gate/up 两个 bf16 GEMM 的相消残差</strong>（silu、乘积、down GEMM 都逐位一致；换 rocBLAS 环境无效）。
+  <strong>但电路的阈值/边距吸收了噪声，token 输出仍然逐 token 正确</strong>——这与作者对 fp32 的观察一致（0 wrong tokens，但非 bit-exact）。
+  所以"exact in bf16"应更准确地写成：<strong>token-exact 在测试程序上成立；dim-bit-exact 依赖后端/内核</strong>。需要 residual 级参考时用 CPU 或 Triton 执行器。</div>
+  <h3>1.3 上游 Triton 执行器在 ROCm 上也成立</h3>
+  <table>
+    <tr><th>检查</th><th>结果</th></tr>
+    <tr><td>tritonexec.check（signext/memcpy/call/rv32ui-add/c-crc32）</td><td>5/5 <strong>IR-exact</strong>（最多 1,500 positions）</td></tr>
+    <tr><td>executor batch 1</td><td>0.749 ms/step，<strong>1,334 tok/s</strong></td></tr>
+    <tr><td>executor batch 8</td><td>1.841 ms/step，4,345 tok/s</td></tr>
+    <tr><td>executor batch 32</td><td>4.576 ms/step，<strong>6,993 tok/s</strong></td></tr>
+  </table>
+  <p class="small">对照作者 L4 的 ~3,200 tok/s——AMD 7900 XT 上 Triton/HIP graph 路径同样可用，batch 32 甚至更高。Triton 基础 sanity：vector add 559 GB/s、bf16 rowsum 与 torch 一致。</p>
+  <h3>1.4 发布模型（22.3GB）的显存可行性</h3>
+  <ul>
+    <li>权重 20.67 GiB（tied embedding/lm_head 占 4.47 GiB），GPU 总 19.96 GiB → <strong>稠密放不下</strong>。</li>
+    <li>去掉 embedding 后 16.51 GiB，理论上可"手动 split"（embedding 放 CPU）；本轮因 H1 实验共用 GPU 未完成该尝试（避免 OOM 影响 H1）。</li>
+    <li>可行路线：压缩布局（~8 GiB，阶段三权重分析已给出 7.951 GiB 无损格式）+ 稀疏/trim 执行端；或用 HF accelerate offload（慢）。</li>
+  </ul>
+</section>
+
+<section id="h1">
+  <h2><span class="no">02</span>H1：90 vs 30 的收益，来自覆盖语义还是介质？</h2>
+  <p class="sec-lede">阶段二指出：作者的 90% vs 30% 与"同语义主机工具"无显著差异（p≈0.71）。H1 做一个更直接的消融：让宿主工具变成 append-only、给上下文加时间戳，看结果怎么变。</p>
+  <div class="card">
+    <p class="mono" id="h1-result">早期 pilot（n=3 cases/条件，仅作过程记录；正式结果见下方）</p>
+    <table>
+      <tr><th>条件</th><th>设计</th><th>变更题 acc</th><th>事实题 acc</th><th>全部 acc</th></tr>
+      <tr><td>C1 时间戳上下文</td><td>4 会话 + 时间戳 + "以最新为准"</td><td>2/3（66.7%）</td><td>6/6（100%）</td><td>8/9（88.9%）</td></tr>
+      <tr><td>C2 append-only 工具</td><td>add/list/get-all，无覆盖/删除</td><td>2/3（66.7%）</td><td>6/6（100%）</td><td>8/9（88.9%）</td></tr>
+      <tr><td>C3 普通上下文</td><td>无时间戳、无指令（作者基线）</td><td>1/3（33.3%）</td><td>6/6（100%）</td><td>7/9（77.8%）</td></tr>
+      <tr><td>C4 覆盖式工具</td><td>put/get/list/delete（作者主机工具）</td><td>2/3（66.7%）</td><td>4/6（66.7%）</td><td>6/9（66.7%）</td></tr>
+    </table>
+    <p class="small">Pilot 的初步信号（样本太小，不能当结论）：<strong>C1/C2 ≈ 89%</strong>，C3 33% 变更题，C4 反而最低（部分失败是命名漂移：模型用 <span class="mono">get("city")</span> 而 store 里叫 <span class="mono">location</span>）。</p>
+    <p class="mono" style="margin-top:14px">SEED 0 正式结果（n=30 cases = 90 题/条件；C4/C2 运行中）：</p>
+    <table>
+      <tr><th>条件</th><th>变更题 strict（"旧值不得出现"）</th><th>变更题 lenient（"新值出现在旧值之前"）</th><th>事实题</th></tr>
+      <tr><td>C3 普通上下文（作者基线）</td><td>seed0 9/30；<strong>pooled 14/90 = 15.6%</strong></td><td>pooled 48/90 = 53.3%</td><td>86/86 = 100%</td></tr>
+      <tr><td>C1 时间戳上下文 + 以最新为准</td><td>seed0 12/30；<strong>pooled 42/90 = 46.7%</strong></td><td><strong>pooled 90/90 = 100%</strong></td><td>—</td></tr>
+      <tr><td>C4 覆盖式工具</td><td><strong>27/30 = 90.0%</strong></td><td>27/30（答案短，strict≈lenient）</td><td>43/60 = 71.7%</td></tr>
+      <tr><td>C2 append-only 工具</td><td><strong>7/30 = 23.3%</strong></td><td>同 strict（答案短）</td><td>58/60 = 96.7%</td></tr>
+      <tr><td><strong>C1s 时间戳上下文 + 简短回答</strong></td><td><strong>pooled 82/82 = 100%</strong></td><td>—</td><td>165/165 = 100%</td></tr>
+      <tr><td><strong>C3s 普通上下文 + 简短回答</strong></td><td><strong>pooled 56/60 = 93.3%</strong></td><td>—</td><td>120/120 = 100%</td></tr>
+    </table>
+    <div class="bad" style="border-left-color:#22d3ee;background:#081c22;color:#bff3ff"><strong>⭐ 决定性发现：brevity 变体把"30% 上下文"直接拉到 93–100%。</strong>
+    同一份普通上下文，只加一句 "Answer in one short sentence."：更新题 <strong>pooled 56/60=93.3%</strong>（C3s，seeds 0–1）、时间戳版 <strong>82/82=100%</strong>（C1s，seeds 0–2）；
+    而默认自由回答的 C3 pooled 只有 <strong>14/90=15.6%</strong>、C1 pooled 42/90=46.7%（lenient 100%）。
+    也就是说：<strong>作者"90 vs 30"的绝大部分差距来自回答格式/评分方式，而不是记忆介质，也不是覆盖语义</strong>——上下文模型完全能答对，只是会多嘴提一句旧值。
+    这与阶段二"与主机工具 p≈0.71"的结论方向一致，但更彻底：连"上下文不会更新"这个前提本身都基本不成立。
+    （pooled seeds 0–2：C1 strict 42/90=46.7%、lenient 90/90=100%；C3 strict 14/90=15.6%、lenient 48/90=53.3%；C1 vs C3 Fisher p=1.0e-5。）</div>
+    <div class="good"><strong>最终结论（seed0 + pooled + brevity）：</strong>
+    把 90 vs 30 拆成三个因素后，结果很干净：
+    <ol>
+      <li><strong>覆盖语义是决定性的</strong>：同为主机工具，C4（覆盖式 put/get）<strong>27/30=90%</strong>，C2（append-only）只有 <strong>7/30=23%</strong>，与上下文基线（30%）同一水平。Fisher 检验差异显著。</li>
+      <li><strong>介质不是优势</strong>：C4 是<strong>纯 Python 主机工具</strong>，也拿到 90%，与作者 in-weights store 的 90% 持平——与阶段二"p≈0.71"一致。</li>
+      <li><strong>30% 基线还掺了评分器/回答风格的水分</strong>：C3 pooled strict 15.6%、lenient 53.3%；C1 pooled strict 46.7%、<strong>lenient 100%</strong>——模型其实知道新值，只是会把旧值当历史再提一句，被 strict 规则判错。加上 brevity 后 C3s 93.3%、C1s 100%。</li>
+    </ol>
+    所以作者"90 vs 30"的正确拆解是：<strong>覆盖式工具语义（+短回答）贡献了主要差距，权重内介质没有可测优势，上下文基线被 strict 评分额外压低</strong>。
+    这也解释了为什么阶段二用 host 工具对照时 p≈0.71：介质差异不显著，但覆盖 vs append-only 的差异是真实的。<br><br>
+    <strong> attribution 细节（B 的诚实拆解）：</strong>C4 的 27/30 里，只有 9/30 是"旧值被存下又被覆盖"（9/9 正确）；另外 18/30 是<strong>旧值从未被存</strong>（18/18 正确），因为 C4 只在 73/120 个会话里调用了 put。
+    而 C2 存了 112/120 个会话，26/30 里新旧值同时在 memory 里，只有 3/26 答对（答案把两个值都列出来）。所以"90%"里同时包含"模型少存 → 问题变简单"和"覆盖机制有效"两种效应；条件化到"新旧都在"时，覆盖 9/9 vs append-only 3/26 仍然支持覆盖是关键。</div>
+  </div>
+  <table>
+    <tr><th>条件</th><th>设计</th><th>预期（若 H1 成立）</th></tr>
+    <tr><td>C1 时间戳上下文</td><td>粘贴 4 个会话 + 时间戳 + "以最新为准"</td><td>≥80% ⇒ 90 vs 30 主要是基线设计</td></tr>
+    <tr><td>C2 append-only 工具</td><td>只有 add/list/get-all，无覆盖/删除</td><td>≤60% ⇒ 覆盖语义是关键</td></tr>
+    <tr><td>C3 普通上下文</td><td>无时间戳、无指令（作者基线）</td><td>~30%</td></tr>
+    <tr><td>C4 覆盖式工具</td><td>put/get/list/delete（作者主机工具）</td><td>~83–90%</td></tr>
+  </table>
+</section>
+
+<section id="disk">
+  <h2><span class="no">03</span>memory-disk v0：把"记忆"变成可校验文件</h2>
+  <p class="sec-lede">阶段三 D 证明快照很小但绑定编译；v0 把它工程化：指纹、校验、迁移、以及防住"长名字静默覆盖"。</p>
+  <h3>3.1 API</h3>
+  <pre><code>fp = fingerprint(model_dir)     # sha256(config/chipformer/tokenizer + store 配置 + 版本)
+save(snapshot, path, fp, journal=None)   # .npz body + sidecar header（QPUMEM01, checksum, created_at）
+load(path, expected_fp=None, force=False) # 指纹不符 -> FingerprintMismatch
+verify(path)                               # magic/checksum/header
+replay_into_reference_store(journal)       # 逻辑内容跨 seed 重放
+NameGuard.check(name) / put_checked(name,text)  # 拦截 6-token 键冲突</code></pre>
+  <h3>3.2 测试与数字</h3>
+  <table>
+    <tr><th>测试</th><th>结果</th></tr>
+    <tr><td>roundtrip：demo/store.npz（11,750 B，49 heads / 9 非零行）</td><td>✅ 数组逐一相等；verify 全 True</td></tr>
+    <tr><td>指纹不匹配 / body 篡改</td><td>✅ 拒绝（FingerprintMismatch / checksum）</td></tr>
+    <tr><td>journal 跨 seed 逻辑可移植</td><td>✅ 10 文件在 seed 2035/2036 两个 store 中 get() 均返回原文（槽位 276 vs 812，证明状态绑定、内容可移植）</td></tr>
+    <tr><td>NameGuard 长名字冲突</td><td>✅ D 例两名字 key 相同；put_checked(B) 抛 NameConflict 并建议别名；A 未被覆盖；短名 city/dog_name 无碰撞</td></tr>
+    <tr><td>合计</td><td><strong>40/40 PASS</strong></td></tr>
+  </table>
+  <p class="small">v1.1 数字：1/10/100/512 文件 = 77/723/7,180/36,741 B（≈72 B/文件）；512 文件触达 2,050/6,660 state 行（30.8%）；满容量解析 ≈0.24 MB。
+  局限：指纹含 JSON/config/tokenizer，不含权重二进制与电路 build 哈希；D 的 IR 映射未完成；长名字覆盖的根因在电路 key（前 6 token + 长度），API 只能拦截不能修复。</p>
+</section>
+
+<section id="device">
+  <h2><span class="no">04</span>设备树：2 层、~千个非零权重的专用设备</h2>
+  <p class="sec-lede">如果 RV32 是"通用 CPU"，那么固定形状的小算法可以编译成"外设"：层数与权重少两三个数量级，token 成本也更低。</p>
+  <table>
+    <tr><th>设备</th><th>层</th><th>dims/heads</th><th>FFN units</th><th>非零权重</th><th>每 op token</th><th>精确性</th></tr>
+    <tr><td>ADD8（8+8→9 bit）</td><td>2</td><td>37 / 1</td><td>82</td><td><strong>899</strong></td><td>3</td><td>65,536/65,536 IR；HF 0/40 错</td></tr>
+    <tr><td>SORT4（4×8-bit 稳定排序）</td><td>2</td><td>66 / 1</td><td>437</td><td><strong>3,876</strong></td><td>8</td><td>3,508 记录 / 14,032 预测 0 错；HF 0/160 错</td></tr>
+    <tr><td>DADD（十进制逐位大数加）</td><td>2</td><td>14 / 1</td><td>179</td><td><strong>1,454</strong></td><td>2n+1（4 位=9，12+12=25）</td><td>11,039 记录 0 错；HF 0/1,619 错</td></tr>
+    <tr><td>RV32 核（参照）</td><td>11–12</td><td>2,679 / 99</td><td>42,012</td><td><strong>1,040,595</strong></td><td>1.3–1.8/指令；calc 254–684</td><td>riscv-tests 全绿</td></tr>
+  </table>
+  <h3>4.1 三个有信息量的发现</h3>
+  <ul>
+    <li><strong>第二层是 I/O 约定的代价</strong>：算术本身 1 层就够；但输入 token 的 code 必须提前一子层清零（bf16 不能在同一层里精确加 −e 与 ±KAPPA）。在宿主模型里可与宿主的 exit 共享这一层。</li>
+    <li><strong>串行设备需要 record-start token</strong>：DADD 第一版没有起始 token，进位跨记录泄漏（5,553 错误）；加 G 复位后 exact。</li>
+    <li><strong>合并几乎免费</strong>：每个设备最多 1 head / 403 units；4B 模型每子层余量 16 heads / 9,216 units（最满子层已用 8,149）→ 估计可并行塞进现有 chip 层，0 额外层。</li>
+  </ul>
+  <div class="note"><strong>适用边界：</strong>固定形状纯函数（add/compare/小排序/查表/位运算）、状态只有几位的逐位运算（大数加减/比较/乘一行）、高频且想省掉 RV32 的 200–250 token dispatch 的场景。
+  数据相关循环（gcd/pow/div/解析）、大内存、宽单个 token 操作数、以及大量低频小操作，仍应留在 RV32。</div>
+</section>
+
+<section id="next">
+  <h2><span class="no">05</span>结论与下一步</h2>
+  <table>
+    <tr><th>问题</th><th>阶段四给出的答案</th></tr>
+    <tr><td>GPU 能不能跑？</td><td>能，rv-tiny 43–45 tok/s（CPU 的 ~40×），全部测试程序 token-exact；但 dim-bit-exact 依赖后端，ROCm 有 ~1e-3 残差。</td></tr>
+    <tr><td>90 vs 30 是不是介质优势？</td><td>H1 结果（见第 02 节）：待填。</td></tr>
+    <tr><td>记忆能不能变成文件？</td><td>能：memory-disk v0 40/40 测试通过，指纹校验 + journal 迁移 + NameGuard；但根因（6-token 键）仍需电路层修复。</td></tr>
+    <tr><td>专用设备值得吗？</td><td>值得：2 层 / ~1K–4K 非零 / 每 op 3–25 token；可并行塞进现有层，RV32 作为通用回退。</td></tr>
+  </table>
+  <div class="good"><strong>下一步优先级：</strong>① 用压缩布局（~8GiB）在 7900XT 上跑发布模型的 list/put/get（现在 GPU 已验证速度）；② 把 H1 推广到 n=90 + LongMemEval 语义对照（H5）；③ 把 ADD8/SORT4 设备合进 chip 层，验证"设备树"端到端；④ 修复 6-token 名字键（扩到 8+ token 或显式冲突协议）。</div>
+</section>
+<section id="refs">
+  <h2><span class="no">06</span>证据与复现</h2>
+  <table>
+    <tr><th>主题</th><th>文件</th></tr>
+    <tr><td>GPU 路径</td><td><span class="mono">docs/notes/stage4-gpu.md</span>、<span class="mono">gpu/</span>（tiny_gpu_free.py、tiny_gpu_residual*.py、tritonexec_rocm.py、triton_sanity.py、full_model_split.py、out/*.json）</td></tr>
+    <tr><td>H1 记忆实验</td><td><span class="mono">analysis/experiments/h1/</span>（h1_run.py、h1_analyze.py、h1_gen.py、out/*.jsonl、h1_results.json、full.log）、<span class="mono">docs/notes/stage4-h1.md</span></td></tr>
+    <tr><td>memory-disk v0</td><td><span class="mono">analysis/memory_disk/memory_disk.py</span>、<span class="mono">test_memory_disk.py</span>、<span class="mono">test_log.txt</span>、<span class="mono">docs/notes/memory-disk-v0.md</span></td></tr>
+    <tr><td>设备树</td><td><span class="mono">analysis/device/device_graphs.py</span>、<span class="mono">device_estimate.py</span>、<span class="mono">device_estimate.json</span>、<span class="mono">docs/notes/device-tree-estimate.md</span></td></tr>
+    <tr><td>环境</td><td>WSL Ubuntu-24.04 + ROCm 7.2.1 + RX 7900 XT 19.96GB；torch 2.9.1+rocm7.2.1、triton 3.5.1+rocm、transformers 5.19.0；helper <span class="mono">gpu/run_py.sh</span></td></tr>
+  </table>
+  <p class="small">注：H1 的 C2 append-only 与 brevity 变体（C1s/C3s）、seeds 1–2 在截稿时仍在运行；正式数字以 <span class="mono">h1_results.json</span> 与 <span class="mono">docs/notes/stage4-h1.md</span> 为准。</p>
+</section>
+<footer>Qcompute · 阶段四 · 2026-10-29 · 证据：gpu/、analysis/device/、analysis/memory_disk/、analysis/experiments/h1/、docs/notes/stage4-*.md</footer>
+</main></div>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('nav a'));var s=l.map(function(a){return document.querySelector(a.getAttribute('href'))});function f(){var y=window.scrollY+120,i=0;for(var j=0;j<s.length;j++){if(s[j]&&s[j].offsetTop<=y)i=j}l.forEach(function(a,k){a.classList.toggle('active',k===i)})}window.addEventListener('scroll',f,{passive:true});f()})();</script>
+</body></html>

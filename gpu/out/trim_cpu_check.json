@@ -1,0 +1,72 @@
+{
+  "n_new": 3,
+  "cpu_load_s": 0.8373871229996439,
+  "zero_check": {
+    "checked_matrices": 248,
+    "nonzero_dropped": []
+  },
+  "trim_stats": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "trim_s": 11.672398560011061,
+  "plain_hi": {
+    "prompt_len": 13,
+    "positions_compared": 15,
+    "orig_tokens": [
+      9419,
+      0,
+      2500
+    ],
+    "trim_tokens": [
+      9419,
+      0,
+      2500
+    ],
+    "orig_text": "Hello! How",
+    "trim_text": "Hello! How",
+    "max_abs_logit_diff": 0.0,
+    "mean_abs_logit_diff": 0.0,
+    "max_abs_text_vocab": 0.0,
+    "max_abs_gen_positions": 0.0,
+    "logit_scale_max": 1622016.0,
+    "text_argmax_agree": "15/15",
+    "full_argmax_agree": "15/15",
+    "bit_identical_positions": 15,
+    "seconds": 39.57496046200686
+  },
+  "store_hi": {
+    "prompt_len": 803,
+    "positions_compared": 66,
+    "orig_tokens": [
+      9419,
+      0,
+      2500
+    ],
+    "trim_tokens": [
+      9419,
+      0,
+      2500
+    ],
+    "orig_text": "Hello! How",
+    "trim_text": "Hello! How",
+    "max_abs_logit_diff": 0.0,
+    "mean_abs_logit_diff": 0.0,
+    "max_abs_text_vocab": 0.0,
+    "max_abs_gen_positions": 0.0,
+    "logit_scale_max": 1982464.0,
+    "text_argmax_agree": "66/66",
+    "full_argmax_agree": "66/66",
+    "bit_identical_positions": 66,
+    "seconds": 224.63869534799596,
+    "trim_stats": {
+      "qwen_dense_numel": 6424363008,
+      "qwen_trimmed_numel": 3570058752,
+      "saved_numel": 2854304256,
+      "slim_linear_count": 248
+    },
+    "resumed": true
+  }
+}

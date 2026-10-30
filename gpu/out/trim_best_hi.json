@@ -1,0 +1,130 @@
+{
+  "config": {
+    "ask": "Hi",
+    "max_new": 12,
+    "memory": null,
+    "output": "gpu/out/trim_best_hi.json",
+    "head_trim": true,
+    "hf": false
+  },
+  "chip": "bf16 exact (fast.compact qwen=False)",
+  "qwen": "lossless trim 2561 cols / 2560 rows",
+  "fast": true,
+  "cpu_load_s": 0.8940462980099255,
+  "zero_check": {
+    "checked_matrices": 248,
+    "nonzero_dropped": []
+  },
+  "trim": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "compact": {
+    "dense_weights": 2305695744,
+    "compact_weights": 324708406,
+    "chip_deltanet_heads": [
+      [
+        18,
+        32
+      ],
+      [
+        10,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        28,
+        32
+      ]
+    ]
+  },
+  "head_trim": {
+    "cols": [
+      0,
+      3184
+    ],
+    "rows": 248320,
+    "bytes": 1581301760
+  },
+  "param_bytes_cpu": 13841839500,
+  "buffer_bytes_cpu": 256,
+  "to_cuda_s": 49.069779981000465,
+  "load_s": 107.25970207400678,
+  "loaded_memory_bytes": 13952068608,
+  "all_parameters_cuda": true,
+  "init_s": 123.8130156170082,
+  "after_init_memory_bytes": 14342160384,
+  "prompt_len": 803,
+  "tokens": [
+    9419,
+    0,
+    2500,
+    628,
+    353,
+    1438,
+    488,
+    3242,
+    30,
+    248046
+  ],
+  "text_tokens": 9,
+  "chip_tokens": 0,
+  "seconds": 0.7264499664306641,
+  "head_mismatch": 0,
+  "lock_error": null,
+  "verify_mismatch": null,
+  "chip_seconds": 0.0,
+  "text_seconds": 0.73,
+  "text": "Hello! How can I help you today?<|im_end|>",
+  "wall_s": 4.970091954004602,
+  "text_tokens_per_s": 12.389015645799475,
+  "wall_text_tokens_per_s": 1.8108316874798143,
+  "memory_loaded": false,
+  "warm": {
+    "text": "Hello! How can I help you today?<|im_end|>",
+    "seconds": 0.5920753479003906,
+    "wall_s": 3.0799605200008955,
+    "text_tokens_per_s": 15.200767996701222,
+    "same_tokens": true
+  },
+  "status": "ok",
+  "max_memory_allocated_bytes": 14696421888,
+  "max_memory_reserved_bytes": 14870904832
+}

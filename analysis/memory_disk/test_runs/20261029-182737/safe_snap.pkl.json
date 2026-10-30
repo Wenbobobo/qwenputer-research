@@ -1,0 +1,69 @@
+{
+  "magic": "QPUSAFE1",
+  "format_version": 1,
+  "created_at": "2026-10-29T10:28:05+00:00",
+  "fingerprint": null,
+  "body_bytes": 682,
+  "body_sha256": "c8993e2acff64d0a2008a5625a7fb45c4e7eeec71070132cd0a982be7b8289ab",
+  "name_mapping": {
+    "format_version": 1,
+    "entries": [
+      {
+        "logical_name": "the locker code for the safe room in",
+        "canonical_name": "the locker code for the safe room in",
+        "key": [
+          1719,
+          33531,
+          1970,
+          364,
+          279,
+          5902
+        ],
+        "key_len": 7,
+        "disambiguated": false
+      },
+      {
+        "logical_name": "the locker code for the safe in room",
+        "canonical_name": "#24438096d# the locker code for the safe in room",
+        "key": [
+          2,
+          17,
+          19,
+          19,
+          18,
+          23
+        ],
+        "key_len": 7,
+        "disambiguated": true
+      },
+      {
+        "logical_name": "city",
+        "canonical_name": "city",
+        "key": [
+          8656,
+          198,
+          510,
+          0,
+          0,
+          0
+        ],
+        "key_len": 2,
+        "disambiguated": false
+      },
+      {
+        "logical_name": "dog",
+        "canonical_name": "dog",
+        "key": [
+          17907,
+          198,
+          510,
+          0,
+          0,
+          0
+        ],
+        "key_len": 2,
+        "disambiguated": false
+      }
+    ]
+  }
+}

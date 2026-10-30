@@ -1,0 +1,18 @@
+.venv/
+.data/
+.repro-env/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+.repro-env
+research/upstream/*/.git
+repro/qwenputer/.venv/
+.research/
+
+# Large model/checkpoint files (>100MB)
+analysis/weights/
+gpu/out/*.pt
+*.safetensors
+*.ckpt
+*.bin

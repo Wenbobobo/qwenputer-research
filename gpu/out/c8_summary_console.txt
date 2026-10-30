@@ -1,0 +1,388 @@
+{
+  "fp32": {
+    "runtime": {
+      "fp32_chip": {
+        "enabled": true,
+        "layers": 12,
+        "fp32_bytes": 1300628248,
+        "output_dtype": "bf16",
+        "input_dtype": "fp32"
+      },
+      "start": 1793287535.1564276,
+      "cpu_load_s": 0.8186040440050419,
+      "zero_check": {
+        "checked_matrices": 248,
+        "nonzero_dropped": []
+      },
+      "trim": {
+        "qwen_dense_numel": 6424363008,
+        "qwen_trimmed_numel": 3570058752,
+        "saved_numel": 2854304256,
+        "slim_linear_count": 248
+      },
+      "compact": {
+        "dense_weights": 2305695744,
+        "compact_weights": 324708406,
+        "chip_deltanet_heads": [
+          [
+            18,
+            32
+          ],
+          [
+            10,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            24,
+            32
+          ],
+          [
+            24,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            28,
+            32
+          ]
+        ]
+      },
+      "param_bytes_cpu": 12910851864,
+      "buffer_bytes_cpu": 256,
+      "to_cuda_s": 77.85061386099551,
+      "load_s": 142.79436745600833,
+      "loaded_memory_bytes": 13020154880,
+      "all_parameters_cuda": true,
+      "init_s": 159.83664460400178,
+      "dtype_audit": {
+        "0": [
+          "torch.float32"
+        ],
+        "1": [
+          "torch.float32"
+        ],
+        "2": [
+          "torch.float32"
+        ],
+        "3": [
+          "torch.float32"
+        ],
+        "4": [
+          "torch.float32"
+        ],
+        "5": [
+          "torch.float32"
+        ],
+        "6": [
+          "torch.float32"
+        ],
+        "7": [
+          "torch.float32"
+        ],
+        "8": [
+          "torch.float32"
+        ],
+        "9": [
+          "torch.float32"
+        ],
+        "10": [
+          "torch.float32"
+        ],
+        "11": [
+          "torch.float32"
+        ],
+        "12": [
+          "torch.bfloat16"
+        ],
+        "13": [
+          "torch.bfloat16"
+        ],
+        "14": [
+          "torch.bfloat16"
+        ],
+        "15": [
+          "torch.bfloat16"
+        ],
+        "16": [
+          "torch.bfloat16"
+        ],
+        "17": [
+          "torch.bfloat16"
+        ],
+        "18": [
+          "torch.bfloat16"
+        ],
+        "19": [
+          "torch.bfloat16"
+        ],
+        "20": [
+          "torch.bfloat16"
+        ],
+        "21": [
+          "torch.bfloat16"
+        ],
+        "22": [
+          "torch.bfloat16"
+        ],
+        "23": [
+          "torch.bfloat16"
+        ],
+        "24": [
+          "torch.bfloat16"
+        ],
+        "25": [
+          "torch.bfloat16"
+        ],
+        "26": [
+          "torch.bfloat16"
+        ],
+        "27": [
+          "torch.bfloat16"
+        ],
+        "28": [
+          "torch.bfloat16"
+        ],
+        "29": [
+          "torch.bfloat16"
+        ],
+        "30": [
+          "torch.bfloat16"
+        ],
+        "31": [
+          "torch.bfloat16"
+        ],
+        "32": [
+          "torch.bfloat16"
+        ],
+        "33": [
+          "torch.bfloat16"
+        ],
+        "34": [
+          "torch.bfloat16"
+        ],
+        "35": [
+          "torch.bfloat16"
+        ],
+        "36": [
+          "torch.bfloat16"
+        ],
+        "37": [
+          "torch.bfloat16"
+        ],
+        "38": [
+          "torch.bfloat16"
+        ],
+        "39": [
+          "torch.bfloat16"
+        ],
+        "40": [
+          "torch.bfloat16"
+        ],
+        "41": [
+          "torch.bfloat16"
+        ],
+        "42": [
+          "torch.bfloat16"
+        ],
+        "43": [
+          "torch.bfloat16"
+        ],
+        "embedding": "torch.bfloat16",
+        "lm_head": "torch.bfloat16"
+      },
+      "peak_bytes": 13936472064,
+      "end": 1793288055.5904846
+    },
+    "turns": [
+      {
+        "label": "Hi",
+        "prompt_tokens": 803,
+        "text_tokens": 9,
+        "chip_tokens": 0,
+        "tok_s": 9.759145530407284,
+        "wall_s": 5.401647798993508,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "Hi-warm",
+        "prompt_tokens": 803,
+        "text_tokens": 9,
+        "chip_tokens": 0,
+        "tok_s": 18.865331506208527,
+        "wall_s": 2.500660482997773,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "put",
+        "prompt_tokens": 821,
+        "text_tokens": 74,
+        "chip_tokens": 3,
+        "tok_s": 15.722842201938036,
+        "wall_s": 7.115968730999157,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "fresh-get",
+        "prompt_tokens": 813,
+        "text_tokens": 54,
+        "chip_tokens": 2,
+        "tok_s": 14.694128457842075,
+        "wall_s": 6.256550223013619,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-1/s1",
+        "prompt_tokens": 838,
+        "text_tokens": 256,
+        "chip_tokens": 4077,
+        "tok_s": 3.953701408142605,
+        "wall_s": 67.47244776600564,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-1/s2",
+        "prompt_tokens": 837,
+        "text_tokens": 253,
+        "chip_tokens": 10,
+        "tok_s": 16.809166970881282,
+        "wall_s": 17.624985437010764,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-1/s3",
+        "prompt_tokens": 836,
+        "text_tokens": 256,
+        "chip_tokens": 18,
+        "tok_s": 16.13853207994865,
+        "wall_s": 18.656426674002432,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-1/s4",
+        "prompt_tokens": 864,
+        "text_tokens": 256,
+        "chip_tokens": 12,
+        "tok_s": 15.712585926183399,
+        "wall_s": 18.794030290999217,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-2/s1",
+        "prompt_tokens": 836,
+        "text_tokens": 256,
+        "chip_tokens": 2841,
+        "tok_s": 5.016565603649839,
+        "wall_s": 53.39779328100849,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-2/s2",
+        "prompt_tokens": 834,
+        "text_tokens": 256,
+        "chip_tokens": 14,
+        "tok_s": 15.017122433101445,
+        "wall_s": 19.702674682004726,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-2/s3",
+        "prompt_tokens": 834,
+        "text_tokens": 256,
+        "chip_tokens": 12,
+        "tok_s": 15.588020527710231,
+        "wall_s": 18.7353098540043,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-2/s4",
+        "prompt_tokens": 854,
+        "text_tokens": 256,
+        "chip_tokens": 13,
+        "tok_s": 16.139358056147238,
+        "wall_s": 18.57618610499776,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-5/s1",
+        "prompt_tokens": 831,
+        "text_tokens": 256,
+        "chip_tokens": 12,
+        "tok_s": 16.68682062462909,
+        "wall_s": 17.855919427995104,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-5/s2",
+        "prompt_tokens": 836,
+        "text_tokens": 256,
+        "chip_tokens": 2704,
+        "tok_s": 5.565454388562785,
+        "wall_s": 48.1944209659996,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-5/s3",
+        "prompt_tokens": 834,
+        "text_tokens": 204,
+        "chip_tokens": 0,
+        "tok_s": 15.468062572583543,
+        "wall_s": 15.17647214300814,
+        "lock_error": null,
+        "head_mismatch": 0
+      },
+      {
+        "label": "recall-5/s4",
+        "prompt_tokens": 863,
+        "text_tokens": 256,
+        "chip_tokens": 14,
+        "tok_s": 16.303492549759625,
+        "wall_s": 18.134443927992834,
+        "lock_error": null,
+        "head_mismatch": 0
+      }
+    ],
+    "history_divergences": 0,
+    "history_turns": 12
+  }
+}

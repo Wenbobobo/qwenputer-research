@@ -1,0 +1,181 @@
+{
+  "config": {
+    "ask": "What's my locker code?",
+    "max_new": 120,
+    "memory": "/mnt/c/Projects/Qcompute/gpu/out/trim_selfla_store.npz",
+    "output": "gpu/out/trim_selfla_get.json",
+    "head_trim": false,
+    "hf": false
+  },
+  "chip": "bf16 exact (fast.compact qwen=False)",
+  "qwen": "lossless trim 2561 cols / 2560 rows",
+  "fast": true,
+  "selective_fla": {
+    "n_chip": 12,
+    "impl": {
+      "torch_chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+      "torch_recurrent_gated_delta_rule": "fla.ops.gated_delta_rule.fused_recurrent.fused_recurrent_gated_delta_rule",
+      "causal_conv1d_fn": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_fn",
+      "causal_conv1d_update": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_update"
+    },
+    "ref": {
+      "torch_chunk_gated_delta_rule": "transformers.models.qwen3_5.modeling_qwen3_5.torch_chunk_gated_delta_rule",
+      "torch_recurrent_gated_delta_rule": "transformers.models.qwen3_5.modeling_qwen3_5.torch_recurrent_gated_delta_rule",
+      "causal_conv1d_fn": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_fn",
+      "causal_conv1d_update": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_update"
+    }
+  },
+  "cpu_load_s": 0.4512382209941279,
+  "zero_check": {
+    "checked_matrices": 248,
+    "nonzero_dropped": []
+  },
+  "trim": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "compact": {
+    "dense_weights": 2305695744,
+    "compact_weights": 324708406,
+    "chip_deltanet_heads": [
+      [
+        18,
+        32
+      ],
+      [
+        10,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        28,
+        32
+      ]
+    ]
+  },
+  "param_bytes_cpu": 12260537740,
+  "buffer_bytes_cpu": 256,
+  "to_cuda_s": 78.26228081599402,
+  "load_s": 111.73904905900417,
+  "loaded_memory_bytes": 12370766848,
+  "all_parameters_cuda": true,
+  "init_s": 136.4536197599955,
+  "after_init_memory_bytes": 12760858624,
+  "prompt_len": 808,
+  "tokens": [
+    248058,
+    198,
+    27,
+    1628,
+    27362,
+    29,
+    198,
+    27,
+    15704,
+    37943,
+    29,
+    198,
+    90196,
+    4000,
+    198,
+    510,
+    15704,
+    29,
+    198,
+    510,
+    1628,
+    29,
+    198,
+    248059,
+    478843,
+    198,
+    248066,
+    198,
+    482740,
+    19,
+    19,
+    22,
+    16,
+    6481,
+    57,
+    198,
+    248067,
+    198,
+    248068,
+    198,
+    198,
+    248069,
+    198,
+    198,
+    7525,
+    33531,
+    1970,
+    369,
+    220,
+    19,
+    19,
+    22,
+    16,
+    6481,
+    57,
+    13,
+    248046
+  ],
+  "text_tokens": 54,
+  "chip_tokens": 2,
+  "seconds": 4.445984363555908,
+  "head_mismatch": 0,
+  "lock_error": null,
+  "verify_mismatch": null,
+  "chip_seconds": 0.02,
+  "text_seconds": 4.42,
+  "text": "<tool_call>\n<function=get>\n<parameter=name>\nlocker_code\n</parameter>\n</function>\n</tool_call>\n<tool_response>\n4471-AZ\n</tool_response>\n<think>\n\n</think>\n\nYour locker code is 4471-AZ.<|im_end|>",
+  "wall_s": 17.658228688000236,
+  "text_tokens_per_s": 12.14579170422693,
+  "wall_text_tokens_per_s": 3.0580643706747352,
+  "memory_loaded": true,
+  "status": "ok",
+  "selective_fla_calls": {
+    "ref": 72,
+    "fast": 1320
+  },
+  "max_memory_allocated_bytes": 13145620480,
+  "max_memory_reserved_bytes": 13325303808
+}

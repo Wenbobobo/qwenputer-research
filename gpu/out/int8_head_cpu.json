@@ -1,0 +1,33 @@
+{
+  "synthetic": {
+    "passed": true,
+    "shape": [
+      2,
+      3,
+      47
+    ],
+    "chip_rows_exact": true
+  },
+  "real_head": {
+    "quantized_rows": 248320,
+    "quantized_cols": 2560,
+    "exact_chip_cols": 40,
+    "text_only": false,
+    "chunk_rows": 16384,
+    "buffer_bytes": 675476800,
+    "dequant_chunk_bytes": 83886080,
+    "embedding": "unchanged BF16 tied original; separate compact head adds storage",
+    "seconds": 28.128378160996363,
+    "text_probe_max_abs_diff": 0.04931640625,
+    "text_probe_argmax": [
+      246357,
+      246357
+    ],
+    "chip_probe_argmax": [
+      434286,
+      434286
+    ],
+    "chip_probe_max_abs_diff": 0.0,
+    "chip_probe_rows_exact": true
+  }
+}

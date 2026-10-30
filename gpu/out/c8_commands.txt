@@ -1,0 +1,10 @@
+C8 commands (WSL Ubuntu-24.04; cwd /mnt/c/Projects/Qcompute)
+export PYTHONPATH=/mnt/c/Projects/Qcompute:/mnt/c/Projects/Qcompute/repro/qwenputer/experimental/riscv:/mnt/c/Projects/Qcompute/repro/qwenputer
+export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8
+TRIM_FP32_CHIP=1 timeout 3000 bash gpu/run_py.sh gpu/trim/fp32_chip_bench.py --out gpu/out/c8_fp32 --cases 1,2,5 --deadline 1793291100 > gpu/out/c8_fp32.log 2>&1
+
+Matched bf16 command (scheduled after fp32): TRIM_FP32_CHIP=0 timeout 2400 bash gpu/run_py.sh gpu/trim/fp32_chip_bench.py --out gpu/out/c8_bf16 --cases 1,2,5 --deadline 1793291100 > gpu/out/c8_bf16.log 2>&1
+Fallback chip check command (scheduled after trim): timeout 600 bash gpu/run_py.sh gpu/trim/gpucheck_fp32chip.py --decode --dtype fp32 --progs signext,call > gpu/out/gpucheck_fp32chip_torch.log 2>&1
+
+Initial gpucheck: bash gpu/run_py.sh -m chipformer.rv.gpucheck --decode --dtype fp32 (with repro package path, FLA enabled); stopped PID 135331 after ~6min before first case result.
+Initial trim_chat Hi: CPU stage stalled; stopped PID 137262, replaced by 8-thread combined benchmark.

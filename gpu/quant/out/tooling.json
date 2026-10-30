@@ -1,0 +1,40 @@
+[
+  {
+    "name": "bitsandbytes_8",
+    "status": "ok",
+    "result": {
+      "version": "0.50.2",
+      "shape": [
+        4,
+        1024
+      ],
+      "dtype": "torch.bfloat16",
+      "finite": true
+    }
+  },
+  {
+    "name": "bitsandbytes_4",
+    "status": "ok",
+    "result": {
+      "version": "0.50.2",
+      "shape": [
+        4,
+        1024
+      ],
+      "dtype": "torch.bfloat16",
+      "finite": true
+    }
+  },
+  {
+    "name": "torchao_8",
+    "status": "error",
+    "error": "ImportError(\"cannot import name 'ScalingType' from 'torch.nn.functional' (/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torch/nn/functional.py)\")",
+    "trace": "Traceback (most recent call last):\n  File \"/mnt/c/Projects/Qcompute/gpu/quant/tooling.py\", line 9, in test\n    try: rows.append(dict(name=name,status='ok',result=fn()))\n                                                       ^^^^\n  File \"/mnt/c/Projects/Qcompute/gpu/quant/tooling.py\", line 29, in <lambda>\n    for bits in [8,4]:test('torchao_'+str(bits),lambda bits=bits:ao(bits))\n                                                                 ^^^^^^^^\n  File \"/mnt/c/Projects/Qcompute/gpu/quant/tooling.py\", line 20, in ao\n    import torchao\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/__init__.py\", line 107, in <module>\n    from torchao.quantization import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/__init__.py\", line 24, in <module>\n    from .quant_api import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quant_api.py\", line 47, in <module>\n    from torchao.prototype.quantization.quant_api import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/prototype/quantization/__init__.py\", line 2, in <module>\n    from .quant_api import Int8DynamicActivationUIntxWeightConfig, UIntxWeightOnlyConfig\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/prototype/quantization/quant_api.py\", line 37, in <module>\n    from torchao.quantization.quantize_.workflows import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quantize_/workflows/__init__.py\", line 4, in <module>\n    from .float8.float8_sparse_2x4_1d_data_1d_metadata_tensor import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quantize_/workflows/float8/float8_sparse_2x4_1d_data_1d_metadata_tensor.py\", line 39, in <module>\n    from .float8_tensor import QuantizeTensorToFloat8Kwargs\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quantize_/workflows/float8/float8_tensor.py\", line 12, in <module>\n    from torch.nn.functional import ScalingType, scaled_grouped_mm\nImportError: cannot import name 'ScalingType' from 'torch.nn.functional' (/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torch/nn/functional.py)\n"
+  },
+  {
+    "name": "torchao_4",
+    "status": "error",
+    "error": "ImportError(\"cannot import name 'ScalingType' from 'torch.nn.functional' (/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torch/nn/functional.py)\")",
+    "trace": "Traceback (most recent call last):\n  File \"/mnt/c/Projects/Qcompute/gpu/quant/tooling.py\", line 9, in test\n    try: rows.append(dict(name=name,status='ok',result=fn()))\n                                                       ^^^^\n  File \"/mnt/c/Projects/Qcompute/gpu/quant/tooling.py\", line 29, in <lambda>\n    for bits in [8,4]:test('torchao_'+str(bits),lambda bits=bits:ao(bits))\n                                                                 ^^^^^^^^\n  File \"/mnt/c/Projects/Qcompute/gpu/quant/tooling.py\", line 20, in ao\n    import torchao\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/__init__.py\", line 107, in <module>\n    from torchao.quantization import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/__init__.py\", line 24, in <module>\n    from .quant_api import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quant_api.py\", line 47, in <module>\n    from torchao.prototype.quantization.quant_api import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/prototype/quantization/__init__.py\", line 2, in <module>\n    from .quant_api import Int8DynamicActivationUIntxWeightConfig, UIntxWeightOnlyConfig\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/prototype/quantization/quant_api.py\", line 37, in <module>\n    from torchao.quantization.quantize_.workflows import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quantize_/workflows/__init__.py\", line 4, in <module>\n    from .float8.float8_sparse_2x4_1d_data_1d_metadata_tensor import (\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quantize_/workflows/float8/float8_sparse_2x4_1d_data_1d_metadata_tensor.py\", line 39, in <module>\n    from .float8_tensor import QuantizeTensorToFloat8Kwargs\n  File \"/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torchao/quantization/quantize_/workflows/float8/float8_tensor.py\", line 12, in <module>\n    from torch.nn.functional import ScalingType, scaled_grouped_mm\nImportError: cannot import name 'ScalingType' from 'torch.nn.functional' (/home/wenbo/src/rocm-smoke/.venv/lib/python3.12/site-packages/torch/nn/functional.py)\n"
+  }
+]

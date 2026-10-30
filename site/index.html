@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwenputer 研究档案</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <div class="hero">
+    <h1>🖥️ Qwenputer 研究档案</h1>
+    <p>把计算机编译进语言模型权重：复现、分析、优化的完整旅程</p>
+  </div>
+
+  <section>
+    <h2>📚 阶段报告</h2>
+    <div class="stage-timeline">
+      <a href="stages/stage1.html" class="stage-card">
+        <div class="stage-number">Stage 1</div>
+        <h3>把一台计算机编译进 220 亿字节的权重里</h3>
+        <p>权重里的 RISC-V CPU 真的在执行乘法，而不是"猜"答案</p>
+      </a>
+      <a href="stages/stage2.html" class="stage-card">
+        <div class="stage-number">Stage 2</div>
+        <h3>权重里的文件系统，是更好的"记忆"吗？</h3>
+        <p>变更事实 store 90% vs 粘贴上下文 30%，但介质不是全部</p>
+      </a>
+      <a href="stages/stage3.html" class="stage-card">
+        <div class="stage-number">Stage 3</div>
+        <h3>复现之后，还能往哪里走？</h3>
+        <p>RV32 核占 11-12 层，专用电路可能只需 2-4 层</p>
+      </a>
+      <a href="stages/stage4.html" class="stage-card">
+        <div class="stage-number">Stage 4</div>
+        <h3>从"能跑"到"知道边界"</h3>
+        <p>确认计算路径的精确性和边界条件</p>
+      </a>
+      <a href="stages/stage5.html" class="stage-card">
+        <div class="stage-number">Stage 5</div>
+        <h3>从"能复现"到"能用"</h3>
+        <p>GPU 运行时与性能优化实践</p>
+      </a>
+      <a href="stages/stage6.html" class="stage-card">
+        <div class="stage-number">Stage 6</div>
+        <h3>把 22.3GB 塞进 20GB，然后快 18 倍</h3>
+        <p>内存压缩与推理速度提升的权衡</p>
+      </a>
+      <a href="stages/stage7.html" class="stage-card">
+        <div class="stage-number">Stage 7</div>
+        <h3>精确性的边界，和记忆的最后一臂</h3>
+        <p>chip 层 fp32 计算的锁定分歧分析与 FLA 优化</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="quick-results">
+    <h2>⚡ 关键成果</h2>
+    <ul>
+      <li><strong>复现</strong> 7.951 GiB 压缩（22.3GB → 20GB）</li>
+      <li><strong>GPU 推理</strong> 43-45 tok/s（H100 baseline）</li>
+      <li><strong>内存 H1</strong> 在权重中 100% 正确读写</li>
+      <li><strong>Trim 速度</strong> 13.5-14.7 tok/s（优化路径）</li>
+      <li><strong>fp32 chip</strong> 0/12 锁定分歧（精确计算）</li>
+    </ul>
+  </section>
+
+  <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); text-align: center; color: var(--dim);">
+    <p>Qwenputer 项目 · 2024-2025 · <a href="https://github.com/Wenbobobo" style="color: var(--blue);">@Wenbobobo</a></p>
+  </footer>
+</body>
+</html>

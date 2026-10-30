@@ -1,0 +1,250 @@
+{
+ "conditions": {
+  "C1": {
+   "name": "timestamped context + most-recent-wins",
+   "cases": 3,
+   "changed": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "changed_new_value_present": {
+    "k": 3,
+    "n": 3,
+    "acc": 1.0,
+    "wilson95": [
+     0.438,
+     1.0
+    ]
+   },
+   "changed_new_first_lenient": {
+    "k": 3,
+    "n": 3,
+    "acc": 1.0,
+    "wilson95": [
+     0.438,
+     1.0
+    ]
+   },
+   "facts": {
+    "k": 6,
+    "n": 6,
+    "acc": 1.0,
+    "wilson95": [
+     0.61,
+     1.0
+    ]
+   },
+   "all": {
+    "k": 8,
+    "n": 9,
+    "acc": 0.889,
+    "wilson95": [
+     0.565,
+     0.98
+    ]
+   },
+   "changed_errors": {
+    "old_only": 0,
+    "both_old_and_new": 1,
+    "neither": 0
+   }
+  },
+  "C2": {
+   "name": "append-only host tools",
+   "cases": 3,
+   "changed": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "changed_new_value_present": {
+    "k": 3,
+    "n": 3,
+    "acc": 1.0,
+    "wilson95": [
+     0.438,
+     1.0
+    ]
+   },
+   "changed_new_first_lenient": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "facts": {
+    "k": 6,
+    "n": 6,
+    "acc": 1.0,
+    "wilson95": [
+     0.61,
+     1.0
+    ]
+   },
+   "all": {
+    "k": 8,
+    "n": 9,
+    "acc": 0.889,
+    "wilson95": [
+     0.565,
+     0.98
+    ]
+   },
+   "changed_errors": {
+    "old_only": 0,
+    "both_old_and_new": 1,
+    "neither": 0
+   },
+   "tool_stats": {
+    "sessions_with_save": 11,
+    "sessions_total": 12,
+    "question_turns_with_read": 9,
+    "question_turns": 9
+   }
+  },
+  "C3": {
+   "name": "plain pasted context (upstream 'context')",
+   "cases": 3,
+   "changed": {
+    "k": 1,
+    "n": 3,
+    "acc": 0.333,
+    "wilson95": [
+     0.061,
+     0.792
+    ]
+   },
+   "changed_new_value_present": {
+    "k": 3,
+    "n": 3,
+    "acc": 1.0,
+    "wilson95": [
+     0.438,
+     1.0
+    ]
+   },
+   "changed_new_first_lenient": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "facts": {
+    "k": 6,
+    "n": 6,
+    "acc": 1.0,
+    "wilson95": [
+     0.61,
+     1.0
+    ]
+   },
+   "all": {
+    "k": 7,
+    "n": 9,
+    "acc": 0.778,
+    "wilson95": [
+     0.453,
+     0.937
+    ]
+   },
+   "changed_errors": {
+    "old_only": 0,
+    "both_old_and_new": 2,
+    "neither": 0
+   }
+  },
+  "C4": {
+   "name": "overwrite host tools (upstream 'host')",
+   "cases": 3,
+   "changed": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "changed_new_value_present": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "changed_new_first_lenient": {
+    "k": 2,
+    "n": 3,
+    "acc": 0.667,
+    "wilson95": [
+     0.208,
+     0.939
+    ]
+   },
+   "facts": {
+    "k": 4,
+    "n": 6,
+    "acc": 0.667,
+    "wilson95": [
+     0.3,
+     0.903
+    ]
+   },
+   "all": {
+    "k": 6,
+    "n": 9,
+    "acc": 0.667,
+    "wilson95": [
+     0.354,
+     0.879
+    ]
+   },
+   "changed_errors": {
+    "old_only": 0,
+    "both_old_and_new": 0,
+    "neither": 1
+   },
+   "tool_stats": {
+    "sessions_with_save": 6,
+    "sessions_total": 12,
+    "question_turns_with_read": 9,
+    "question_turns": 9
+   }
+  }
+ },
+ "comparisons": {
+  "C1_vs_C3_changed": {
+   "diff": 0.334,
+   "fisher_p": 1.0
+  },
+  "C4_vs_C2_changed": {
+   "diff": 0.0,
+   "fisher_p": 1.0
+  },
+  "C1_vs_C4_changed": {
+   "diff": 0.0,
+   "fisher_p": 1.0
+  },
+  "C2_vs_C3_changed": {
+   "diff": 0.334,
+   "fisher_p": 1.0
+  }
+ }
+}

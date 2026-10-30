@@ -1,0 +1,62 @@
+memory_disk test run — 2026-10-29 18:08:18
+python 3.13.14 | numpy 2.5.4 | memory_disk 0.1.0
+riscv reference on PYTHONPATH: True
+
+=== 1. roundtrip demo/store.npz -> save -> load -> exact equality ===
+demo snapshot: 49 heads, 9 nonzero state rows, body 11750 bytes
+[PASS] demo snapshot parses
+fingerprint(Qwen3.5-4B-Qwenputer-Filesystem) = ec799e70e1b08f8d74bbe7ce91fddd98869211efe38afd97d5351328f5182493
+[PASS] header magic QPUMEM01
+[PASS] header format_version 1
+[PASS] header fingerprint equals fp
+[PASS] header journal exported
+[PASS] header body_sha256 present
+[PASS] snapshot arrays exactly equal
+[PASS] verify booleans all true
+roundtrip body 11750 bytes, header 1542 bytes
+
+=== 2. fingerprint mismatch rejection ===
+  FingerprintMismatch raised: fingerprint mismatch: expected 0000000000000000..., header has ec799e70e1b08f8d... (C:\Projects\Qcompute\analysis\memory...
+[PASS] mismatch raises FingerprintMismatch
+[PASS] force=True loads anyway
+[PASS] matching fp loads
+[PASS] verify fingerprint_match False/True
+  checksum error raised: snapshot body checksum mismatch: C:\Projects\Qcompute\analysis\memory_disk\test_runs\20261029-180818
+[PASS] tampered body rejected (checksum)
+
+=== 3. journal replay logical portability ===
+[PASS] replay seed 2035: all puts ok -- ['ok\n', 'ok\n', 'ok\n', 'ok\n', 'ok\n', 'ok\n', 'ok\n', 'ok\n', 'ok\n', 'ok\n']
+[PASS] seed 2035 get() returns original texts
+[PASS] replay seed 2036: all puts ok
+[PASS] seed 2036 get() returns original texts (portable)
+[PASS] identical texts across seeds
+  state differs but content same: slot(city) seed2035=276, seed2036=812
+[PASS] different seed -> different slot layout
+  reference replay (10 puts + 20 gets) took 2.909s
+
+=== 4. NameGuard collision detection ===
+  key('the locker code for the safe room in') = (7, (1719, 33531, 1970, 364, 279, 5902))
+  key('the locker code for the safe in room') = (7, (1719, 33531, 1970, 364, 279, 5902))
+[PASS] D example: identical keys (the bug)
+[PASS] first name: no collision
+[PASS] second name: collision detected
+  suggested alias for B: '[1] the locker code for the safe in room'
+[PASS] suggestion has a distinct key
+  NameConflict raised: name 'the locker code for the safe in room' would silently overwrite 'the locker code for the safe room in': both map to store key (7, (1719...
+[PASS] put_checked(B) raises NameConflict
+[PASS] A still intact after refused B
+[PASS] get(B) sees A's text (same key)
+[PASS] store still has exactly one live file
+[PASS] alias put succeeds
+[PASS] A still intact after alias put
+[PASS] short names have distinct keys
+[PASS] short names: no collisions
+[PASS] city get
+[PASS] dog_name get
+[PASS] same-name re-put allowed
+[PASS] guard key matches store key for 'the locker code for the safe room in'
+[PASS] guard key matches store key for '[1] the locker code for the safe in room'
+[PASS] guard key matches store key for 'city'
+[PASS] guard key matches store key for 'dog_name'
+
+summary: 0 failure(s) in 20.28s

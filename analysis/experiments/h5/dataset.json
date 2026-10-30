@@ -1,0 +1,1806 @@
+{
+  "facts": [
+    {
+      "session": "session_1",
+      "name": "pet_1",
+      "base_name": "pet",
+      "text": "My pet is a dog named Miso, a friendly brown rescue.",
+      "answer": "My pet is a dog named Miso, a friendly brown rescue.",
+      "semantic_query": "what is the animal I keep at home",
+      "semantic_query_alt": "what is my pet called"
+    },
+    {
+      "session": "session_1",
+      "name": "job_1",
+      "base_name": "job",
+      "text": "I work as a data engineer building reliable pipelines.",
+      "answer": "I work as a data engineer building reliable pipelines.",
+      "semantic_query": "what do I do for a living",
+      "semantic_query_alt": "what is my occupation"
+    },
+    {
+      "session": "session_1",
+      "name": "city_1",
+      "base_name": "city",
+      "text": "I live in Vancouver near the seawall.",
+      "answer": "I live in Vancouver near the seawall.",
+      "semantic_query": "where is my home city",
+      "semantic_query_alt": "which city do I live in"
+    },
+    {
+      "session": "session_1",
+      "name": "drink_1",
+      "base_name": "drink",
+      "text": "My usual morning drink is black coffee.",
+      "answer": "My usual morning drink is black coffee.",
+      "semantic_query": "what do I drink in the morning",
+      "semantic_query_alt": "what beverage do I usually have"
+    },
+    {
+      "session": "session_1",
+      "name": "food_1",
+      "base_name": "food",
+      "text": "My favorite comfort food is spicy ramen.",
+      "answer": "My favorite comfort food is spicy ramen.",
+      "semantic_query": "what food cheers me up",
+      "semantic_query_alt": "what is my favorite meal"
+    },
+    {
+      "session": "session_1",
+      "name": "color_1",
+      "base_name": "color",
+      "text": "My favorite color is forest green.",
+      "answer": "My favorite color is forest green.",
+      "semantic_query": "which color do I like best",
+      "semantic_query_alt": "what color do I prefer"
+    },
+    {
+      "session": "session_1",
+      "name": "hobby_1",
+      "base_name": "hobby",
+      "text": "I enjoy pottery on weekends.",
+      "answer": "I enjoy pottery on weekends.",
+      "semantic_query": "what do I do for fun on weekends",
+      "semantic_query_alt": "what hobby do I have"
+    },
+    {
+      "session": "session_1",
+      "name": "instrument_1",
+      "base_name": "instrument",
+      "text": "I play the acoustic guitar.",
+      "answer": "I play the acoustic guitar.",
+      "semantic_query": "which musical instrument can I play",
+      "semantic_query_alt": "what do I play musically"
+    },
+    {
+      "session": "session_1",
+      "name": "sport_1",
+      "base_name": "sport",
+      "text": "I follow tennis and play it casually.",
+      "answer": "I follow tennis and play it casually.",
+      "semantic_query": "which sport do I enjoy",
+      "semantic_query_alt": "what game do I play"
+    },
+    {
+      "session": "session_1",
+      "name": "language_1",
+      "base_name": "language",
+      "text": "I am learning Japanese.",
+      "answer": "I am learning Japanese.",
+      "semantic_query": "which language am I studying",
+      "semantic_query_alt": "what language am I learning"
+    },
+    {
+      "session": "session_1",
+      "name": "season_1",
+      "base_name": "season",
+      "text": "Autumn is my favorite season.",
+      "answer": "Autumn is my favorite season.",
+      "semantic_query": "which part of the year do I prefer",
+      "semantic_query_alt": "what season do I like"
+    },
+    {
+      "session": "session_1",
+      "name": "book_1",
+      "base_name": "book",
+      "text": "My favorite book is The Left Hand of Darkness.",
+      "answer": "My favorite book is The Left Hand of Darkness.",
+      "semantic_query": "which book do I love most",
+      "semantic_query_alt": "what is my favorite novel"
+    },
+    {
+      "session": "session_1",
+      "name": "music_1",
+      "base_name": "music",
+      "text": "I listen to jazz while working.",
+      "answer": "I listen to jazz while working.",
+      "semantic_query": "what music do I play during work",
+      "semantic_query_alt": "which genre do I enjoy while working"
+    },
+    {
+      "session": "session_1",
+      "name": "travel_1",
+      "base_name": "travel",
+      "text": "My dream trip is to visit New Zealand.",
+      "answer": "My dream trip is to visit New Zealand.",
+      "semantic_query": "where would I like to travel",
+      "semantic_query_alt": "what destination do I dream about"
+    },
+    {
+      "session": "session_1",
+      "name": "car_1",
+      "base_name": "car",
+      "text": "I drive a blue Toyota Corolla.",
+      "answer": "I drive a blue Toyota Corolla.",
+      "semantic_query": "what vehicle do I own",
+      "semantic_query_alt": "what kind of car do I drive"
+    },
+    {
+      "session": "session_1",
+      "name": "school_1",
+      "base_name": "school",
+      "text": "I studied physics at university.",
+      "answer": "I studied physics at university.",
+      "semantic_query": "what subject did I study",
+      "semantic_query_alt": "what was my university field"
+    },
+    {
+      "session": "session_1",
+      "name": "birthplace_1",
+      "base_name": "birthplace",
+      "text": "I was born in Porto, Portugal.",
+      "answer": "I was born in Porto, Portugal.",
+      "semantic_query": "where did I enter the world",
+      "semantic_query_alt": "what is my birthplace"
+    },
+    {
+      "session": "session_1",
+      "name": "birthday_1",
+      "base_name": "birthday",
+      "text": "My birthday is on April 17.",
+      "answer": "My birthday is on April 17.",
+      "semantic_query": "when do I celebrate my birthday",
+      "semantic_query_alt": "what day was I born"
+    },
+    {
+      "session": "session_1",
+      "name": "sibling_1",
+      "base_name": "sibling",
+      "text": "I have one older sister named Lena.",
+      "answer": "I have one older sister named Lena.",
+      "semantic_query": "do I have brothers or sisters",
+      "semantic_query_alt": "how many siblings do I have"
+    },
+    {
+      "session": "session_1",
+      "name": "parent_1",
+      "base_name": "parent",
+      "text": "My mother is named Rosa.",
+      "answer": "My mother is named Rosa.",
+      "semantic_query": "what is my mother's name",
+      "semantic_query_alt": "who is my mom"
+    },
+    {
+      "session": "session_2",
+      "name": "pet_2",
+      "base_name": "pet",
+      "text": "My pet is a cat named N1.",
+      "answer": "My pet is a cat named N1.",
+      "semantic_query": "what is the animal I keep at home",
+      "semantic_query_alt": "what is my pet called"
+    },
+    {
+      "session": "session_2",
+      "name": "job_2",
+      "base_name": "job",
+      "text": "I work as a teacher.",
+      "answer": "I work as a teacher.",
+      "semantic_query": "what do I do for a living",
+      "semantic_query_alt": "what is my occupation"
+    },
+    {
+      "session": "session_2",
+      "name": "city_2",
+      "base_name": "city",
+      "text": "I live in Oslo.",
+      "answer": "I live in Oslo.",
+      "semantic_query": "where is my home city",
+      "semantic_query_alt": "which city do I live in"
+    },
+    {
+      "session": "session_2",
+      "name": "drink_2",
+      "base_name": "drink",
+      "text": "My usual drink is tea.",
+      "answer": "My usual drink is tea.",
+      "semantic_query": "what do I drink in the morning",
+      "semantic_query_alt": "what beverage do I usually have"
+    },
+    {
+      "session": "session_2",
+      "name": "food_2",
+      "base_name": "food",
+      "text": "My favorite comfort food is tacos.",
+      "answer": "My favorite comfort food is tacos.",
+      "semantic_query": "what food cheers me up",
+      "semantic_query_alt": "what is my favorite meal"
+    },
+    {
+      "session": "session_2",
+      "name": "color_2",
+      "base_name": "color",
+      "text": "My favorite color is navy.",
+      "answer": "My favorite color is navy.",
+      "semantic_query": "which color do I like best",
+      "semantic_query_alt": "what color do I prefer"
+    },
+    {
+      "session": "session_2",
+      "name": "hobby_2",
+      "base_name": "hobby",
+      "text": "I enjoy cycling.",
+      "answer": "I enjoy cycling.",
+      "semantic_query": "what do I do for fun on weekends",
+      "semantic_query_alt": "what hobby do I have"
+    },
+    {
+      "session": "session_2",
+      "name": "instrument_2",
+      "base_name": "instrument",
+      "text": "I play the piano.",
+      "answer": "I play the piano.",
+      "semantic_query": "which musical instrument can I play",
+      "semantic_query_alt": "what do I play musically"
+    },
+    {
+      "session": "session_2",
+      "name": "sport_2",
+      "base_name": "sport",
+      "text": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "semantic_query": "which sport do I enjoy",
+      "semantic_query_alt": "what game do I play"
+    },
+    {
+      "session": "session_2",
+      "name": "language_2",
+      "base_name": "language",
+      "text": "I am learning Spanish.",
+      "answer": "I am learning Spanish.",
+      "semantic_query": "which language am I studying",
+      "semantic_query_alt": "what language am I learning"
+    },
+    {
+      "session": "session_2",
+      "name": "season_2",
+      "base_name": "season",
+      "text": "Spring is my favorite season.",
+      "answer": "Spring is my favorite season.",
+      "semantic_query": "which part of the year do I prefer",
+      "semantic_query_alt": "what season do I like"
+    },
+    {
+      "session": "session_2",
+      "name": "book_2",
+      "base_name": "book",
+      "text": "My favorite book is Dune.",
+      "answer": "My favorite book is Dune.",
+      "semantic_query": "which book do I love most",
+      "semantic_query_alt": "what is my favorite novel"
+    },
+    {
+      "session": "session_2",
+      "name": "music_2",
+      "base_name": "music",
+      "text": "I listen to rock while working.",
+      "answer": "I listen to rock while working.",
+      "semantic_query": "what music do I play during work",
+      "semantic_query_alt": "which genre do I enjoy while working"
+    },
+    {
+      "session": "session_2",
+      "name": "travel_2",
+      "base_name": "travel",
+      "text": "My dream trip is to visit Iceland.",
+      "answer": "My dream trip is to visit Iceland.",
+      "semantic_query": "where would I like to travel",
+      "semantic_query_alt": "what destination do I dream about"
+    },
+    {
+      "session": "session_2",
+      "name": "car_2",
+      "base_name": "car",
+      "text": "I drive a red Honda Civic.",
+      "answer": "I drive a red Honda Civic.",
+      "semantic_query": "what vehicle do I own",
+      "semantic_query_alt": "what kind of car do I drive"
+    },
+    {
+      "session": "session_2",
+      "name": "school_2",
+      "base_name": "school",
+      "text": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "semantic_query": "what subject did I study",
+      "semantic_query_alt": "what was my university field"
+    },
+    {
+      "session": "session_2",
+      "name": "birthplace_2",
+      "base_name": "birthplace",
+      "text": "I was born in Seoul.",
+      "answer": "I was born in Seoul.",
+      "semantic_query": "where did I enter the world",
+      "semantic_query_alt": "what is my birthplace"
+    },
+    {
+      "session": "session_2",
+      "name": "birthday_2",
+      "base_name": "birthday",
+      "text": "My birthday is on May 9.",
+      "answer": "My birthday is on May 9.",
+      "semantic_query": "when do I celebrate my birthday",
+      "semantic_query_alt": "what day was I born"
+    },
+    {
+      "session": "session_2",
+      "name": "sibling_2",
+      "base_name": "sibling",
+      "text": "I have two younger brothers.",
+      "answer": "I have two younger brothers.",
+      "semantic_query": "do I have brothers or sisters",
+      "semantic_query_alt": "how many siblings do I have"
+    },
+    {
+      "session": "session_2",
+      "name": "parent_2",
+      "base_name": "parent",
+      "text": "My mother is named Ana.",
+      "answer": "My mother is named Ana.",
+      "semantic_query": "what is my mother's name",
+      "semantic_query_alt": "who is my mom"
+    },
+    {
+      "session": "session_3",
+      "name": "pet_3",
+      "base_name": "pet",
+      "text": "My pet is a parrot named N2.",
+      "answer": "My pet is a parrot named N2.",
+      "semantic_query": "what is the animal I keep at home",
+      "semantic_query_alt": "what is my pet called"
+    },
+    {
+      "session": "session_3",
+      "name": "job_3",
+      "base_name": "job",
+      "text": "I work as a nurse.",
+      "answer": "I work as a nurse.",
+      "semantic_query": "what do I do for a living",
+      "semantic_query_alt": "what is my occupation"
+    },
+    {
+      "session": "session_3",
+      "name": "city_3",
+      "base_name": "city",
+      "text": "I live in Kyoto.",
+      "answer": "I live in Kyoto.",
+      "semantic_query": "where is my home city",
+      "semantic_query_alt": "which city do I live in"
+    },
+    {
+      "session": "session_3",
+      "name": "drink_3",
+      "base_name": "drink",
+      "text": "My usual drink is cocoa.",
+      "answer": "My usual drink is cocoa.",
+      "semantic_query": "what do I drink in the morning",
+      "semantic_query_alt": "what beverage do I usually have"
+    },
+    {
+      "session": "session_3",
+      "name": "food_3",
+      "base_name": "food",
+      "text": "My favorite comfort food is curry.",
+      "answer": "My favorite comfort food is curry.",
+      "semantic_query": "what food cheers me up",
+      "semantic_query_alt": "what is my favorite meal"
+    },
+    {
+      "session": "session_3",
+      "name": "color_3",
+      "base_name": "color",
+      "text": "My favorite color is orange.",
+      "answer": "My favorite color is orange.",
+      "semantic_query": "which color do I like best",
+      "semantic_query_alt": "what color do I prefer"
+    },
+    {
+      "session": "session_3",
+      "name": "hobby_3",
+      "base_name": "hobby",
+      "text": "I enjoy gardening.",
+      "answer": "I enjoy gardening.",
+      "semantic_query": "what do I do for fun on weekends",
+      "semantic_query_alt": "what hobby do I have"
+    },
+    {
+      "session": "session_3",
+      "name": "instrument_3",
+      "base_name": "instrument",
+      "text": "I play the violin.",
+      "answer": "I play the violin.",
+      "semantic_query": "which musical instrument can I play",
+      "semantic_query_alt": "what do I play musically"
+    },
+    {
+      "session": "session_3",
+      "name": "sport_3",
+      "base_name": "sport",
+      "text": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "semantic_query": "which sport do I enjoy",
+      "semantic_query_alt": "what game do I play"
+    },
+    {
+      "session": "session_3",
+      "name": "language_3",
+      "base_name": "language",
+      "text": "I am learning Korean.",
+      "answer": "I am learning Korean.",
+      "semantic_query": "which language am I studying",
+      "semantic_query_alt": "what language am I learning"
+    },
+    {
+      "session": "session_3",
+      "name": "season_3",
+      "base_name": "season",
+      "text": "Summer is my favorite season.",
+      "answer": "Summer is my favorite season.",
+      "semantic_query": "which part of the year do I prefer",
+      "semantic_query_alt": "what season do I like"
+    },
+    {
+      "session": "session_3",
+      "name": "book_3",
+      "base_name": "book",
+      "text": "My favorite book is Beloved.",
+      "answer": "My favorite book is Beloved.",
+      "semantic_query": "which book do I love most",
+      "semantic_query_alt": "what is my favorite novel"
+    },
+    {
+      "session": "session_3",
+      "name": "music_3",
+      "base_name": "music",
+      "text": "I listen to classical while working.",
+      "answer": "I listen to classical while working.",
+      "semantic_query": "what music do I play during work",
+      "semantic_query_alt": "which genre do I enjoy while working"
+    },
+    {
+      "session": "session_3",
+      "name": "travel_3",
+      "base_name": "travel",
+      "text": "My dream trip is to visit Morocco.",
+      "answer": "My dream trip is to visit Morocco.",
+      "semantic_query": "where would I like to travel",
+      "semantic_query_alt": "what destination do I dream about"
+    },
+    {
+      "session": "session_3",
+      "name": "car_3",
+      "base_name": "car",
+      "text": "I drive a white Mazda 3.",
+      "answer": "I drive a white Mazda 3.",
+      "semantic_query": "what vehicle do I own",
+      "semantic_query_alt": "what kind of car do I drive"
+    },
+    {
+      "session": "session_3",
+      "name": "school_3",
+      "base_name": "school",
+      "text": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "semantic_query": "what subject did I study",
+      "semantic_query_alt": "what was my university field"
+    },
+    {
+      "session": "session_3",
+      "name": "birthplace_3",
+      "base_name": "birthplace",
+      "text": "I was born in Cairo.",
+      "answer": "I was born in Cairo.",
+      "semantic_query": "where did I enter the world",
+      "semantic_query_alt": "what is my birthplace"
+    },
+    {
+      "session": "session_3",
+      "name": "birthday_3",
+      "base_name": "birthday",
+      "text": "My birthday is on June 21.",
+      "answer": "My birthday is on June 21.",
+      "semantic_query": "when do I celebrate my birthday",
+      "semantic_query_alt": "what day was I born"
+    },
+    {
+      "session": "session_3",
+      "name": "sibling_3",
+      "base_name": "sibling",
+      "text": "I have an older brother.",
+      "answer": "I have an older brother.",
+      "semantic_query": "do I have brothers or sisters",
+      "semantic_query_alt": "how many siblings do I have"
+    },
+    {
+      "session": "session_3",
+      "name": "parent_3",
+      "base_name": "parent",
+      "text": "My mother is named Mei.",
+      "answer": "My mother is named Mei.",
+      "semantic_query": "what is my mother's name",
+      "semantic_query_alt": "who is my mom"
+    },
+    {
+      "session": "session_4",
+      "name": "pet_4",
+      "base_name": "pet",
+      "text": "My pet is a rabbit named N3.",
+      "answer": "My pet is a rabbit named N3.",
+      "semantic_query": "what is the animal I keep at home",
+      "semantic_query_alt": "what is my pet called"
+    },
+    {
+      "session": "session_4",
+      "name": "job_4",
+      "base_name": "job",
+      "text": "I work as a designer.",
+      "answer": "I work as a designer.",
+      "semantic_query": "what do I do for a living",
+      "semantic_query_alt": "what is my occupation"
+    },
+    {
+      "session": "session_4",
+      "name": "city_4",
+      "base_name": "city",
+      "text": "I live in Lima.",
+      "answer": "I live in Lima.",
+      "semantic_query": "where is my home city",
+      "semantic_query_alt": "which city do I live in"
+    },
+    {
+      "session": "session_4",
+      "name": "drink_4",
+      "base_name": "drink",
+      "text": "My usual drink is water.",
+      "answer": "My usual drink is water.",
+      "semantic_query": "what do I drink in the morning",
+      "semantic_query_alt": "what beverage do I usually have"
+    },
+    {
+      "session": "session_4",
+      "name": "food_4",
+      "base_name": "food",
+      "text": "My favorite comfort food is dumplings.",
+      "answer": "My favorite comfort food is dumplings.",
+      "semantic_query": "what food cheers me up",
+      "semantic_query_alt": "what is my favorite meal"
+    },
+    {
+      "session": "session_4",
+      "name": "color_4",
+      "base_name": "color",
+      "text": "My favorite color is purple.",
+      "answer": "My favorite color is purple.",
+      "semantic_query": "which color do I like best",
+      "semantic_query_alt": "what color do I prefer"
+    },
+    {
+      "session": "session_4",
+      "name": "hobby_4",
+      "base_name": "hobby",
+      "text": "I enjoy drawing.",
+      "answer": "I enjoy drawing.",
+      "semantic_query": "what do I do for fun on weekends",
+      "semantic_query_alt": "what hobby do I have"
+    },
+    {
+      "session": "session_4",
+      "name": "instrument_4",
+      "base_name": "instrument",
+      "text": "I play the flute.",
+      "answer": "I play the flute.",
+      "semantic_query": "which musical instrument can I play",
+      "semantic_query_alt": "what do I play musically"
+    },
+    {
+      "session": "session_4",
+      "name": "sport_4",
+      "base_name": "sport",
+      "text": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "semantic_query": "which sport do I enjoy",
+      "semantic_query_alt": "what game do I play"
+    },
+    {
+      "session": "session_4",
+      "name": "language_4",
+      "base_name": "language",
+      "text": "I am learning French.",
+      "answer": "I am learning French.",
+      "semantic_query": "which language am I studying",
+      "semantic_query_alt": "what language am I learning"
+    },
+    {
+      "session": "session_4",
+      "name": "season_4",
+      "base_name": "season",
+      "text": "Winter is my favorite season.",
+      "answer": "Winter is my favorite season.",
+      "semantic_query": "which part of the year do I prefer",
+      "semantic_query_alt": "what season do I like"
+    },
+    {
+      "session": "session_4",
+      "name": "book_4",
+      "base_name": "book",
+      "text": "My favorite book is Sapiens.",
+      "answer": "My favorite book is Sapiens.",
+      "semantic_query": "which book do I love most",
+      "semantic_query_alt": "what is my favorite novel"
+    },
+    {
+      "session": "session_4",
+      "name": "music_4",
+      "base_name": "music",
+      "text": "I listen to folk while working.",
+      "answer": "I listen to folk while working.",
+      "semantic_query": "what music do I play during work",
+      "semantic_query_alt": "which genre do I enjoy while working"
+    },
+    {
+      "session": "session_4",
+      "name": "travel_4",
+      "base_name": "travel",
+      "text": "My dream trip is to visit Chile.",
+      "answer": "My dream trip is to visit Chile.",
+      "semantic_query": "where would I like to travel",
+      "semantic_query_alt": "what destination do I dream about"
+    },
+    {
+      "session": "session_4",
+      "name": "car_4",
+      "base_name": "car",
+      "text": "I drive a green Ford Focus.",
+      "answer": "I drive a green Ford Focus.",
+      "semantic_query": "what vehicle do I own",
+      "semantic_query_alt": "what kind of car do I drive"
+    },
+    {
+      "session": "session_4",
+      "name": "school_4",
+      "base_name": "school",
+      "text": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "semantic_query": "what subject did I study",
+      "semantic_query_alt": "what was my university field"
+    },
+    {
+      "session": "session_4",
+      "name": "birthplace_4",
+      "base_name": "birthplace",
+      "text": "I was born in Milan.",
+      "answer": "I was born in Milan.",
+      "semantic_query": "where did I enter the world",
+      "semantic_query_alt": "what is my birthplace"
+    },
+    {
+      "session": "session_4",
+      "name": "birthday_4",
+      "base_name": "birthday",
+      "text": "My birthday is on July 3.",
+      "answer": "My birthday is on July 3.",
+      "semantic_query": "when do I celebrate my birthday",
+      "semantic_query_alt": "what day was I born"
+    },
+    {
+      "session": "session_4",
+      "name": "sibling_4",
+      "base_name": "sibling",
+      "text": "I have one younger sister.",
+      "answer": "I have one younger sister.",
+      "semantic_query": "do I have brothers or sisters",
+      "semantic_query_alt": "how many siblings do I have"
+    },
+    {
+      "session": "session_4",
+      "name": "parent_4",
+      "base_name": "parent",
+      "text": "My mother is named Sara.",
+      "answer": "My mother is named Sara.",
+      "semantic_query": "what is my mother's name",
+      "semantic_query_alt": "who is my mom"
+    },
+    {
+      "session": "session_5",
+      "name": "pet_5",
+      "base_name": "pet",
+      "text": "My pet is a dog named N4.",
+      "answer": "My pet is a dog named N4.",
+      "semantic_query": "what is the animal I keep at home",
+      "semantic_query_alt": "what is my pet called"
+    },
+    {
+      "session": "session_5",
+      "name": "job_5",
+      "base_name": "job",
+      "text": "I work as a chemist.",
+      "answer": "I work as a chemist.",
+      "semantic_query": "what do I do for a living",
+      "semantic_query_alt": "what is my occupation"
+    },
+    {
+      "session": "session_5",
+      "name": "city_5",
+      "base_name": "city",
+      "text": "I live in Dublin.",
+      "answer": "I live in Dublin.",
+      "semantic_query": "where is my home city",
+      "semantic_query_alt": "which city do I live in"
+    },
+    {
+      "session": "session_5",
+      "name": "drink_5",
+      "base_name": "drink",
+      "text": "My usual drink is espresso.",
+      "answer": "My usual drink is espresso.",
+      "semantic_query": "what do I drink in the morning",
+      "semantic_query_alt": "what beverage do I usually have"
+    },
+    {
+      "session": "session_5",
+      "name": "food_5",
+      "base_name": "food",
+      "text": "My favorite comfort food is stew.",
+      "answer": "My favorite comfort food is stew.",
+      "semantic_query": "what food cheers me up",
+      "semantic_query_alt": "what is my favorite meal"
+    },
+    {
+      "session": "session_5",
+      "name": "color_5",
+      "base_name": "color",
+      "text": "My favorite color is gold.",
+      "answer": "My favorite color is gold.",
+      "semantic_query": "which color do I like best",
+      "semantic_query_alt": "what color do I prefer"
+    },
+    {
+      "session": "session_5",
+      "name": "hobby_5",
+      "base_name": "hobby",
+      "text": "I enjoy birdwatching.",
+      "answer": "I enjoy birdwatching.",
+      "semantic_query": "what do I do for fun on weekends",
+      "semantic_query_alt": "what hobby do I have"
+    },
+    {
+      "session": "session_5",
+      "name": "instrument_5",
+      "base_name": "instrument",
+      "text": "I play the drums.",
+      "answer": "I play the drums.",
+      "semantic_query": "which musical instrument can I play",
+      "semantic_query_alt": "what do I play musically"
+    },
+    {
+      "session": "session_5",
+      "name": "sport_5",
+      "base_name": "sport",
+      "text": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually.",
+      "semantic_query": "which sport do I enjoy",
+      "semantic_query_alt": "what game do I play"
+    },
+    {
+      "session": "session_5",
+      "name": "language_5",
+      "base_name": "language",
+      "text": "I am learning Italian.",
+      "answer": "I am learning Italian.",
+      "semantic_query": "which language am I studying",
+      "semantic_query_alt": "what language am I learning"
+    },
+    {
+      "session": "session_5",
+      "name": "season_5",
+      "base_name": "season",
+      "text": "Spring is my favorite season.",
+      "answer": "Spring is my favorite season.",
+      "semantic_query": "which part of the year do I prefer",
+      "semantic_query_alt": "what season do I like"
+    },
+    {
+      "session": "session_5",
+      "name": "book_5",
+      "base_name": "book",
+      "text": "My favorite book is Emma.",
+      "answer": "My favorite book is Emma.",
+      "semantic_query": "which book do I love most",
+      "semantic_query_alt": "what is my favorite novel"
+    },
+    {
+      "session": "session_5",
+      "name": "music_5",
+      "base_name": "music",
+      "text": "I listen to blues while working.",
+      "answer": "I listen to blues while working.",
+      "semantic_query": "what music do I play during work",
+      "semantic_query_alt": "which genre do I enjoy while working"
+    },
+    {
+      "session": "session_5",
+      "name": "travel_5",
+      "base_name": "travel",
+      "text": "My dream trip is to visit Scotland.",
+      "answer": "My dream trip is to visit Scotland.",
+      "semantic_query": "where would I like to travel",
+      "semantic_query_alt": "what destination do I dream about"
+    },
+    {
+      "session": "session_5",
+      "name": "car_5",
+      "base_name": "car",
+      "text": "I drive a silver Volvo.",
+      "answer": "I drive a silver Volvo.",
+      "semantic_query": "what vehicle do I own",
+      "semantic_query_alt": "what kind of car do I drive"
+    },
+    {
+      "session": "session_5",
+      "name": "school_5",
+      "base_name": "school",
+      "text": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university.",
+      "semantic_query": "what subject did I study",
+      "semantic_query_alt": "what was my university field"
+    },
+    {
+      "session": "session_5",
+      "name": "birthplace_5",
+      "base_name": "birthplace",
+      "text": "I was born in Quito.",
+      "answer": "I was born in Quito.",
+      "semantic_query": "where did I enter the world",
+      "semantic_query_alt": "what is my birthplace"
+    },
+    {
+      "session": "session_5",
+      "name": "birthday_5",
+      "base_name": "birthday",
+      "text": "My birthday is on August 28.",
+      "answer": "My birthday is on August 28.",
+      "semantic_query": "when do I celebrate my birthday",
+      "semantic_query_alt": "what day was I born"
+    },
+    {
+      "session": "session_5",
+      "name": "sibling_5",
+      "base_name": "sibling",
+      "text": "I have two sisters.",
+      "answer": "I have two sisters.",
+      "semantic_query": "do I have brothers or sisters",
+      "semantic_query_alt": "how many siblings do I have"
+    },
+    {
+      "session": "session_5",
+      "name": "parent_5",
+      "base_name": "parent",
+      "text": "My mother is named Nora.",
+      "answer": "My mother is named Nora.",
+      "semantic_query": "what is my mother's name",
+      "semantic_query_alt": "who is my mom"
+    }
+  ],
+  "queries": [
+    {
+      "kind": "semantic",
+      "query": "what is the animal I keep at home in session session_1",
+      "target": "pet_1",
+      "answer": "My pet is a dog named Miso, a friendly brown rescue."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for a living in session session_1",
+      "target": "job_1",
+      "answer": "I work as a data engineer building reliable pipelines."
+    },
+    {
+      "kind": "semantic",
+      "query": "where is my home city in session session_1",
+      "target": "city_1",
+      "answer": "I live in Vancouver near the seawall."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I drink in the morning in session session_1",
+      "target": "drink_1",
+      "answer": "My usual morning drink is black coffee."
+    },
+    {
+      "kind": "semantic",
+      "query": "what food cheers me up in session session_1",
+      "target": "food_1",
+      "answer": "My favorite comfort food is spicy ramen."
+    },
+    {
+      "kind": "semantic",
+      "query": "which color do I like best in session session_1",
+      "target": "color_1",
+      "answer": "My favorite color is forest green."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for fun on weekends in session session_1",
+      "target": "hobby_1",
+      "answer": "I enjoy pottery on weekends."
+    },
+    {
+      "kind": "semantic",
+      "query": "which musical instrument can I play in session session_1",
+      "target": "instrument_1",
+      "answer": "I play the acoustic guitar."
+    },
+    {
+      "kind": "semantic",
+      "query": "which sport do I enjoy in session session_1",
+      "target": "sport_1",
+      "answer": "I follow tennis and play it casually."
+    },
+    {
+      "kind": "semantic",
+      "query": "which language am I studying in session session_1",
+      "target": "language_1",
+      "answer": "I am learning Japanese."
+    },
+    {
+      "kind": "semantic",
+      "query": "which part of the year do I prefer in session session_1",
+      "target": "season_1",
+      "answer": "Autumn is my favorite season."
+    },
+    {
+      "kind": "semantic",
+      "query": "which book do I love most in session session_1",
+      "target": "book_1",
+      "answer": "My favorite book is The Left Hand of Darkness."
+    },
+    {
+      "kind": "semantic",
+      "query": "what music do I play during work in session session_1",
+      "target": "music_1",
+      "answer": "I listen to jazz while working."
+    },
+    {
+      "kind": "semantic",
+      "query": "where would I like to travel in session session_1",
+      "target": "travel_1",
+      "answer": "My dream trip is to visit New Zealand."
+    },
+    {
+      "kind": "semantic",
+      "query": "what vehicle do I own in session session_1",
+      "target": "car_1",
+      "answer": "I drive a blue Toyota Corolla."
+    },
+    {
+      "kind": "semantic",
+      "query": "what subject did I study in session session_1",
+      "target": "school_1",
+      "answer": "I studied physics at university."
+    },
+    {
+      "kind": "semantic",
+      "query": "where did I enter the world in session session_1",
+      "target": "birthplace_1",
+      "answer": "I was born in Porto, Portugal."
+    },
+    {
+      "kind": "semantic",
+      "query": "when do I celebrate my birthday in session session_1",
+      "target": "birthday_1",
+      "answer": "My birthday is on April 17."
+    },
+    {
+      "kind": "semantic",
+      "query": "do I have brothers or sisters in session session_1",
+      "target": "sibling_1",
+      "answer": "I have one older sister named Lena."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is my mother's name in session session_1",
+      "target": "parent_1",
+      "answer": "My mother is named Rosa."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is the animal I keep at home in session session_2",
+      "target": "pet_2",
+      "answer": "My pet is a cat named N1."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for a living in session session_2",
+      "target": "job_2",
+      "answer": "I work as a teacher."
+    },
+    {
+      "kind": "semantic",
+      "query": "where is my home city in session session_2",
+      "target": "city_2",
+      "answer": "I live in Oslo."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I drink in the morning in session session_2",
+      "target": "drink_2",
+      "answer": "My usual drink is tea."
+    },
+    {
+      "kind": "semantic",
+      "query": "what food cheers me up in session session_2",
+      "target": "food_2",
+      "answer": "My favorite comfort food is tacos."
+    },
+    {
+      "kind": "semantic",
+      "query": "which color do I like best in session session_2",
+      "target": "color_2",
+      "answer": "My favorite color is navy."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for fun on weekends in session session_2",
+      "target": "hobby_2",
+      "answer": "I enjoy cycling."
+    },
+    {
+      "kind": "semantic",
+      "query": "which musical instrument can I play in session session_2",
+      "target": "instrument_2",
+      "answer": "I play the piano."
+    },
+    {
+      "kind": "semantic",
+      "query": "which sport do I enjoy in session session_2",
+      "target": "sport_2",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually."
+    },
+    {
+      "kind": "semantic",
+      "query": "which language am I studying in session session_2",
+      "target": "language_2",
+      "answer": "I am learning Spanish."
+    },
+    {
+      "kind": "semantic",
+      "query": "which part of the year do I prefer in session session_2",
+      "target": "season_2",
+      "answer": "Spring is my favorite season."
+    },
+    {
+      "kind": "semantic",
+      "query": "which book do I love most in session session_2",
+      "target": "book_2",
+      "answer": "My favorite book is Dune."
+    },
+    {
+      "kind": "semantic",
+      "query": "what music do I play during work in session session_2",
+      "target": "music_2",
+      "answer": "I listen to rock while working."
+    },
+    {
+      "kind": "semantic",
+      "query": "where would I like to travel in session session_2",
+      "target": "travel_2",
+      "answer": "My dream trip is to visit Iceland."
+    },
+    {
+      "kind": "semantic",
+      "query": "what vehicle do I own in session session_2",
+      "target": "car_2",
+      "answer": "I drive a red Honda Civic."
+    },
+    {
+      "kind": "semantic",
+      "query": "what subject did I study in session session_2",
+      "target": "school_2",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university."
+    },
+    {
+      "kind": "semantic",
+      "query": "where did I enter the world in session session_2",
+      "target": "birthplace_2",
+      "answer": "I was born in Seoul."
+    },
+    {
+      "kind": "semantic",
+      "query": "when do I celebrate my birthday in session session_2",
+      "target": "birthday_2",
+      "answer": "My birthday is on May 9."
+    },
+    {
+      "kind": "semantic",
+      "query": "do I have brothers or sisters in session session_2",
+      "target": "sibling_2",
+      "answer": "I have two younger brothers."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is my mother's name in session session_2",
+      "target": "parent_2",
+      "answer": "My mother is named Ana."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is the animal I keep at home in session session_3",
+      "target": "pet_3",
+      "answer": "My pet is a parrot named N2."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for a living in session session_3",
+      "target": "job_3",
+      "answer": "I work as a nurse."
+    },
+    {
+      "kind": "semantic",
+      "query": "where is my home city in session session_3",
+      "target": "city_3",
+      "answer": "I live in Kyoto."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I drink in the morning in session session_3",
+      "target": "drink_3",
+      "answer": "My usual drink is cocoa."
+    },
+    {
+      "kind": "semantic",
+      "query": "what food cheers me up in session session_3",
+      "target": "food_3",
+      "answer": "My favorite comfort food is curry."
+    },
+    {
+      "kind": "semantic",
+      "query": "which color do I like best in session session_3",
+      "target": "color_3",
+      "answer": "My favorite color is orange."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for fun on weekends in session session_3",
+      "target": "hobby_3",
+      "answer": "I enjoy gardening."
+    },
+    {
+      "kind": "semantic",
+      "query": "which musical instrument can I play in session session_3",
+      "target": "instrument_3",
+      "answer": "I play the violin."
+    },
+    {
+      "kind": "semantic",
+      "query": "which sport do I enjoy in session session_3",
+      "target": "sport_3",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually."
+    },
+    {
+      "kind": "semantic",
+      "query": "which language am I studying in session session_3",
+      "target": "language_3",
+      "answer": "I am learning Korean."
+    },
+    {
+      "kind": "semantic",
+      "query": "which part of the year do I prefer in session session_3",
+      "target": "season_3",
+      "answer": "Summer is my favorite season."
+    },
+    {
+      "kind": "semantic",
+      "query": "which book do I love most in session session_3",
+      "target": "book_3",
+      "answer": "My favorite book is Beloved."
+    },
+    {
+      "kind": "semantic",
+      "query": "what music do I play during work in session session_3",
+      "target": "music_3",
+      "answer": "I listen to classical while working."
+    },
+    {
+      "kind": "semantic",
+      "query": "where would I like to travel in session session_3",
+      "target": "travel_3",
+      "answer": "My dream trip is to visit Morocco."
+    },
+    {
+      "kind": "semantic",
+      "query": "what vehicle do I own in session session_3",
+      "target": "car_3",
+      "answer": "I drive a white Mazda 3."
+    },
+    {
+      "kind": "semantic",
+      "query": "what subject did I study in session session_3",
+      "target": "school_3",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university."
+    },
+    {
+      "kind": "semantic",
+      "query": "where did I enter the world in session session_3",
+      "target": "birthplace_3",
+      "answer": "I was born in Cairo."
+    },
+    {
+      "kind": "semantic",
+      "query": "when do I celebrate my birthday in session session_3",
+      "target": "birthday_3",
+      "answer": "My birthday is on June 21."
+    },
+    {
+      "kind": "semantic",
+      "query": "do I have brothers or sisters in session session_3",
+      "target": "sibling_3",
+      "answer": "I have an older brother."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is my mother's name in session session_3",
+      "target": "parent_3",
+      "answer": "My mother is named Mei."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is the animal I keep at home in session session_4",
+      "target": "pet_4",
+      "answer": "My pet is a rabbit named N3."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for a living in session session_4",
+      "target": "job_4",
+      "answer": "I work as a designer."
+    },
+    {
+      "kind": "semantic",
+      "query": "where is my home city in session session_4",
+      "target": "city_4",
+      "answer": "I live in Lima."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I drink in the morning in session session_4",
+      "target": "drink_4",
+      "answer": "My usual drink is water."
+    },
+    {
+      "kind": "semantic",
+      "query": "what food cheers me up in session session_4",
+      "target": "food_4",
+      "answer": "My favorite comfort food is dumplings."
+    },
+    {
+      "kind": "semantic",
+      "query": "which color do I like best in session session_4",
+      "target": "color_4",
+      "answer": "My favorite color is purple."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for fun on weekends in session session_4",
+      "target": "hobby_4",
+      "answer": "I enjoy drawing."
+    },
+    {
+      "kind": "semantic",
+      "query": "which musical instrument can I play in session session_4",
+      "target": "instrument_4",
+      "answer": "I play the flute."
+    },
+    {
+      "kind": "semantic",
+      "query": "which sport do I enjoy in session session_4",
+      "target": "sport_4",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually."
+    },
+    {
+      "kind": "semantic",
+      "query": "which language am I studying in session session_4",
+      "target": "language_4",
+      "answer": "I am learning French."
+    },
+    {
+      "kind": "semantic",
+      "query": "which part of the year do I prefer in session session_4",
+      "target": "season_4",
+      "answer": "Winter is my favorite season."
+    },
+    {
+      "kind": "semantic",
+      "query": "which book do I love most in session session_4",
+      "target": "book_4",
+      "answer": "My favorite book is Sapiens."
+    },
+    {
+      "kind": "semantic",
+      "query": "what music do I play during work in session session_4",
+      "target": "music_4",
+      "answer": "I listen to folk while working."
+    },
+    {
+      "kind": "semantic",
+      "query": "where would I like to travel in session session_4",
+      "target": "travel_4",
+      "answer": "My dream trip is to visit Chile."
+    },
+    {
+      "kind": "semantic",
+      "query": "what vehicle do I own in session session_4",
+      "target": "car_4",
+      "answer": "I drive a green Ford Focus."
+    },
+    {
+      "kind": "semantic",
+      "query": "what subject did I study in session session_4",
+      "target": "school_4",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university."
+    },
+    {
+      "kind": "semantic",
+      "query": "where did I enter the world in session session_4",
+      "target": "birthplace_4",
+      "answer": "I was born in Milan."
+    },
+    {
+      "kind": "semantic",
+      "query": "when do I celebrate my birthday in session session_4",
+      "target": "birthday_4",
+      "answer": "My birthday is on July 3."
+    },
+    {
+      "kind": "semantic",
+      "query": "do I have brothers or sisters in session session_4",
+      "target": "sibling_4",
+      "answer": "I have one younger sister."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is my mother's name in session session_4",
+      "target": "parent_4",
+      "answer": "My mother is named Sara."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is the animal I keep at home in session session_5",
+      "target": "pet_5",
+      "answer": "My pet is a dog named N4."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for a living in session session_5",
+      "target": "job_5",
+      "answer": "I work as a chemist."
+    },
+    {
+      "kind": "semantic",
+      "query": "where is my home city in session session_5",
+      "target": "city_5",
+      "answer": "I live in Dublin."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I drink in the morning in session session_5",
+      "target": "drink_5",
+      "answer": "My usual drink is espresso."
+    },
+    {
+      "kind": "semantic",
+      "query": "what food cheers me up in session session_5",
+      "target": "food_5",
+      "answer": "My favorite comfort food is stew."
+    },
+    {
+      "kind": "semantic",
+      "query": "which color do I like best in session session_5",
+      "target": "color_5",
+      "answer": "My favorite color is gold."
+    },
+    {
+      "kind": "semantic",
+      "query": "what do I do for fun on weekends in session session_5",
+      "target": "hobby_5",
+      "answer": "I enjoy birdwatching."
+    },
+    {
+      "kind": "semantic",
+      "query": "which musical instrument can I play in session session_5",
+      "target": "instrument_5",
+      "answer": "I play the drums."
+    },
+    {
+      "kind": "semantic",
+      "query": "which sport do I enjoy in session session_5",
+      "target": "sport_5",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually."
+    },
+    {
+      "kind": "semantic",
+      "query": "which language am I studying in session session_5",
+      "target": "language_5",
+      "answer": "I am learning Italian."
+    },
+    {
+      "kind": "semantic",
+      "query": "which part of the year do I prefer in session session_5",
+      "target": "season_5",
+      "answer": "Spring is my favorite season."
+    },
+    {
+      "kind": "semantic",
+      "query": "which book do I love most in session session_5",
+      "target": "book_5",
+      "answer": "My favorite book is Emma."
+    },
+    {
+      "kind": "semantic",
+      "query": "what music do I play during work in session session_5",
+      "target": "music_5",
+      "answer": "I listen to blues while working."
+    },
+    {
+      "kind": "semantic",
+      "query": "where would I like to travel in session session_5",
+      "target": "travel_5",
+      "answer": "My dream trip is to visit Scotland."
+    },
+    {
+      "kind": "semantic",
+      "query": "what vehicle do I own in session session_5",
+      "target": "car_5",
+      "answer": "I drive a silver Volvo."
+    },
+    {
+      "kind": "semantic",
+      "query": "what subject did I study in session session_5",
+      "target": "school_5",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university."
+    },
+    {
+      "kind": "semantic",
+      "query": "where did I enter the world in session session_5",
+      "target": "birthplace_5",
+      "answer": "I was born in Quito."
+    },
+    {
+      "kind": "semantic",
+      "query": "when do I celebrate my birthday in session session_5",
+      "target": "birthday_5",
+      "answer": "My birthday is on August 28."
+    },
+    {
+      "kind": "semantic",
+      "query": "do I have brothers or sisters in session session_5",
+      "target": "sibling_5",
+      "answer": "I have two sisters."
+    },
+    {
+      "kind": "semantic",
+      "query": "what is my mother's name in session session_5",
+      "target": "parent_5",
+      "answer": "My mother is named Nora."
+    },
+    {
+      "kind": "exact",
+      "query": "pet_1",
+      "target": "pet_1",
+      "answer": "My pet is a dog named Miso, a friendly brown rescue."
+    },
+    {
+      "kind": "exact",
+      "query": "job_1",
+      "target": "job_1",
+      "answer": "I work as a data engineer building reliable pipelines."
+    },
+    {
+      "kind": "exact",
+      "query": "city_1",
+      "target": "city_1",
+      "answer": "I live in Vancouver near the seawall."
+    },
+    {
+      "kind": "exact",
+      "query": "drink_1",
+      "target": "drink_1",
+      "answer": "My usual morning drink is black coffee."
+    },
+    {
+      "kind": "exact",
+      "query": "food_1",
+      "target": "food_1",
+      "answer": "My favorite comfort food is spicy ramen."
+    },
+    {
+      "kind": "exact",
+      "query": "color_1",
+      "target": "color_1",
+      "answer": "My favorite color is forest green."
+    },
+    {
+      "kind": "exact",
+      "query": "hobby_1",
+      "target": "hobby_1",
+      "answer": "I enjoy pottery on weekends."
+    },
+    {
+      "kind": "exact",
+      "query": "instrument_1",
+      "target": "instrument_1",
+      "answer": "I play the acoustic guitar."
+    },
+    {
+      "kind": "exact",
+      "query": "sport_1",
+      "target": "sport_1",
+      "answer": "I follow tennis and play it casually."
+    },
+    {
+      "kind": "exact",
+      "query": "language_1",
+      "target": "language_1",
+      "answer": "I am learning Japanese."
+    },
+    {
+      "kind": "exact",
+      "query": "season_1",
+      "target": "season_1",
+      "answer": "Autumn is my favorite season."
+    },
+    {
+      "kind": "exact",
+      "query": "book_1",
+      "target": "book_1",
+      "answer": "My favorite book is The Left Hand of Darkness."
+    },
+    {
+      "kind": "exact",
+      "query": "music_1",
+      "target": "music_1",
+      "answer": "I listen to jazz while working."
+    },
+    {
+      "kind": "exact",
+      "query": "travel_1",
+      "target": "travel_1",
+      "answer": "My dream trip is to visit New Zealand."
+    },
+    {
+      "kind": "exact",
+      "query": "car_1",
+      "target": "car_1",
+      "answer": "I drive a blue Toyota Corolla."
+    },
+    {
+      "kind": "exact",
+      "query": "school_1",
+      "target": "school_1",
+      "answer": "I studied physics at university."
+    },
+    {
+      "kind": "exact",
+      "query": "birthplace_1",
+      "target": "birthplace_1",
+      "answer": "I was born in Porto, Portugal."
+    },
+    {
+      "kind": "exact",
+      "query": "birthday_1",
+      "target": "birthday_1",
+      "answer": "My birthday is on April 17."
+    },
+    {
+      "kind": "exact",
+      "query": "sibling_1",
+      "target": "sibling_1",
+      "answer": "I have one older sister named Lena."
+    },
+    {
+      "kind": "exact",
+      "query": "parent_1",
+      "target": "parent_1",
+      "answer": "My mother is named Rosa."
+    },
+    {
+      "kind": "exact",
+      "query": "pet_2",
+      "target": "pet_2",
+      "answer": "My pet is a cat named N1."
+    },
+    {
+      "kind": "exact",
+      "query": "job_2",
+      "target": "job_2",
+      "answer": "I work as a teacher."
+    },
+    {
+      "kind": "exact",
+      "query": "city_2",
+      "target": "city_2",
+      "answer": "I live in Oslo."
+    },
+    {
+      "kind": "exact",
+      "query": "drink_2",
+      "target": "drink_2",
+      "answer": "My usual drink is tea."
+    },
+    {
+      "kind": "exact",
+      "query": "food_2",
+      "target": "food_2",
+      "answer": "My favorite comfort food is tacos."
+    },
+    {
+      "kind": "exact",
+      "query": "color_2",
+      "target": "color_2",
+      "answer": "My favorite color is navy."
+    },
+    {
+      "kind": "exact",
+      "query": "hobby_2",
+      "target": "hobby_2",
+      "answer": "I enjoy cycling."
+    },
+    {
+      "kind": "exact",
+      "query": "instrument_2",
+      "target": "instrument_2",
+      "answer": "I play the piano."
+    },
+    {
+      "kind": "exact",
+      "query": "sport_2",
+      "target": "sport_2",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually."
+    },
+    {
+      "kind": "exact",
+      "query": "language_2",
+      "target": "language_2",
+      "answer": "I am learning Spanish."
+    },
+    {
+      "kind": "exact",
+      "query": "season_2",
+      "target": "season_2",
+      "answer": "Spring is my favorite season."
+    },
+    {
+      "kind": "exact",
+      "query": "book_2",
+      "target": "book_2",
+      "answer": "My favorite book is Dune."
+    },
+    {
+      "kind": "exact",
+      "query": "music_2",
+      "target": "music_2",
+      "answer": "I listen to rock while working."
+    },
+    {
+      "kind": "exact",
+      "query": "travel_2",
+      "target": "travel_2",
+      "answer": "My dream trip is to visit Iceland."
+    },
+    {
+      "kind": "exact",
+      "query": "car_2",
+      "target": "car_2",
+      "answer": "I drive a red Honda Civic."
+    },
+    {
+      "kind": "exact",
+      "query": "school_2",
+      "target": "school_2",
+      "answer": "I studied ['history', 'biology', 'architecture', 'economics'][s-1] at university."
+    },
+    {
+      "kind": "exact",
+      "query": "birthplace_2",
+      "target": "birthplace_2",
+      "answer": "I was born in Seoul."
+    },
+    {
+      "kind": "exact",
+      "query": "birthday_2",
+      "target": "birthday_2",
+      "answer": "My birthday is on May 9."
+    },
+    {
+      "kind": "exact",
+      "query": "sibling_2",
+      "target": "sibling_2",
+      "answer": "I have two younger brothers."
+    },
+    {
+      "kind": "exact",
+      "query": "parent_2",
+      "target": "parent_2",
+      "answer": "My mother is named Ana."
+    },
+    {
+      "kind": "exact",
+      "query": "pet_3",
+      "target": "pet_3",
+      "answer": "My pet is a parrot named N2."
+    },
+    {
+      "kind": "exact",
+      "query": "job_3",
+      "target": "job_3",
+      "answer": "I work as a nurse."
+    },
+    {
+      "kind": "exact",
+      "query": "city_3",
+      "target": "city_3",
+      "answer": "I live in Kyoto."
+    },
+    {
+      "kind": "exact",
+      "query": "drink_3",
+      "target": "drink_3",
+      "answer": "My usual drink is cocoa."
+    },
+    {
+      "kind": "exact",
+      "query": "food_3",
+      "target": "food_3",
+      "answer": "My favorite comfort food is curry."
+    },
+    {
+      "kind": "exact",
+      "query": "color_3",
+      "target": "color_3",
+      "answer": "My favorite color is orange."
+    },
+    {
+      "kind": "exact",
+      "query": "hobby_3",
+      "target": "hobby_3",
+      "answer": "I enjoy gardening."
+    },
+    {
+      "kind": "exact",
+      "query": "instrument_3",
+      "target": "instrument_3",
+      "answer": "I play the violin."
+    },
+    {
+      "kind": "exact",
+      "query": "sport_3",
+      "target": "sport_3",
+      "answer": "I follow ['soccer', 'swimming', 'climbing', 'baseball'][s-1] and play it casually."
+    },
+    {
+      "kind": "exact",
+      "query": "language_3",
+      "target": "language_3",
+      "answer": "I am learning Korean."
+    }
+  ]
+}

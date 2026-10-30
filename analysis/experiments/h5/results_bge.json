@@ -1,0 +1,101 @@
+{
+  "experiment": "H5-bge",
+  "device": "cpu",
+  "gpu_used": false,
+  "dataset": {
+    "type": "synthetic",
+    "facts": 100,
+    "session_documents": 5,
+    "queries_semantic": 100,
+    "queries_exact_control": 50,
+    "longmemeval_status": "downloaded_oracle_500"
+  },
+  "embedding": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "model_path": ".data/bge-small-en-v1.5",
+    "pooling": "cls",
+    "normalization": "l2_unit",
+    "dimension": 384,
+    "corpus_chunks": 100,
+    "timing_sec": {
+      "model_load": 0.64,
+      "total_embedding": 1.45
+    }
+  },
+  "metrics_raw_query": {
+    "semantic": {
+      "n": 100,
+      "vector_recall_at_1": 0.62,
+      "vector_recall_at_5": 0.94,
+      "vector_mrr": 0.7532,
+      "exact_key_success": 0.0
+    },
+    "exact": {
+      "n": 50,
+      "vector_recall_at_1": 0.74,
+      "vector_recall_at_5": 1.0,
+      "vector_mrr": 0.8457,
+      "exact_key_success": 1.0
+    }
+  },
+  "metrics_instructed_query": {
+    "semantic": {
+      "n": 100,
+      "vector_recall_at_1": 0.64,
+      "vector_recall_at_5": 0.96,
+      "vector_mrr": 0.7766,
+      "exact_key_success": 0.0
+    },
+    "exact": {
+      "n": 50,
+      "vector_recall_at_1": 0.8,
+      "vector_recall_at_5": 1.0,
+      "vector_mrr": 0.894,
+      "exact_key_success": 1.0
+    }
+  },
+  "metrics": {
+    "semantic": {
+      "n": 100,
+      "vector_recall_at_1": 0.62,
+      "vector_recall_at_5": 0.94,
+      "vector_mrr": 0.7532,
+      "exact_key_success": 0.0
+    },
+    "exact": {
+      "n": 50,
+      "vector_recall_at_1": 0.74,
+      "vector_recall_at_5": 1.0,
+      "vector_mrr": 0.8457,
+      "exact_key_success": 1.0
+    }
+  },
+  "metrics_tfidf_fallback_reference": {
+    "semantic": {
+      "n": 100,
+      "vector_recall_at_1": 0.1,
+      "vector_recall_at_5": 0.39,
+      "exact_key_success": 0.0
+    },
+    "exact": {
+      "n": 50,
+      "vector_recall_at_1": 1.0,
+      "vector_recall_at_5": 1.0,
+      "exact_key_success": 1.0
+    }
+  },
+  "token_cost": {
+    "exact_key_get_measured_tokens": 45,
+    "rag_k": 5,
+    "rag_chunk_tokens_mean": 5.89,
+    "rag_chunk_tokens_total_k5_mean": 59.0,
+    "rag_query_tokens_mean": 6.43,
+    "rag_paste_mean": 35.88
+  },
+  "caveats": [
+    "Exact semantic success is 0.0 by construction because the exact-key API receives no canonical name.",
+    "Exact control success is 1.0 (50/50) because the exact key is provided directly.",
+    "bge-small-en-v1.5 achieves Recall@1=62%, Recall@5=94% (raw) and Recall@1=64%, Recall@5=96% (instructed) on semantic queries, a massive jump from TF-IDF fallback (10% / 39%).",
+    "Synthetic facts are single-fact chunks; no reader generation was run (CPU-only, no GPU)."
+  ]
+}

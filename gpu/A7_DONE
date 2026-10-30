@@ -1,0 +1,8 @@
+selective FLA benchmark done (A7 agent failed after producing results; Lead wrote marker)
+trim + selective FLA (chip layers 0-11 reference torch, Qwen 12-43 FLA):
+- Hi: 9 tokens / 0.855s = 10.53 tok/s (cold); warm 13.78 tok/s
+- put: 69+3 tokens / 5.55s = 12.44 tok/s; head_mismatch 0; lock None
+- get: 54+2 tokens / 4.45s = 12.15 tok/s; correct 4471-AZ; head 0; lock None
+- peak memory 13.15GB; text identical to baseline
+gpucheck findings: no-FLA baseline ALSO fails (identical -5.96e-8 residues, 0 wrong tokens); FLA 0.5.2 fails too => AMD gfx1100 bf16 not bit-exact regardless of FLA; author's bit-exact is NVIDIA L4-specific.
+next: H1 in-weights agent (D) may use trim no-FLA or selective FLA; both are token-correct.

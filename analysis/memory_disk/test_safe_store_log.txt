@@ -1,0 +1,193 @@
+SafeStore test run — 2026-10-29 18:27:37
+Python 3.13.14 | SafeStore S5.3 KeyFix Validation
+Reference Store: chipformer.rv.store (CPU-only, no HF model)
+
+=== 1. D Collision Example (Independent Storage of Colliding Long Names) ===
+  raw_key(NAME_A) = (7, (1719, 33531, 1970, 364, 279, 5902))
+  raw_key(NAME_B) = (7, (1719, 33531, 1970, 364, 279, 5902))
+[PASS] D example raw keys are identical (the bug exists)
+[PASS] Put A succeeds
+[PASS] A is not disambiguated (first entry)
+[PASS] A canonical name equals logical name
+[PASS] Put B succeeds
+[PASS] B is disambiguated (collision detected)
+[PASS] B canonical name has tag prefix
+[PASS] B canonical store key differs from A
+  A canonical: 'the locker code for the safe room in' -> key: (7, (1719, 33531, 1970, 364, 279, 5902))
+  B canonical: '#24438096d# the locker code for the safe in room' -> key: (7, (2, 17, 19, 19, 18, 23))
+[PASS] Underlying store has 2 distinct active files
+[PASS] Store contains A's key
+[PASS] Store contains B's key
+  get(NAME_A) -> 'locker code is 4471-AZ\n'
+  get(NAME_B) -> 'locker code is 4472-AZ\n'
+[PASS] get(NAME_A) returns TEXT_A exactly (not overwritten!)
+[PASS] get(NAME_B) returns TEXT_B exactly
+  list() -> ['the locker code for the safe room in', 'the locker code for the safe in room']
+[PASS] list() contains NAME_A
+[PASS] list() contains NAME_B
+[PASS] list() returns untruncated logical names
+
+=== 2. Normal Short Names (Unchanged & Replace Semantics) ===
+[PASS] Put city succeeds
+[PASS] city canonical == logical (unchanged)
+[PASS] city store key matches raw key
+[PASS] Put dog_name succeeds
+[PASS] dog_name canonical == logical (unchanged)
+[PASS] dog_name store key matches raw key
+[PASS] Put pin succeeds
+[PASS] pin canonical == logical (unchanged)
+[PASS] pin store key matches raw key
+[PASS] Put color succeeds
+[PASS] color canonical == logical (unchanged)
+[PASS] color store key matches raw key
+[PASS] Get city returns original text
+[PASS] Get dog_name returns original text
+[PASS] Get pin returns original text
+[PASS] Get color returns original text
+[PASS] Update 'city' succeeds
+[PASS] 'city' canonical name preserved on update
+[PASS] Get 'city' returns updated text
+[PASS] File count remains 4 after update
+
+=== 3. Delete Semantics ===
+[PASS] Initial list has 3 files
+[PASS] Delete A succeeds
+[PASS] Get A after delete returns None
+[PASS] Get B after deleting A is STILL accessible (isolated!)
+[PASS] Get city still accessible
+[PASS] List after delete does not contain A
+[PASS] List after delete contains B and city
+[PASS] Delete non-existent returns found=False
+
+=== 4. 512 Adversarial Long Names (Stress & Zero-Collision Proof) ===
+  Raw store unique keys across 512 adversarial names: 1 (would overwrite 511 files)
+[PASS] Raw store has exactly 1 key for all 512 names
+  Put 512 adversarial names in 0.287s (0.56 ms/put)
+  Disambiguated count: 511 / 512 (1st entry kept raw, 511 tagged)
+[PASS] All 512 puts succeed
+[PASS] Exactly 511 names disambiguated
+  Live keys in store device: 512 / 512
+[PASS] Store contains EXACTLY 512 live files (100% capacity)
+  Verified 512 gets in 0.106s (0.21 ms/get), mismatches: 0
+[PASS] All 512 files retrieved with 100% exact text fidelity
+[PASS] List returns exactly 512 items
+[PASS] List preserves all logical names
+
+=== 5. Persistence & Mapping Table Roundtrip ===
+[PASS] Snapshot body file exists
+[PASS] Mapping sidecar file exists
+[PASS] Header sidecar file exists
+  Mapping sidecar entries: 4
+[PASS] Mapping sidecar has 4 entries
+[PASS] Restored safe2 get(NAME_A) matches
+[PASS] Restored safe2 get(NAME_B) matches
+[PASS] Restored safe2 get('city') matches
+[PASS] Restored safe2 get('dog') matches
+[PASS] Restored safe2 list() matches
+
+=== 6. Collision Statistics & Probability Analysis (H2 Corpus) ===
+
+-- A. Full H2 Corpus (2000 names) --
+{
+  "n_names": 2000,
+  "raw_store": {
+    "unique_keys": 1640,
+    "collisions": 360,
+    "collision_rate": 0.18
+  },
+  "tag_1token_18bit": {
+    "space_states": 248044,
+    "theoretical_collision_prob": 0.999512,
+    "measured_collisions_avg": 5.8
+  },
+  "tag_2token_36bit": {
+    "space_states": 61525825936,
+    "theoretical_collision_prob": 2.9088855452497064e-05,
+    "measured_collisions_avg": 0.0
+  },
+  "string_36bit_hex_tag": {
+    "unique_keys": 1999,
+    "collisions": 1,
+    "collision_rate": 0.0005
+  },
+  "safestore_protocol": {
+    "unique_keys": 2000,
+    "collisions": 0,
+    "disambiguated_count": 360,
+    "collision_rate": 0.0
+  }
+}
+[PASS] H2 2000 raw store has collisions
+[PASS] H2 2000 2-token tag has 0 collisions
+[PASS] H2 2000 SafeStore protocol has 0 collisions
+
+-- B. H2 Adversarial Subset (400 names sharing 40 long prefixes) --
+{
+  "n_names": 400,
+  "raw_store": {
+    "unique_keys": 40,
+    "collisions": 360,
+    "collision_rate": 0.9
+  },
+  "tag_1token_18bit": {
+    "space_states": 248044,
+    "theoretical_collision_prob": 0.262444,
+    "measured_collisions_avg": 0.4
+  },
+  "tag_2token_36bit": {
+    "space_states": 61525825936,
+    "theoretical_collision_prob": 1.161242160985232e-06,
+    "measured_collisions_avg": 0.0
+  },
+  "string_36bit_hex_tag": {
+    "unique_keys": 400,
+    "collisions": 0,
+    "collision_rate": 0.0
+  },
+  "safestore_protocol": {
+    "unique_keys": 400,
+    "collisions": 0,
+    "disambiguated_count": 360,
+    "collision_rate": 0.0
+  }
+}
+[PASS] H2 adv400 raw store collision rate is high (0.90)
+[PASS] H2 adv400 SafeStore protocol has 0 collisions
+
+-- C. Adversarial 512 (512 names sharing identical prefix) --
+{
+  "n_names": 512,
+  "raw_store": {
+    "unique_keys": 1,
+    "collisions": 511,
+    "collision_rate": 0.998047
+  },
+  "tag_1token_18bit": {
+    "space_states": 248044,
+    "theoretical_collision_prob": 0.392877,
+    "measured_collisions_avg": 0.2
+  },
+  "tag_2token_36bit": {
+    "space_states": 61525825936,
+    "theoretical_collision_prob": 1.903621530630062e-06,
+    "measured_collisions_avg": 0.0
+  },
+  "string_36bit_hex_tag": {
+    "unique_keys": 512,
+    "collisions": 0,
+    "collision_rate": 0.0
+  },
+  "safestore_protocol": {
+    "unique_keys": 512,
+    "collisions": 0,
+    "disambiguated_count": 511,
+    "collision_rate": 0.0
+  }
+}
+[PASS] Adv 512 raw store has 511 collisions (99.8%)
+[PASS] Adv 512 2-token (36-bit) tag measured 0 collisions
+[PASS] Adv 512 SafeStore protocol has 0 collisions
+
+============================================================
+SUMMARY: 0 failure(s) in 38.74s
+ALL TESTS PASSED!

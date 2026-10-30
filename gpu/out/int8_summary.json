@@ -1,0 +1,235 @@
+{
+  "runs": {
+    "trim_base_hi": {
+      "status": "ok",
+      "error": null,
+      "text": "Hello! How can I help you today?<|im_end|>",
+      "wall_s": 4.418350242995075,
+      "text_tokens": 9,
+      "text_tokens_per_s": 13.479659851265273,
+      "wall_text_tokens_per_s": 2.0369593864290745,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13218477056,
+      "after_init_memory_bytes": 12760858624,
+      "int8_head": null,
+      "warm": {
+        "text": "Hello! How can I help you today?<|im_end|>",
+        "seconds": 0.48043060302734375,
+        "wall_s": 2.4220751829998335,
+        "text_tokens_per_s": 18.733194645154118,
+        "same_tokens": true
+      }
+    },
+    "trim_base_put": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=put>\n<parameter=name>\nlocker_code\n</parameter>\n<parameter=text>\n4471-AZ\n</parameter>\n</function>\n</tool_call>\n<tool_response>\nok\n</tool_response>\n<think>\n\n</think>\n\nI've saved your locker code as 4471-AZ.<|im_end|>",
+      "wall_s": 8.367882220001775,
+      "text_tokens": 69,
+      "text_tokens_per_s": 13.60282010591237,
+      "wall_text_tokens_per_s": 8.245813956973377,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13151783424,
+      "after_init_memory_bytes": 12760858624,
+      "int8_head": null,
+      "warm": null
+    },
+    "trim_base_get": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=get>\n<parameter=name>\nlocker_code\n</parameter>\n</function>\n</tool_call>\n<tool_response>\n4471-AZ\n</tool_response>\n<think>\n\n</think>\n\nYour locker code is 4471-AZ.<|im_end|>",
+      "wall_s": 7.240974820000702,
+      "text_tokens": 54,
+      "text_tokens_per_s": 14.710106122843436,
+      "wall_text_tokens_per_s": 7.457559422916868,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13151723520,
+      "after_init_memory_bytes": 12760858624,
+      "int8_head": null,
+      "warm": null
+    },
+    "int8_hi": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+      "wall_s": 4.66396657700534,
+      "text_tokens": 12,
+      "text_tokens_per_s": 11.205363793945606,
+      "wall_text_tokens_per_s": 2.572917237263954,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13890557440,
+      "after_init_memory_bytes": 13436335616,
+      "int8_head": {
+        "quantized_rows": 248320,
+        "quantized_cols": 2560,
+        "exact_chip_cols": 40,
+        "text_only": false,
+        "chunk_rows": 16384,
+        "buffer_bytes": 675476800,
+        "dequant_chunk_bytes": 83886080,
+        "embedding": "unchanged BF16 tied original; separate compact head adds storage"
+      },
+      "warm": {
+        "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+        "seconds": 1.37412428855896,
+        "wall_s": 3.810021144003258,
+        "text_tokens_per_s": 8.732834504063941,
+        "same_tokens": true
+      }
+    },
+    "int8_put": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=put>\n<parameter=name>\nlocker_code\n</parameter>\n<parameter=text>\n4471-AZ\n</parameter>\n</function>\n</tool_call>\n<tool_response>\nok\n</tool_response>\n<think>\n\n</think>\n\nI've saved your locker code as 4471-AZ.<|im_end|>",
+      "wall_s": 10.078086551002343,
+      "text_tokens": 69,
+      "text_tokens_per_s": 11.727926287180814,
+      "wall_text_tokens_per_s": 6.846537748094396,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13859624960,
+      "after_init_memory_bytes": 13436335616,
+      "int8_head": {
+        "quantized_rows": 248320,
+        "quantized_cols": 2560,
+        "exact_chip_cols": 40,
+        "text_only": false,
+        "chunk_rows": 16384,
+        "buffer_bytes": 675476800,
+        "dequant_chunk_bytes": 83886080,
+        "embedding": "unchanged BF16 tied original; separate compact head adds storage"
+      },
+      "warm": null
+    },
+    "int8_get": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=get>\n<parameter=name>\nlocker_code\n</parameter>\n</function>\n</tool_call>\n<tool_response>\n4471-AZ\n</tool_response>\n<think>\n\n</think>\n\nYour locker code is 4471-AZ.<|im_end|>",
+      "wall_s": 8.086028193007223,
+      "text_tokens": 54,
+      "text_tokens_per_s": 11.961342182523202,
+      "wall_text_tokens_per_s": 6.678185966096317,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13859715072,
+      "after_init_memory_bytes": 13436335616,
+      "int8_head": {
+        "quantized_rows": 248320,
+        "quantized_cols": 2560,
+        "exact_chip_cols": 40,
+        "text_only": false,
+        "chunk_rows": 16384,
+        "buffer_bytes": 675476800,
+        "dequant_chunk_bytes": 83886080,
+        "embedding": "unchanged BF16 tied original; separate compact head adds storage"
+      },
+      "warm": null
+    },
+    "hip_hi": {
+      "status": "ok",
+      "error": null,
+      "text": "Hello! How can I help you today?<|im_end|>",
+      "wall_s": 5.197445854006219,
+      "text_tokens": 9,
+      "text_tokens_per_s": 10.58346300261918,
+      "wall_text_tokens_per_s": 1.731619771096365,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 13390443520,
+      "after_init_memory_bytes": 12760858624,
+      "int8_head": null,
+      "warm": {
+        "text": "Hello! How can I help you today?<|im_end|>",
+        "seconds": 0.5462915897369385,
+        "wall_s": 2.985049433002132,
+        "text_tokens_per_s": 16.47471820742081,
+        "same_tokens": true
+      }
+    },
+    "hip_int8_hi": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+      "wall_s": 4.790997739997692,
+      "text_tokens": 12,
+      "text_tokens_per_s": 9.678424166462676,
+      "wall_text_tokens_per_s": 2.5046974870845546,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 14062523904,
+      "after_init_memory_bytes": 13436335616,
+      "int8_head": {
+        "quantized_rows": 248320,
+        "quantized_cols": 2560,
+        "exact_chip_cols": 40,
+        "text_only": false,
+        "chunk_rows": 16384,
+        "buffer_bytes": 675476800,
+        "dequant_chunk_bytes": 83886080,
+        "embedding": "unchanged BF16 tied original; separate compact head adds storage"
+      },
+      "warm": {
+        "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+        "seconds": 1.1084601879119873,
+        "wall_s": 3.2199541159934597,
+        "text_tokens_per_s": 10.825828596157763,
+        "same_tokens": true
+      }
+    },
+    "tune_hi": {
+      "status": "ok",
+      "error": null,
+      "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+      "wall_s": 107.98868286699872,
+      "text_tokens": 12,
+      "text_tokens_per_s": 4.577114395285499,
+      "wall_text_tokens_per_s": 0.11112275547225138,
+      "head_mismatch": 0,
+      "lock_error": null,
+      "max_memory_allocated_bytes": 17466350080,
+      "after_init_memory_bytes": 12760858624,
+      "int8_head": null,
+      "warm": {
+        "text": "<tool_call>\n<function=list>\n</function>\n</tool_call>",
+        "seconds": 0.9114584922790527,
+        "wall_s": 3.0430356740107527,
+        "text_tokens_per_s": 13.16571198979632,
+        "same_tokens": true
+      }
+    }
+  },
+  "comparisons": {
+    "int8_hi": {
+      "baseline": "gpu/out/trim_base_hi.json",
+      "same_tokens": false,
+      "same_text": false,
+      "first_token_diff": 0,
+      "speed_delta_pct": -16.872058215224094
+    },
+    "hip_hi": {
+      "baseline": "gpu/out/trim_base_hi.json",
+      "same_tokens": true,
+      "same_text": true,
+      "first_token_diff": null,
+      "speed_delta_pct": -21.48568198754838
+    },
+    "int8_put": {
+      "baseline": "gpu/out/trim_base_put.json",
+      "same_tokens": true,
+      "same_text": true,
+      "first_token_diff": null,
+      "speed_delta_pct": -13.78312588223266
+    },
+    "int8_get": {
+      "baseline": "gpu/out/trim_base_get.json",
+      "same_tokens": true,
+      "same_text": true,
+      "first_token_diff": null,
+      "speed_delta_pct": -18.6862278039698
+    }
+  }
+}

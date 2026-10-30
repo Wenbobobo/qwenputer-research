@@ -1,0 +1,220 @@
+{
+  "fp32_chip": {
+    "enabled": true,
+    "layers": 12,
+    "fp32_bytes": 1300628248,
+    "output_dtype": "bf16",
+    "input_dtype": "fp32"
+  },
+  "start": 1793287535.1564276,
+  "cpu_load_s": 0.8186040440050419,
+  "zero_check": {
+    "checked_matrices": 248,
+    "nonzero_dropped": []
+  },
+  "trim": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "compact": {
+    "dense_weights": 2305695744,
+    "compact_weights": 324708406,
+    "chip_deltanet_heads": [
+      [
+        18,
+        32
+      ],
+      [
+        10,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        28,
+        32
+      ]
+    ]
+  },
+  "param_bytes_cpu": 12910851864,
+  "buffer_bytes_cpu": 256,
+  "to_cuda_s": 77.85061386099551,
+  "load_s": 142.79436745600833,
+  "loaded_memory_bytes": 13020154880,
+  "all_parameters_cuda": true,
+  "init_s": 159.83664460400178,
+  "dtype_audit": {
+    "0": [
+      "torch.float32"
+    ],
+    "1": [
+      "torch.float32"
+    ],
+    "2": [
+      "torch.float32"
+    ],
+    "3": [
+      "torch.float32"
+    ],
+    "4": [
+      "torch.float32"
+    ],
+    "5": [
+      "torch.float32"
+    ],
+    "6": [
+      "torch.float32"
+    ],
+    "7": [
+      "torch.float32"
+    ],
+    "8": [
+      "torch.float32"
+    ],
+    "9": [
+      "torch.float32"
+    ],
+    "10": [
+      "torch.float32"
+    ],
+    "11": [
+      "torch.float32"
+    ],
+    "12": [
+      "torch.bfloat16"
+    ],
+    "13": [
+      "torch.bfloat16"
+    ],
+    "14": [
+      "torch.bfloat16"
+    ],
+    "15": [
+      "torch.bfloat16"
+    ],
+    "16": [
+      "torch.bfloat16"
+    ],
+    "17": [
+      "torch.bfloat16"
+    ],
+    "18": [
+      "torch.bfloat16"
+    ],
+    "19": [
+      "torch.bfloat16"
+    ],
+    "20": [
+      "torch.bfloat16"
+    ],
+    "21": [
+      "torch.bfloat16"
+    ],
+    "22": [
+      "torch.bfloat16"
+    ],
+    "23": [
+      "torch.bfloat16"
+    ],
+    "24": [
+      "torch.bfloat16"
+    ],
+    "25": [
+      "torch.bfloat16"
+    ],
+    "26": [
+      "torch.bfloat16"
+    ],
+    "27": [
+      "torch.bfloat16"
+    ],
+    "28": [
+      "torch.bfloat16"
+    ],
+    "29": [
+      "torch.bfloat16"
+    ],
+    "30": [
+      "torch.bfloat16"
+    ],
+    "31": [
+      "torch.bfloat16"
+    ],
+    "32": [
+      "torch.bfloat16"
+    ],
+    "33": [
+      "torch.bfloat16"
+    ],
+    "34": [
+      "torch.bfloat16"
+    ],
+    "35": [
+      "torch.bfloat16"
+    ],
+    "36": [
+      "torch.bfloat16"
+    ],
+    "37": [
+      "torch.bfloat16"
+    ],
+    "38": [
+      "torch.bfloat16"
+    ],
+    "39": [
+      "torch.bfloat16"
+    ],
+    "40": [
+      "torch.bfloat16"
+    ],
+    "41": [
+      "torch.bfloat16"
+    ],
+    "42": [
+      "torch.bfloat16"
+    ],
+    "43": [
+      "torch.bfloat16"
+    ],
+    "embedding": "torch.bfloat16",
+    "lm_head": "torch.bfloat16"
+  },
+  "peak_bytes": 13936472064,
+  "end": 1793288055.5904846
+}

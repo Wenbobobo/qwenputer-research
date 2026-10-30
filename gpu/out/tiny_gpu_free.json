@@ -1,0 +1,46 @@
+{
+ "info": {
+  "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "device": "AMD Radeon RX 7900 XT",
+  "kernels": "torch fallbacks (no fla / causal-conv1d)",
+  "dtype": "bf16",
+  "peak_mem_gib": 4.19
+ },
+ "load_s": [
+  0.4411888122558594,
+  38.00568175315857,
+  0.9378407001495361
+ ],
+ "rows": [
+  {
+   "prog": "rv32ui-simple",
+   "generated": 3,
+   "expected": 3,
+   "exact": true,
+   "first_mismatch": null,
+   "wall_s": 1.95,
+   "tok_s": 1.54,
+   "output": ""
+  },
+  {
+   "prog": "memcpy",
+   "generated": 159,
+   "expected": 159,
+   "exact": true,
+   "first_mismatch": null,
+   "wall_s": 5.98,
+   "tok_s": 26.58,
+   "output": ""
+  },
+  {
+   "prog": "signext",
+   "generated": 44,
+   "expected": 44,
+   "exact": true,
+   "first_mismatch": null,
+   "wall_s": 3.24,
+   "tok_s": 13.56,
+   "output": ""
+  }
+ ]
+}

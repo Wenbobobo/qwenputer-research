@@ -1,0 +1,1 @@
+2026-10-29 22:46 CST H1 C5 GPU work complete. n=10 seed0 no-FLA trim fast GPU; changed10/10, facts17/20, all27/30; changed new-first10/10. Three history calc lock divergences (recall1,2,5), head0, all30 question locks clean. See docs/notes/stage7-h1-inweights.md and analysis/experiments/h1_inweights/. GPU released before00:25.

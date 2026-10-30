@@ -1,0 +1,66 @@
+{
+  "magic": "QPUMEM01",
+  "format_version": 1,
+  "tool_version": "memory_disk.py 0.1.0",
+  "fingerprint": {
+    "format_version": 1,
+    "files": {
+      "config.json": "580662dd2cb67706c8123d147f9928f51d18587286af1fb11ff92469e08471f4",
+      "chipformer.json": "61171c56a01ad1f58647dcc944a49e05218301afcc190b3ff5d164495f272c8a",
+      "tokenizer.json": "5dfe6de842131815aa46c5371b6427aa124d07c1a210a25f2a3e1347d69f19ca"
+    },
+    "store_config": {
+      "slot_bits": 10,
+      "n_chunks": 512,
+      "n_names": 512,
+      "hash_bits": null,
+      "seed": 2035
+    },
+    "fp": "ec799e70e1b08f8d74bbe7ce91fddd98869211efe38afd97d5351328f5182493"
+  },
+  "created_at": "2026-10-29T02:29:34+00:00",
+  "body_bytes": 11750,
+  "body_sha256": "d1112f8e1a94f14ae80178ff54c208b7f1a8949d969ac39e07dfd995a5cf9ceb",
+  "journal": [
+    {
+      "name": "the locker code for the safe room in",
+      "text": "locker code is 4471-AZ"
+    },
+    {
+      "name": "city",
+      "text": "Shanghai, China"
+    },
+    {
+      "name": "dog_name",
+      "text": "Biscuit"
+    },
+    {
+      "name": "favorite color",
+      "text": "blue"
+    },
+    {
+      "name": "pin",
+      "text": "2048"
+    },
+    {
+      "name": "a name with six words in it exactly",
+      "text": "six-word name text"
+    },
+    {
+      "name": "notes/plan",
+      "text": "Buy milk, then call Bob at 5pm."
+    },
+    {
+      "name": "short",
+      "text": "hi"
+    },
+    {
+      "name": "empty-ish",
+      "text": ""
+    },
+    {
+      "name": "last",
+      "text": "the end"
+    }
+  ]
+}

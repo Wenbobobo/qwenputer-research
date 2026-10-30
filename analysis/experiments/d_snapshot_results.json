@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "riscv_dir": "C:\\Projects\\Qcompute\\repro\\qwenputer\\experimental\\riscv",
+    "tokenizer_path": "C:\\Users\\Wenbo\\.cache\\huggingface\\hub\\models--Qwen--Qwen3.6-27B\\snapshots\\6a9e13bd6fc8f0983b9b99948120bc37f49c13e9\\tokenizer.json",
+    "tokenizer_source": "Qwen3.6-27B tokenizer.json: no Qwen3.5 tokenizer in the HF cache; the store's hard-coded token ids are checked against it (check_constants)",
+    "store_constants": "chipformer.rv.store",
+    "NMAX": 6,
+    "CMAX": 104,
+    "TPR": 14,
+    "rows_per_chunk": 8,
+    "HD_state_row_len": 128
+  },
+  "constants": {
+    "checked": 17,
+    "vocab_size": 248070,
+    "mismatches": []
+  },
+  "size_vs_files": {
+    "1": {
+      "files": 1,
+      "puts_ok": 1,
+      "names_in_store": 1,
+      "seconds": 0.06,
+      "logical_bytes": 77,
+      "logical_parts_bytes": {
+        "dir (slot, name key, alive, head, tail)": 18,
+        "order (slot per name)": 2,
+        "lens (chunk -> length)": 2,
+        "nexts (chunk -> next chunk)": 0,
+        "content ((chunk,index) -> token id)": 51,
+        "registers (NEXTG, GCUR, LCUR, NORD)": 5
+      },
+      "pickle_bytes_of_Device": 328,
+      "touched_rows": {
+        "dir": 1,
+        "order": 1,
+        "len": 1,
+        "next": 0,
+        "content": 1,
+        "regs": 2
+      },
+      "touched_rows_total": 6,
+      "capacity_rows": {
+        "dir": 1024,
+        "order": 512,
+        "len": 512,
+        "next": 512,
+        "content": 4096,
+        "regs": 4
+      },
+      "capacity_rows_total": 6660,
+      "text_utf8_bytes": 30,
+      "token_ids": 15,
+      "token_ids_as_u32_bytes": 60,
+      "ratio_logical_over_text": 2.567,
+      "ratio_logical_over_text_u32": 1.283,
+      "logical_bytes_per_file": 77
+    },
+    "10": {
+      "files": 10,
+      "puts_ok": 10,
+      "names_in_store": 10,
+      "seconds": 0,
+      "logical_bytes": 723,
+      "logical_parts_bytes": {
+        "dir (slot, name key, alive, head, tail)": 175,
+        "order (slot per name)": 13,
+        "lens (chunk -> length)": 20,
+        "nexts (chunk -> next chunk)": 0,
+        "content ((chunk,index) -> token id)": 510,
+        "registers (NEXTG, GCUR, LCUR, NORD)": 5
+      },
+      "pickle_bytes_of_Device": 1738,
+      "touched_rows": {
+        "dir": 10,
+        "order": 10,
+        "len": 10,
+        "next": 0,
+        "content": 10,
+        "regs": 2
+      },
+      "touched_rows_total": 42,
+      "capacity_rows": {
+        "dir": 1024,
+        "order": 512,
+        "len": 512,
+        "next": 512,
+        "content": 4096,
+        "regs": 4
+      },
+      "capacity_rows_total": 6660,
+      "text_utf8_bytes": 300,
+      "token_ids": 150,
+      "token_ids_as_u32_bytes": 600,
+      "ratio_logical_over_text": 2.41,
+      "ratio_logical_over_text_u32": 1.205,
+      "logical_bytes_per_file": 72.3
+    },
+    "100": {
+      "files": 100,
+      "puts_ok": 100,
+      "names_in_store": 100,
+      "seconds": 0.02,
+      "logical_bytes": 7180,
+      "logical_parts_bytes": {
+        "dir (slot, name key, alive, head, tail)": 1750,
+        "order (slot per name)": 125,
+        "lens (chunk -> length)": 200,
+        "nexts (chunk -> next chunk)": 0,
+        "content ((chunk,index) -> token id)": 5100,
+        "registers (NEXTG, GCUR, LCUR, NORD)": 5
+      },
+      "pickle_bytes_of_Device": 15814,
+      "touched_rows": {
+        "dir": 100,
+        "order": 100,
+        "len": 100,
+        "next": 0,
+        "content": 100,
+        "regs": 2
+      },
+      "touched_rows_total": 402,
+      "capacity_rows": {
+        "dir": 1024,
+        "order": 512,
+        "len": 512,
+        "next": 512,
+        "content": 4096,
+        "regs": 4
+      },
+      "capacity_rows_total": 6660,
+      "text_utf8_bytes": 3000,
+      "token_ids": 1500,
+      "token_ids_as_u32_bytes": 6000,
+      "ratio_logical_over_text": 2.393,
+      "ratio_logical_over_text_u32": 1.197,
+      "logical_bytes_per_file": 71.8
+    },
+    "512": {
+      "files": 512,
+      "puts_ok": 512,
+      "names_in_store": 512,
+      "seconds": 0.13,
+      "logical_bytes": 36741,
+      "logical_parts_bytes": {
+        "dir (slot, name key, alive, head, tail)": 8960,
+        "order (slot per name)": 640,
+        "lens (chunk -> length)": 1024,
+        "nexts (chunk -> next chunk)": 0,
+        "content ((chunk,index) -> token id)": 26112,
+        "registers (NEXTG, GCUR, LCUR, NORD)": 5
+      },
+      "pickle_bytes_of_Device": 84154,
+      "touched_rows": {
+        "dir": 512,
+        "order": 512,
+        "len": 512,
+        "next": 0,
+        "content": 512,
+        "regs": 2
+      },
+      "touched_rows_total": 2050,
+      "capacity_rows": {
+        "dir": 1024,
+        "order": 512,
+        "len": 512,
+        "next": 512,
+        "content": 4096,
+        "regs": 4
+      },
+      "capacity_rows_total": 6660,
+      "text_utf8_bytes": 15360,
+      "token_ids": 7680,
+      "token_ids_as_u32_bytes": 30720,
+      "ratio_logical_over_text": 2.392,
+      "ratio_logical_over_text_u32": 1.196,
+      "logical_bytes_per_file": 71.8,
+      "extra_put_when_full": "full\n"
+    }
+  },
+  "portability": {
+    "same seed 2035": {
+      "success": 10,
+      "not_found": 0,
+      "other": 0,
+      "success_rate": 1,
+      "slot_agreement": "10/10",
+      "examples": [
+        "locker code is 4471-AZ\n",
+        "locker code is 4472-AZ\n"
+      ]
+    },
+    "seed 2036": {
+      "success": 0,
+      "not_found": 10,
+      "other": 0,
+      "success_rate": 0,
+      "slot_agreement": "0/10",
+      "examples": [
+        "not found\n",
+        "not found\n"
+      ]
+    },
+    "seed 2037": {
+      "success": 0,
+      "not_found": 10,
+      "other": 0,
+      "success_rate": 0,
+      "slot_agreement": "0/10",
+      "examples": [
+        "not found\n",
+        "not found\n"
+      ]
+    },
+    "seed 2038": {
+      "success": 0,
+      "not_found": 10,
+      "other": 0,
+      "success_rate": 0,
+      "slot_agreement": "0/10",
+      "examples": [
+        "not found\n",
+        "not found\n"
+      ]
+    },
+    "slot_bits 8 (n_names 128), seed 2035": {
+      "success": 4,
+      "not_found": 6,
+      "other": 0,
+      "success_rate": 0.4,
+      "slot_agreement": "4/10",
+      "examples": [
+        "locker code is 4471-AZ\n",
+        "locker code is 4472-AZ\n"
+      ]
+    }
+  },
+  "restored_same_seed_new_put": {
+    "put": "ok\n",
+    "get": "new fact\n"
+  },
+  "long_names": {
+    "tokens_in_sentence": 11,
+    "A_name": "the locker code for the safe room in",
+    "B_name": "the locker code for the safe in room",
+    "put_A": "ok\n",
+    "get_A_before_B": "value A\n",
+    "put_B": "ok\n",
+    "get_A_after_B": "value B\n",
+    "get_B": "value B\n",
+    "list": "the locker code for the safe",
+    "names_in_store": 1
+  },
+  "part3_circuit_probe": {
+    "status": "not feasible in budget",
+    "attempted": "core.build(target=Target(key_heads=2, value_heads=4, intermediate=64), text=Qwen tokenizer, store=Config(slot_bits=4, n_chunks=16, n_names=8, hash_bits=2)) in a child process",
+    "result": "no return after 500 s (node SIGTERM); stderr empty, so the 1900 MB watchdog did not trip before the kill",
+    "full_capacity_config_attempted": false,
+    "reason": "the smallest tried circuit build did not finish in the 500 s budget, and the full-capacity build is larger; run skipped to keep RAM and time within the constraints",
+    "consequence": "vheads per persistent table (IR state rows) unknown; IR-level bytes are estimates only"
+  }
+}

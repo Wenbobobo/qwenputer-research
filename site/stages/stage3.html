@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阶段三：从复现到超越——创意、原型与边界</title>
+<style>
+:root{--bg:#080b10;--panel:#101823;--panel2:#0d141d;--line:#1d2a3a;--line2:#27374d;--fg:#e6edf6;--muted:#93a4ba;--dim:#6b7c93;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--violet:#a78bfa;--red:#f87171;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter','Noto Sans SC',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 600px at 85% -10%,#132a1c 0%,transparent 55%),radial-gradient(900px 500px at 5% 0%,#101a2e 0%,transparent 50%),var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.75;font-size:16px}
+a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.3}code{font-family:var(--mono);font-size:.86em;background:#0a121b;border:1px solid var(--line);padding:.12em .4em;border-radius:5px;color:#c9f7d8}
+pre{background:#080f16;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-family:var(--mono);font-size:13px;line-height:1.6}
+pre code{background:none;border:none;padding:0;color:#cbd5e1}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;max-width:1360px;margin:0 auto;padding:0 30px}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:30px 0 40px;border-right:1px solid var(--line)}
+nav .brand{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
+nav .sub{color:var(--dim);font-size:12px;margin:4px 0 22px}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:toc}nav li{counter-increment:toc;margin:2px 0}
+nav a{display:block;padding:5px 10px 5px 32px;border-left:2px solid transparent;color:var(--muted);font-size:13px;position:relative}
+nav a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:8px;color:var(--dim);font-size:11px;font-family:var(--mono)}
+nav a:hover{color:var(--fg);background:#0e1620;text-decoration:none}nav a.active{color:var(--green);border-left-color:var(--green);background:#0d1a14}
+main{padding:40px 0 110px;min-width:0}
+.hero{padding:42px 0 28px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--green);border:1px solid #166534;background:#0a1a12;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(30px,4vw,48px);margin:0 0 14px;font-weight:850;background:linear-gradient(92deg,#f8fafc 10%,#4ade80 60%,#60a5fa 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:#b9c8da;max-width:820px;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--dim);font-size:13px;font-family:var(--mono)}
+section{margin:0 0 64px;scroll-margin-top:24px}h2{font-size:28px;margin:0 0 8px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--mono);font-size:14px;color:var(--green);font-weight:600;letter-spacing:.1em}
+.sec-lede{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:880px}h3{font-size:20px;margin:32px 0 10px;color:#e2e8f0}
+p{color:#c3d0e0;margin:0 0 15px}ul,ol{color:#c3d0e0;padding-left:22px}li{margin:6px 0}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.note{border-left:3px solid var(--blue);background:#0b1622;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#bfd3ea}
+.good{border-left:3px solid var(--green);background:#08150f;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#c2f0d4}
+.warn{border-left:3px solid var(--amber);background:#1a1408;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3dfb0}
+.bad{border-left:3px solid var(--red);background:#1a0c0c;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3c1c1}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#0d1622;color:#cfe0f2;font-weight:650;font-size:13px}tr:nth-child(even) td{background:#0a1119}
+.mono{font-family:var(--mono)}.small{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);margin:0 4px 4px 0}
+.tag.g{color:var(--green);border-color:#166534}.tag.a{color:var(--amber);border-color:#5a4410}.tag.v{color:var(--violet);border-color:#3b2d63}.tag.r{color:var(--red);border-color:#5b1a1a}
+.diagram{background:#070d14;border:1px solid var(--line);border-radius:16px;padding:18px;overflow-x:auto}
+footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--dim);font-size:13px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr;gap:0;padding:0 20px}nav.toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px 0}nav ol{columns:2;column-gap:20px}main{padding-top:8px}}
+</style></head><body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Qwenputer · 阶段三</div>
+  <div class="sub">创意、原型与边界</div>
+  <ol>
+    <li><a href="#a">A 编译器即安装器</a></li>
+    <li><a href="#b">B 设备树</a></li>
+    <li><a href="#c">C 不可关闭的监控器</a></li>
+    <li><a href="#d">D 记忆盘（实测）</a></li>
+    <li><a href="#e">E 自举与 in-weights Linux</a></li>
+    <li><a href="#v">验证结论与下一步</a></li>
+  </ol>
+  <div class="tag g" style="margin-top:22px">Stage 3 · v1<br>2026-10-29 · Qcompute</div>
+</nav>
+<main>
+<div class="hero">
+  <div class="kicker">FROM REPRODUCTION TO BEYOND · 5 IDEAS · 2 PROTOTYPES</div>
+  <h1>复现之后，<br>还能往哪里走？</h1>
+  <p class="lede">阶段一把 Qwenputer 拆开、复现、测量；阶段二把它放进记忆研究的坐标系。阶段三回答一个问题：
+  如果我们拥有这套"可编程权重"的工具，接下来最值得做的 3–5 件事是什么？每件事都给出收益、风险与可验证的判据。</p>
+  <div class="meta"><span>证据来源：本机 CPU 实验 + 发布 checkpoint 复现 + 上游文档/代码</span><span>配套：docs/notes/stage3-*.md</span></div>
+</div>
+
+<section id="a">
+  <h2><span class="no">01</span>A · 编译器即安装器（In-weights package manager）<span class="tag g">最高优先级</span></h2>
+  <p class="sec-lede">发布物可以不是 22GB 权重，而是「基座 + 编译器 + 配方」；这也是"chip 层是算出来的、不是训练出来的"这一信任前提的可执行审计。</p>
+  <div class="grid2">
+    <div class="card"><h4>为什么值得</h4><ul class="small">
+      <li>发布体积：22.2GB → 基座约 8GB + 约 130MB 增量（zlib 后约 6MB）。</li>
+      <li>可审计：如果重建的 chip 权重与发布 checkpoint 逐位一致，说明 chip 层没有被偷偷训练/修改。</li>
+      <li>可组合：安装一个新"设备"= 重新编译 + 合并，不需要训练。</li></ul></div>
+    <div class="card"><h4>阻塞/风险</h4><ul class="small">
+      <li>anti-sink 列（8×1024 bf16）来自设备相关的前向拟合，必须作为配方存下来（16 KiB）。</li>
+      <li>没有锚定编译器 commit / torch 版本；重建实现必须与发布方逐位一致。</li>
+      <li>merge 全量峰值 44.7GB RAM；只重建 chip 层约 4–6GB 可行。</li></ul></div>
+  </div>
+  <div class="good"><strong>原型完成（本机实测，76.3s CPU，含负对照）：发布 checkpoint 的 chip 侧全部是编译器输出。</strong>
+  <table>
+    <tr><th>检查项</th><th>结果</th></tr>
+    <tr><td>电路 stats（12 层 / 3753 dims / 164 heads / 47,532 units / slots 1806）</td><td>✅ 与 chipformer.json 完全一致</td></tr>
+    <tr><td>code_dims / tau_dim / mu_dim / id_code_dims / tokenizer 偏移与特殊 token</td><td>✅ 逐项一致</td></tr>
+    <tr><td><strong>12 个 chip 层 × 14 个张量</strong></td><td>✅ <strong>168/168 张量 BIT-EXACT</strong></td></tr>
+    <tr><td>最终 norm 的 chip 维（2560:）</td><td>✅ BIT-EXACT</td></tr>
+    <tr><td>chip token embedding 行（236,469 行，11.78M 非零）</td><td>✅ BIT-EXACT</td></tr>
+    <tr><td>文本行的 chip 特征（248,070 行，18.67M 非零）</td><td>✅ BIT-EXACT</td></tr>
+  </table>
+  证据：<span class="mono">analysis/rebuild/report.json</span>（verdict 全 True；含每个发布 chip 张量的 SHA-256，可直接作为安装器验证清单）。<br>
+  <strong>负对照/敏感性：</strong>比较器能抓单 LSB 翻转与 -0.0；用错误 seed 2036 重建后 store 的 ffn_units 从 47,532 变 47,602，layer 5 的 MLP gate/up/down 出现 mismatch（正是 store hash 单元所在行），其余 11 层保持 bit-exact——审计有判别力且能定位。
+  编译器用源码 SHA-256 锚定（树哈希 47B113EE1928B1557FBE08AB128F0170），弥补了"没有 git commit"的缺口。<br>
+  <strong>意义：</strong>4.54GB 的 chip 层（其中只有 1.29M 个非零值）可以 ~80 秒从编译器重建，
+  发布物可以缩成「基座 + 配置 + 编译器 + 少量 anti-sink 常量」；同时提供了一条"第三方可验证发布权重未经训练/篡改"的审计路径。</div>
+  <div class="good" style="margin-top:-6px"><strong>整模型审计（Qwen 侧，接续完成）：</strong>发布模型的 426 个 Qwen 侧张量<strong>全部可解释、0 个无法解释</strong>——
+  338 个 = 基座 + 零填充/norm 重缩放（bit-exact，含 embed Qwen 块 636M 值 0 差异）；80 个 = 再加可推导的 mute 常数 <span class="mono">bf16(-1024/√4608)=-15.0625</span>；
+  8 个 = anti-sink（仅 8 个 full-attention 层的 <span class="mono">k_proj</span>：RoPE 0–63 维为 0、每 head |key|=16±0.016；共 8192 元素 / 6144 非零 / <strong>16 KiB</strong> bf16，来自设备相关拟合）。
+  全部 138,752 个差异元素都只在第 2732 列（mu）。也就是说：<strong>整个 22.2GB checkpoint 中，无法从「基座 Qwen3.5-4B + 编译器 + 配置」推导的数据只有 16 KiB。</strong>
+  附加发现：在 CPU 上重跑 <span class="mono">fit_anti_sink</span> 与发布值 cosine ≥0.999995、但只有 64.95% 位相等（max diff 2.4e-4）——证明 anti-sink 依赖设备/数值栈，必须随配方存储。
+  证据：<span class="mono">analysis/rebuild/base_report.json</span>、<span class="mono">docs/notes/stage3-a2-base-audit.md</span>。</div>
+</section>
+
+<section id="b">
+  <h2><span class="no">02</span>B · 设备树：把算法编译成"外设"<span class="tag a">中等优先级</span></h2>
+  <p>RV32 核占 11–12 层、约 1M 非零权重。一个专用组合电路（排序网络、CRC、正则匹配、日期/单位换算）可能只要 2–4 层、几千个非零权重。
+  于是"能力"可以像设备一样插拔：每个设备有自己的 token 族、ROM 和输出码。</p>
+  <table>
+    <tr><th>问题</th><th>回答</th></tr>
+    <tr><td>收益</td><td>模型可以"安装"确定性能力而不训练；可验证、可回放、可审计。</td></tr>
+    <tr><td>成本</td><td>每个设备都要：编译 → IR 验证 → bf16 精确性论证 → 与 Qwen 的 mute/tau 耦合处理 → merge。</td></tr>
+    <tr><td>判据</td><td>一个真实小算法（如 CRC32）编译进 IR 后，层数 ≤4、非零权重 &lt;10 万、token 成本低于"让 Qwen 自己算"。</td></tr>
+    <tr><td>风险</td><td>层数/宽度预算线性膨胀；设备组合的交互难以证明；安全面变大（每个设备都是攻击面）。</td></tr>
+  </table>
+</section>
+
+<section id="c">
+  <h2><span class="no">03</span>C · 不可关闭的监控器（In-weight monitor）<span class="tag a">依赖外部资源</span></h2>
+  <p>作者 follow-up 声称：把线性探针 + 标志日志编译进权重，可捕获 91% 的谎言、零误报；困难提示下回复级 AUROC 0.77。
+  这比"CPU"更贴近 AI 安全：监控器住在权重里，模型无法通过 prompt 关掉它。</p>
+  <div class="warn"><strong>但"不可关闭"需要覆盖证明，而不是 demo：</strong>模型能否通过 tool 调用/桥接 tag 绕过？换提示、换语言、换多轮后 AUROC 是否稳定？
+  探针本身是否可被模型"学会忽略"？我们建议的最小证伪清单：3 个模型 × 3 类提示 × 500 条标注样本 + 与外部监控器对比。</div>
+  <p class="small">本机判断：方向有价值，但作者未发布完整权重/数据，无法独立复现；暂列为"评审级"而非"原型级"。</p>
+</section>
+
+<section id="d">
+  <h2><span class="no">04</span>D · 记忆盘：快照的边界（已实测）<span class="tag g">原型完成</span></h2>
+  <p class="sec-lede">我们把"记忆盘"从口号变成可测边界：快照里到底有什么、多大、绑定什么、能不能跨模型。</p>
+  <table>
+    <tr><th>文件数</th><th>逻辑快照大小</th><th>同样内容 UTF-8 文本</th><th>被触达 state 行</th></tr>
+    <tr><td>1</td><td>77 B</td><td>30 B</td><td>4</td></tr>
+    <tr><td>10</td><td>723 B</td><td>300 B</td><td>40</td></tr>
+    <tr><td>100</td><td>7,180 B</td><td>3,000 B</td><td>400</td></tr>
+    <tr><td>512（满）</td><td><strong>36,741 B</strong></td><td>15,360 B</td><td><strong>2,050 / 6,660（30.8%）</strong></td></tr>
+  </table>
+  <p class="small">约 <strong>72 B/文件</strong>（含目录项、order、len、next 指针与内容行）；逻辑量约为原文的 2.4×。
+  512 文件的被触达 state 行只有 2,050 条（每文件 4 行），按 float64 稠密上界估算约 6.8 MB；满容量解析估计总状态约 0.24 MB。
+  文档/模型卡里"11–30 MB"是 <strong>CHIP-8 v1 store / 4B 满容量</strong>的口径，不是 RV-store v2 只存非零行的实测。</p>
+  <div class="grid2">
+    <div class="card"><h4>可移植性实验</h4><ul class="small">
+      <li>同 seed：10/10 读回成功（100%），恢复后可继续 put。</li>
+      <li>换 seed（2036/2037/2038）：<strong>0/10（全部 not found，无错误内容）</strong>——哈希槽全变。</li>
+      <li>slot_bits 8（槽更少）：4/10 成功——布局一变，部分名字碰巧命中，不可依赖。</li>
+      <li><strong>绑定因子</strong>：hash seed、hash_bits/slot_bits、n_chunks/n_names、<strong>tokenizer 的 Qwen token id（不是字节）</strong>、布局常量（NMAX=6、LEN_BITS=3、CMAX=104、TPR=14）、store 协议记录、IR head 布局。</li>
+      <li><strong>正面结论</strong>：IR 快照不可跨 seed/编译/tokenizer 移植，但<strong>逻辑内容（名字+文本）可移植</strong>——导入时重新 put 成本很低（journal 迁移）。</li></ul></div>
+    <div class="card"><h4>长名字别名（真实风险）</h4><ul class="small">
+      <li>A = "the locker code for the safe room in"</li>
+      <li>B = "the locker code for the safe in room"</li>
+      <li>前 6 token 相同 + 长度相同 ⇒ <strong>同一 key</strong>：put B 覆盖 A；get A 返回 B 的内容。</li>
+      <li>list 只打印前 6 token："the locker code for the safe"。</li></ul></div>
+  </div>
+  <div class="good"><strong>结论：</strong>快照不是"可移植的记忆文件"，而是<strong>绑定编译（hash seed / 布局 / tokenizer）的状态切片</strong>；
+  逻辑内容很小（512 文件 36.7KB，约 1.16× 文本信息量），物理状态是稠密 GDN 行（11–30MB 量级）。
+  产品化需要一个"记忆盘"格式：版本 + seed/布局元数据 + 迁移/校验 + 名字规范化。</div>
+</section>
+
+<section id="e">
+  <h2><span class="no">05</span>E · 自举 Qwenputer / in-weights Linux（量级边界）<span class="tag v">思想实验</span></h2>
+  <p>把 Linux 跑进权重里需要多少？RV32 核 = 11 层 / 1.04M 非零权重 / ROM 256KB。
+  Linux 内核约 30MB 代码 → ROM 差约 100×；若按比例放大：<strong>数百层、数亿到数十亿非零权重</strong>，且每 token 成本线性增长。
+  在 44 层 / 11B 参数的 transformer 里，这超出预算 2–3 个数量级。</p>
+  <p>更现实的中间形态：把<strong>编译器的子集</strong>（词法/解析/代码生成的一小部分）编译进权重，模型调用它生成新固件——
+  即"模型自己写设备"，但仍需人设计 ISA/ABI/验证器。自举（模型运行编译器生成自己的电路）在近期的 bf16/kernel 约束下不可行。</p>
+  <div class="note">这条思想实验的价值：给"模型内计算机"画出清晰规模边界，避免把它误解为通用计算机。</div>
+</section>
+
+<section id="v">
+  <h2><span class="no">06</span>验证结论与下一步</h2>
+  <table>
+    <tr><th>创意</th><th>状态</th><th>证据/判据</th><th>下一步</th></tr>
+    <tr><td>A 编译器即安装器</td><td>原型进行中</td><td>chip 层 1.29M 非零、可由编译器重算；anti-sink 列需存</td><td>重建 12 层逐位对比；给出"基座+增量"发布格式</td></tr>
+    <tr><td>B 设备树</td><td>设计/估算</td><td>RV32=11 层；小算法预计 2–4 层</td><td>编译一个 CRC/排序设备并测 token 成本</td></tr>
+    <tr><td>C 监控器</td><td>评审</td><td>作者数字 91%/0 误报，未独立复现</td><td>需要作者权重/数据；先做证伪清单</td></tr>
+    <tr><td>D 记忆盘</td><td><b>完成</b></td><td>1/10/100/512 文件 → 77B/723B/7.2KB/36.7KB；换 seed 0% 读回；长名字别名实测</td><td>定义 memory-disk 格式（版本+seed+迁移）</td></tr>
+    <tr><td>E 自举/OS</td><td>量级分析</td><td>ROM 差 100×，层数超预算 2–3 个数量级</td><td>保持为边界说明，不投入工程</td></tr>
+  </table>
+  <div class="good"><strong>总体判断：</strong>在五个创意里，A 与 D 最值得投入——A 直接决定"可信度与分发成本"，D 直接决定"记忆能否成为产品"。
+  B 是能力扩展的中期方向，C 依赖外部资源，E 是边界说明。下一步优先级：A 完成 → 定义 memory-disk 格式 → B 的小设备实验。</div>
+  <h3>与阶段一/二的关系</h3>
+  <p>阶段一回答"它能不能跑、有多贵"（复现 + 成本）；阶段二回答"它是不是更好的记忆"（定量边界 + 打假）；
+  阶段三回答"接下来做什么"（可执行创意 + 原型判据）。三份报告共享同一套证据：发布 checkpoint、IR 测试、rv-tiny、CPU 端到端会话、H2/H3/D 实测。</p>
+</section>
+<footer>Qcompute · 阶段三 · 2026-10-29 · 所有数字标注来源；未验证项明确标注。</footer>
+</main></div>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('nav a'));var s=l.map(function(a){return document.querySelector(a.getAttribute('href'))});function f(){var y=window.scrollY+120,i=0;for(var j=0;j<s.length;j++){if(s[j]&&s[j].offsetTop<=y)i=j}l.forEach(function(a,k){a.classList.toggle('active',k===i)})}window.addEventListener('scroll',f,{passive:true});f()})();</script>
+  <script src="../assets/nav.js"></script>
+</body></html>

@@ -1,0 +1,44 @@
+{
+  "trim": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "load_trim_s": 25.866875706997234,
+  "baseline": {
+    "tokens": [
+      9419,
+      0,
+      2500,
+      628,
+      353,
+      1438
+    ],
+    "text": "Hello! How can I help",
+    "seconds": 89.74263670899381
+  },
+  "head": {
+    "quantized_rows": 248320,
+    "quantized_cols": 2560,
+    "exact_chip_cols": 40,
+    "text_only": false,
+    "chunk_rows": 16384,
+    "buffer_bytes": 675476800,
+    "dequant_chunk_bytes": 83886080,
+    "embedding": "unchanged BF16 tied original; separate compact head adds storage"
+  },
+  "int8": {
+    "tokens": [
+      9419,
+      0,
+      2500,
+      628,
+      353,
+      1438
+    ],
+    "text": "Hello! How can I help",
+    "seconds": 39.28205153300951
+  },
+  "same_tokens": true
+}

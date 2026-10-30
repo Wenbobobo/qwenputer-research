@@ -1,0 +1,50 @@
+[
+  {
+    "name": "triton_int8_4096",
+    "status": "ok",
+    "shape": [
+      4096,
+      4096,
+      4096
+    ],
+    "ms": 3.1079654693603516,
+    "tops": 44.221518812526,
+    "max_abs_error": 0.0
+  },
+  {
+    "name": "triton_fp8_conversion_0",
+    "status": "ok",
+    "ms": 0.020681600272655486,
+    "max_abs_error": 0.25
+  },
+  {
+    "name": "triton_fp8_conversion_1",
+    "status": "ok",
+    "ms": 0.02480269968509674,
+    "max_abs_error": 0.5
+  },
+  {
+    "name": "triton_dot_torch.float8_e4m3fn",
+    "status": "ok",
+    "shape": [
+      512,
+      512,
+      512
+    ],
+    "ms": 0.3873081922531128,
+    "tops": 0.693079726608449,
+    "max_abs_error": 7.62939453125e-06
+  },
+  {
+    "name": "triton_dot_torch.float8_e5m2",
+    "status": "ok",
+    "shape": [
+      512,
+      512,
+      512
+    ],
+    "ms": 0.0485150009393692,
+    "tops": 5.533040313355299,
+    "max_abs_error": 1.1444091796875e-05
+  }
+]

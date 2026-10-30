@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阶段五：GPU 真跑、H5 检索、键协议修复</title>
+<style>
+:root{--bg:#080b10;--panel:#101823;--panel2:#0d141d;--line:#1d2a3a;--line2:#27374d;--fg:#e6edf6;--muted:#93a4ba;--dim:#6b7c93;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--violet:#a78bfa;--red:#f87171;--cyan:#22d3ee;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter','Noto Sans SC',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 600px at 85% -10%,#0c2a2c 0%,transparent 55%),radial-gradient(900px 500px at 5% 0%,#101a2e 0%,transparent 50%),var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.75;font-size:16px}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.3}code{font-family:var(--mono);font-size:.86em;background:#0a121b;border:1px solid var(--line);padding:.12em .4em;border-radius:5px;color:#bff3ff}
+pre{background:#080f16;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-family:var(--mono);font-size:13px;line-height:1.6}pre code{background:none;border:none;padding:0;color:#cbd5e1}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;max-width:1360px;margin:0 auto;padding:0 30px}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:30px 0 40px;border-right:1px solid var(--line)}
+nav .brand{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan)}nav .sub{color:var(--dim);font-size:12px;margin:4px 0 22px}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:toc}nav li{counter-increment:toc;margin:2px 0}
+nav a{display:block;padding:5px 10px 5px 32px;border-left:2px solid transparent;color:var(--muted);font-size:13px;position:relative}
+nav a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:8px;color:var(--dim);font-size:11px;font-family:var(--mono)}
+nav a:hover{color:var(--fg);background:#0e1620;text-decoration:none}nav a.active{color:var(--cyan);border-left-color:var(--cyan);background:#0a1e22}
+main{padding:40px 0 110px;min-width:0}
+.hero{padding:42px 0 28px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid #155e63;background:#0a1a1d;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(30px,4vw,48px);margin:0 0 14px;font-weight:850;background:linear-gradient(92deg,#f8fafc 10%,#22d3ee 60%,#60a5fa 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:#b9c8da;max-width:840px;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--dim);font-size:13px;font-family:var(--mono)}
+section{margin:0 0 64px;scroll-margin-top:24px}h2{font-size:28px;margin:0 0 8px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--mono);font-size:14px;color:var(--cyan);font-weight:600;letter-spacing:.1em}
+.sec-lede{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:880px}h3{font-size:20px;margin:32px 0 10px;color:#e2e8f0}
+p{color:#c3d0e0;margin:0 0 15px}ul,ol{color:#c3d0e0;padding-left:22px}li{margin:6px 0}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.note{border-left:3px solid var(--blue);background:#0b1622;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#bfd3ea}
+.good{border-left:3px solid var(--green);background:#08150f;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#c2f0d4}
+.warn{border-left:3px solid var(--amber);background:#1a1408;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3dfb0}
+.bad{border-left:3px solid var(--red);background:#1a0c0c;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3c1c1}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#0d1622;color:#cfe0f2;font-weight:650;font-size:13px}tr:nth-child(even) td{background:#0a1119}
+.mono{font-family:var(--mono)}.small{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);margin:0 4px 4px 0}
+.tag.g{color:var(--green);border-color:#166534}.tag.a{color:var(--amber);border-color:#5a4410}.tag.r{color:var(--red);border-color:#5b1a1a}.tag.c{color:var(--cyan);border-color:#155e63}
+footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--dim);font-size:13px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr;gap:0;padding:0 20px}nav.toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px 0}nav ol{columns:2;column-gap:20px}main{padding-top:8px}}
+</style></head><body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Qwenputer · 阶段五</div>
+  <div class="sub">GPU 真跑 / H5 / 键协议</div>
+  <ol>
+    <li><a href="#gpu">GPU 真跑：22.3GB 拆到 7900 XT</a></li>
+    <li><a href="#h5">H5：精确键 vs 向量检索</a></li>
+    <li><a href="#key">键协议修复：SafeStore</a></li>
+    <li><a href="#next">结论与下一步</a></li>
+  </ol>
+  <div class="tag c" style="margin-top:22px">Stage 5 · v1<br>2026-10-29 · Qcompute</div>
+</nav>
+<main>
+<div class="hero">
+  <div class="kicker">RELEASED MODEL ON GPU · REAL LongMemEval · ZERO-COLLISION KEYS</div>
+  <h1>从"能复现"到"能用"</h1>
+  <p class="lede">阶段五把三件工程现实做出来：<strong>22.3GB 发布模型真的跑在了 20GB 的 7900 XT 上</strong>（accelerate 拆分，put/get 正确、2.8–4.3× 快于 CPU）；
+  <strong>H5 用真实 LongMemEval 量化了精确键与向量检索的互补性</strong>（bge Recall@5 87%，RAG 粘贴 12,140 token vs 精确 get 45 token）；
+  <strong>SafeStore 用协议层修好了 6-token 名字键的静默覆盖</strong>（512 个对抗长名 0 碰撞）。</p>
+  <div class="meta"><span>环境：WSL ROCm 7.2.1 + RX 7900 XT 19.96GB + CPU（Ryzen 5700X / 48GB）</span><span>证据：gpu/out/、analysis/experiments/h5/、analysis/memory_disk/</span></div>
+</div>
+
+<section id="gpu">
+  <h2><span class="no">01</span>GPU 真跑：22.3GB 拆到 7900 XT</h2>
+  <p class="sec-lede">dense 20.67 GiB &gt; 19.96 GiB，物理上放不下；用 accelerate device_map 把 embedding/lm_head + 33 层放 GPU、11 层 + norm 放 CPU，发布模型第一次在 AMD 显卡上完成 put/get。</p>
+  <h3>1.1 拆分布局</h3>
+  <table>
+    <tr><th>位置</th><th>内容</th></tr>
+    <tr><td>GPU（17 GiB 上限）</td><td>embed_tokens、lm_head、Qwen layers 0–32（含全部 12 个 chip 层）</td></tr>
+    <tr><td>CPU</td><td>Qwen layers 33–43、final norm、rotary embeddings</td></tr>
+    <tr><td>加载时间</td><td>dispatch load <strong>152–264 s</strong>（取决于 CPU 竞争）</td></tr>
+  </table>
+  <h3>1.2 Lead 独立复核（不依赖 subagent 转述）</h3>
+  <table>
+    <tr><th>运行</th><th>结果</th><th>生成耗时</th><th>正确性</th></tr>
+    <tr><td>Hi（max-new 12）</td><td>"Hello! How can I help you today?"</td><td><strong>9 tokens / 7.7 s</strong>（≈1.2 tok/s）</td><td>0 mismatch</td></tr>
+    <tr><td>put（remember locker code）</td><td>put(locker_code, 4471-AZ) → ok；"I've saved your locker code as 4471-AZ."</td><td><strong>69 text + 3 chip / 73.6 s</strong>（≈1.0 tok/s）</td><td>0 mismatch / lock None</td></tr>
+    <tr><td>get（fresh session + store_gpu2.npz）</td><td>get(locker_code) → 4471-AZ；"Your locker code is 4471-AZ."</td><td><strong>54 text + 2 chip / 39.8 s</strong>（≈1.4 tok/s）</td><td>0 mismatch / lock None</td></tr>
+    <tr><td>对照：同任务 CPU</td><td>文本相同（demo/run-a.log、run-b.log）</td><td>204.6 s / 170.4 s</td><td>0 mismatch</td></tr>
+  </table>
+  <div class="good"><strong>结论：</strong>发布模型确实在 7900 XT 上运行，文本生成比 CPU 快 <strong>2.8–4.3×</strong>；"Hi" 复核（9 tokens/7.7s）确认 GPU dispatch 真实生效（CPU 同 prompt 32 tokens 用 151s）。
+  GPU 窗口内还验证了：rv-tiny free-run 7/7 exact、Triton 执行器 1,334–6,993 tok/s。</div>
+  <div class="warn"><strong>修正：</strong>subagent 初版记录的 put/get 204.6/170.4 s 实际是 CPU 数字（与 GPU 不符）；本报告与 <span class="mono">docs/notes/stage5-gpu-runtime.md</span> 已改为复核后的 73.6/39.8 s。
+  <strong>caveat：</strong>dispatch load 150–264 s 很贵；11 层 Qwen 仍在 CPU（~1 tok/s 的瓶颈）；CPU-offloaded cache 的长上下文正确性未验证。</div>
+</section>
+
+<section id="h5">
+  <h2><span class="no">02</span>H5：精确键 vs 向量检索（真实 LongMemEval）</h2>
+  <p class="sec-lede">问题：Qwenputer 文件系统按名字精确寻址——面对"我最喜欢的舒适食物是什么"这类自然语言问题，它先天没有入口。用 bge-small（33M 参数，CPU）做对照。</p>
+  <h3>2.1 合成语料（100 事实 / 5 session docs / 100 语义 + 50 精确查询）</h3>
+  <table>
+    <tr><th>方法</th><th>语义 Recall@1</th><th>语义 Recall@5</th><th>精确名 50 题</th></tr>
+    <tr><td>精确 key（Qwenputer 语义）</td><td>0/100（构造上）</td><td>0/100</td><td><strong>50/50 = 100%</strong></td></tr>
+    <tr><td>TF-IDF fallback</td><td>10%</td><td>39%</td><td>100%</td></tr>
+    <tr><td><strong>bge-small-en-v1.5</strong></td><td><strong>62–64%</strong></td><td><strong>94–96%</strong></td><td>74–80% @1，<strong>100% @5</strong></td></tr>
+  </table>
+  <h3>2.2 真实 LongMemEval（100 题，265 个 session，平均 2,425 tokens/session）</h3>
+  <table>
+    <tr><th>指标</th><th>数值</th></tr>
+    <tr><td>bge-small 语义检索 Recall@1 / @5 / MRR</td><td><strong>50.0% / 87.0% / 0.661</strong>（instructed：52/85/0.667）</td></tr>
+    <tr><td>精确 key（自然语言、无 canonical key）</td><td>0/100</td></tr>
+    <tr><td>精确 key（已知 canonical key 控制组）</td><td>100/100</td></tr>
+    <tr><td>RAG k=5 粘贴成本</td><td><strong>≈12,140.9 tokens/query</strong>（5 × 2,425 + 15）</td></tr>
+    <tr><td>精确 get 成本</td><td><strong>45 tokens/query</strong></td></tr>
+  </table>
+  <div class="good"><strong>结论：</strong>两者互补，不是替代——
+  <strong>精确键</strong>赢在"名字已知 + 精确、恒定 45 token、可审计更新"；<strong>向量检索</strong>赢在"自然语言入口"（真实 LongMemEval Recall@5 87%），但 RAG 盲目粘贴在真实长对话上会让单次查询膨胀 <strong>270×</strong>（12,140 vs 45 token）。
+  推荐架构：<strong>bge-small 语义路由（1 阶段）→ 解析出 Top-1~3 canonical key → 文件系统/MemoryDisk 精确 get/update（2 阶段）</strong>。</div>
+</section>
+
+<section id="key">
+  <h2><span class="no">03</span>键协议修复：SafeStore</h2>
+  <p class="sec-lede">底层电路只取名字前 6 个 token（18-bit × 6）+ 长度 3-bit；两个长名共享前 6 token 就静默覆盖。不能改电路（128 维状态行放不下 8 token），所以在协议层修。</p>
+  <h3>3.1 方案</h3>
+  <ul>
+    <li><strong>逻辑名 → 规范名</strong> 双层命名空间；短名/无冲突长名零代价透传。</li>
+    <li>冲突时在名字<strong>头部</strong>注入 36-bit 确定性标签（2 个 18-bit token 的哈希），失败则 salt probing；映射表随快照持久化（.map.json 侧车）。</li>
+    <li><span class="mono">list()</span> 通过映射恢复完整未截断逻辑名。</li>
+  </ul>
+  <table>
+    <tr><th>压测</th><th>原始 store</th><th>SafeStore</th></tr>
+    <tr><td>H2 全量 2000 名</td><td>360 碰撞（18.0%）</td><td><strong>0</strong>（360 自动消歧）</td></tr>
+    <tr><td>512 个同前缀对抗长名</td><td><strong>511 次覆写（99.8%）</strong></td><td><strong>0 碰撞，512/512 精确回读</strong></td></tr>
+    <tr><td>3D 碰撞对（safe room in / safe in room）</td><td>互相覆盖</td><td>独立存取，list 完整显示</td></tr>
+    <tr><td>测试</td><td>—</td><td><strong>38/38 PASS</strong>（38.7 s CPU）</td></tr>
+  </table>
+  <p class="small">证据：analysis/memory_disk/safe_store.py、test_safe_store.py、docs/notes/stage5-keyfix.md；未改电路/权重，仅协议层。</p>
+</section>
+
+<section id="next">
+  <h2><span class="no">04</span>结论与下一步</h2>
+  <table>
+    <tr><th>问题</th><th>阶段五答案</th></tr>
+    <tr><td>22.3GB 发布模型能不能在 20GB 显卡上跑？</td><td>能：accelerate 拆分，put/get 正确，1.0–1.4 tok/s（CPU 的 2.8–4.3×）；代价是 150–264s dispatch load 与 11 层 CPU 瓶颈</td></tr>
+    <tr><td>精确键记忆 vs 向量检索，谁更好？</td><td>互补：精确键在语义查询 0%、已知名 100%、45 token；bge 语义 Recall@5 87% 但 RAG 粘贴 12,140 token → 两阶段混合</td></tr>
+    <tr><td>6-token 名字键的静默覆盖能修吗？</td><td>能：SafeStore 协议层，512 对抗长名 0 碰撞，38/38 测试</td></tr>
+  </table>
+  <div class="good"><strong>下一步（Stage 6 候选）：</strong>
+  ① trim runtime（把 11 层 CPU 也搬上 GPU / 用 7.951GiB 稀疏布局，目标 &gt;5 tok/s）；
+  ② 用 GPU runtime 补 H1 的 in-weights 对照臂（与 host/context 同 harness）；
+  ③ 设备合并（ADD8/SORT4 并入 chip 层）；
+  ④ 把 bge 语义路由 + SafeStore 组合成 memory-disk v1。</div>
+  <p class="small">GPU 静默时段 00:30–09:30 / 12:30–15:30：本窗口已用尽，后续 GPU 工作顺延。证据与复现命令见 docs/notes/stage5-*.md 与 gpu/、analysis/experiments/h5/、analysis/memory_disk/。</p>
+</section>
+<footer>Qcompute · 阶段五 · 2026-10-29 · 证据：gpu/out/（put_gpu2.log / get_gpu2.log / verify_gpu.log）、analysis/experiments/h5/、analysis/memory_disk/、docs/notes/stage5-*.md</footer>
+</main></div>
+<script>(function(){var l=[].slice.call(document.querySelectorAll('nav a'));var s=l.map(function(a){return document.querySelector(a.getAttribute('href'))});function f(){var y=window.scrollY+120,i=0;for(var j=0;j<s.length;j++){if(s[j]&&s[j].offsetTop<=y)i=j}l.forEach(function(a,k){a.classList.toggle('active',k===i)})}window.addEventListener('scroll',f,{passive:true});f()})();</script>
+</body></html>
