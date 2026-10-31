@@ -23,6 +23,12 @@
 - 研究：docs/research/stage8-enhancement-portfolio.md
 - 数据：analysis/device/merge_probe.*、analysis/experiments/h5_e2e/、gpu/out/s8_*
 
+## Stage 9 完成（2026-10-31）
+- 专家/综合分析：docs/research/stage9-application-scenarios.md（产品/场景向）、stage9-technical-breakthroughs.md（技术/研究向）、stage9-synthesis.md（综合决策）
+- 文档整理：RESULTS/GPU-DISCIPLINE/GLOSSARY/DECISIONS/START-HERE/DOC-AUDIT 新建；README/INDEX/DELIVERABLES 重写；归档 4 篇过时笔记；清理垃圾目录
+- 报告：docs/reports/qwenputer-stage9.html 已发布到 Pages
+- 交接：docs/START-HERE.md（完整接手 prompt，含场景结论/P0-P2 路线/验收 gate）
+
 ## Stage 9 候选
 ADD8-only rv-tiny 端到端；H5 reader 集成；fp32 chip 局部化；>20 tok/s（native int8/tied embed/causal_conv1d）；memory-disk v1
 

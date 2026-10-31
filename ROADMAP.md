@@ -3,6 +3,8 @@
 > 目标：复现并验证 Qwenputer（把 32 位 RISC-V CPU 与文件系统编译进 Qwen3.5-4B 权重）的核心能力；
 > 做功能/性能优化；产出精美 HTML 原理报告；研究「in-weights 文件系统 / DeltaNet 状态」作为
 > 参数化记忆与持续学习基础设施的潜力，并与 RAG / 知识图谱 / Engram 等方案对比。
+>
+> **状态提示（2026-10-31）**：本文件是追加式历史规划；当前状态以 [STATUS.md](STATUS.md) 与 [docs/RESULTS.md](docs/RESULTS.md) 为准，完成情况见各阶段报告与 [docs/INDEX.md](docs/INDEX.md)。
 
 ## 硬性约束
 - 硬件：Ryzen 7 5700X（8C/16T）/ 47.9 GB RAM / RX 7900 XT 20GB + Tesla T10 16GB（本轮全程 CPU）
@@ -53,7 +55,7 @@
 ## Stage 3 创意（🟡 A 进行中，D 完成）
 - [x] D 记忆盘：快照 1/10/100/512 文件 = 77B/723B/7.2KB/36.7KB；换 seed 0% 读回；长名字别名实测
 - [x] A 编译器即安装器：**12/12 层、168/168 张量 bit-exact**；final norm / chip embedding / 文本行 chip 特征均 bit-exact（74.6s CPU）
-- [ ] B 设备树：小算法编译估算（设计完成，原型未做）
+- [x] B 设备树：ADD8/SORT4/DADD 已真实构建（IR exact；见 docs/notes/device-tree-estimate.md）；并入 chip 层的 IR/allocator/emit 可行性见 docs/notes/stage8-device-merge.md
 - [ ] C 监控器：评审/证伪清单（依赖作者资源）
 - [x] E 自举/OS 量级边界分析
 
@@ -80,10 +82,10 @@
 - [x] S4.5 阶段四报告：docs/reports/qwenputer-stage4.html（19.2KB，GPU/H1/memory-disk/设备树 + 证据索引）
 
 ### Stage 5 候选（后续轮次）
-- [ ] S5.1 压缩布局执行端：用 7.951GiB 无损格式 + trim/sparse 在 7900XT（20GB）上跑发布模型的 list/put/get（替代 CPU 4.7s/token）
-- [ ] S5.2 设备合并：把 ADD8/SORT4 设备并入 chip 层（0 额外层假设的实证），验证端到端 token 流
-- [ ] S5.3 H5-lite：LongMemEval 抽 100 题，精确键 vs bge-small 向量检索的语义查询对照
-- [ ] S5.4 6-token 名字键修复（扩 key 或协议层显式冲突）
+- [x] S5.1 压缩布局执行端：trim runtime 已在 7900XT 跑通 put/get（见 stage6/7/8）
+- [x] S5.2 设备合并：IR/allocator/emit 验证 0 额外层（stage8-device-merge.md）；端到端待做（Stage 9）
+- [x] S5.3 H5：LongMemEval-100 完成（stage5-h5.md）；端到端原型见 stage8-h5-e2e.md
+- [x] S5.4 名字键修复：SafeStore（36-bit tag + salt probing）38/38 测试通过（stage5-keyfix.md）
 
 ### 已完成前置
 - WSL ROCm 环境验证：torch 2.9.1+rocm7.2.1、GPU RX 7900 XT、bf16 OK、transformers 5.19.0、qwen3_5 import OK、mem 19.96GB
@@ -158,3 +160,8 @@
 - [ ] fp32 chip 局部化（只 fp32 敏感子层，压缩 +0.65GB 与速度代价）
 - [ ] 速度 >20 tok/s（native int8 GEMV / tied embedding 量化 / causal_conv1d Triton 短卷积）
 - [ ] memory-disk v1（trim runtime + SafeStore + journal 的可用记忆盘 API）
+## Stage 9（2026-10-31）：落地场景专家评估、文档整理与交接
+- [x] 应用场景与突破方向：docs/research/stage9-application-scenarios.md、stage9-technical-breakthroughs.md、stage9-synthesis.md（Top1 产品=可审计记忆盘；Top1 研究=确定性设备树）
+- [x] 文档系统整理：docs/RESULTS.md（唯一数字台账）、docs/GPU-DISCIPLINE.md、docs/GLOSSARY.md、docs/START-HERE.md（交接 prompt）、docs/DOC-AUDIT.md（审计+归档映射）、README/INDEX/DELIVERABLES 重写、归档 4 篇过时文档 + 清理 %SystemDrive% 垃圾目录
+- [x] 阶段九报告：docs/reports/qwenputer-stage9.html 已发布
+- [ ] Stage 10 候选：ADD8-only rv-tiny 端到端；H5 reader 集成；fp32 chip 局部化；>20 tok/s；memory-disk v1

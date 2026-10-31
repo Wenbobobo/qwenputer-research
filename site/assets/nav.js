@@ -14,6 +14,7 @@
         <a href="stage6.html">Stage 6</a>
         <a href="stage7.html">Stage 7</a>
         <a href="stage8.html">Stage 8</a>
+        <a href="stage9.html">Stage 9</a>
       </div>
     </div>
   `;
