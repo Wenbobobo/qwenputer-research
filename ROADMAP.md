@@ -146,8 +146,15 @@
 用户指令：把解释性 HTML 打包上 GitHub Pages（可分阶段切换，每阶段一页）；之后每阶段报告也上传；继续推进两条主线：① 增强计算部分（评估 brainstorm 方案性价比/落地场景）；② 正常提高推理速度；保持计算能力不倒退，同意与专家深入讨论后选最佳方案。
 
 ### 任务
-- [ ] S8.1 GitHub Pages：清理/初始化 git（无 .git；gh 已登录 Wenbobobo），建 site/（hub + stage1–7 分页 + 固定切换栏），创建公开仓库 + Actions 部署 Pages，验证线上 200；文档化后续阶段更新流程（A）
-- [ ] S8.2 推理提速（B）：fp32 chip × {no-FLA, selective FLA, full FLA} 六种配置矩阵；长序列 lock 门禁（1,2,5 共 12 会话）；目标：长序列 0/12 且 ≥15 tok/s；必要时 causal_conv1d/Triton 短卷积
-- [ ] S8.3 计算增强 portfolio（C，expert-model）：设备树（ADD8/SORT4/DADD）、in-weights 记忆、memory-disk/SafeStore、H5 混合检索、fp32 chip、其他创意 → 可行性/ROI/落地场景/kill list + 未来 2 阶段 3 个实验 + 不倒退 gate
-- [ ] S8.4 选 1–2 个增强方向做原型（待 C 结论）
-- [ ] S8.5 阶段八报告 HTML + 发布 + ROADMAP/STATUS 更新
+- [x] S8.1 GitHub Pages：公开仓库 github.com/Wenbobobo/qwenputer-research，站点 wenbobobo.github.io/qwenputer-research/（hub + stage1–8，全部 HTTP 200；Actions 自动部署；更新流程 docs/notes/stage8-pages.md）
+- [x] S8.2 推理提速：同 session 矩阵 Hi bf16 no-FLA 8.51 / selective 14.59 / full FLA 12.04 / fp32 no-FLA 11.81 / fp32 selective 13.64 tok/s；长序列 bf16 3/12 → fp32 0/12 lock divergence；推荐 correctness-first = fp32 no-FLA, speed-first = bf16 selective（长序列待验证）
+- [x] S8.3 计算增强 portfolio：docs/research/stage8-enhancement-portfolio.md（Top3 + kill list + E1/E2/E3 + gates）
+- [x] S8.4 增强原型：E2 设备合并 IR/allocator/emit 成功（0 额外层、slots 1899/2029、nz+5626）；E3 H5 端到端 CPU 原型（Recall@1/3/5 = 58/84/96%、BGE 11.2ms、SafeStore 0.5ms、碰撞隔离通过）
+- [x] S8.5 阶段八报告：docs/reports/qwenputer-stage8.html 已发布到 Pages
+
+### Stage 9 候选（按 ROI）
+- [ ] ADD8-only rv-tiny 端到端原型（真实 merge + tokenizer/namespace + owner/exit dispatcher）
+- [ ] H5 reader 集成（4B reader 上 top-1/3/5 vs RAG 对照 + 低分拒答 + 索引版本门禁）
+- [ ] fp32 chip 局部化（只 fp32 敏感子层，压缩 +0.65GB 与速度代价）
+- [ ] 速度 >20 tok/s（native int8 GEMV / tied embedding 量化 / causal_conv1d Triton 短卷积）
+- [ ] memory-disk v1（trim runtime + SafeStore + journal 的可用记忆盘 API）

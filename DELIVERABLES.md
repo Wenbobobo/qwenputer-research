@@ -46,6 +46,13 @@
 - **fp32 chip 层修复长序列 lock drift**：chip 0–11 fp32 + Qwen bf16（TRIM_FP32_CHIP=1，参数 +0.65GB）；严格 paired 对照 bf16 **3/12** → fp32 **0/12** lock divergences（同 harness/同日/同 GPU），原失败点 calc 完整执行（4077/2841/2704 chip tokens）、head 全 0；速度 put 15.72/get 14.69/Hi warm 18.87 tok/s，峰值 13.94GB。
 - 证据：gpu/trim/fp32_chip.py、fp32_chip_bench.py、gpu/out/c8_fp32/、c8_bf16_pair/、docs/notes/stage8-fp32chip.md。
 
+## 2g. Stage 8（2026-10-30/31）新增结论
+- **GitHub Pages 上线**：仓库 https://github.com/Wenbobobo/qwenputer-research，站点 https://wenbobobo.github.io/qwenputer-research/（hub + stage1–8，全部 HTTP 200，Actions 自动部署）。
+- **速度/正确性**：同 session Hi 矩阵 bf16 no-FLA 8.51 / selective 14.59 / full-FLA 12.04 / fp32 no-FLA 11.81 / fp32 selective 13.64 tok/s；长序列 lock bf16 3/12 → fp32 0/12；correctness-first = fp32 chip + no-FLA。
+- **计算增强 portfolio**（expert）：Top3 = fp32 chip / H5 语义路由+exact get+SafeStore / 设备树合并；含 kill list 与不倒退 gate。
+- **E2 设备合并**：ADD8+SORT4+DADD 同时并入 RV core 仍 12 层（slots 1899/2029、nz +5626、IR check=True）。
+- **E3 H5 端到端**：Recall@1/3/5 = 58/84/96%、BGE 11.2ms、SafeStore get 0.51ms、碰撞隔离通过。
+
 ## 3. 证据文件
 | 类别 | 文件 |
 |---|---|

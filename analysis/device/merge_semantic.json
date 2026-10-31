@@ -1,0 +1,1217 @@
+{
+  "baseline": {
+    "stats": {
+      "layers": 12,
+      "dims": 3753,
+      "heads": 164,
+      "ffn_units": 47532,
+      "max_units": 9216,
+      "max_heads": 16
+    },
+    "sublayers": [
+      {
+        "level": 1,
+        "kind": "attn",
+        "used": 9,
+        "free": 7
+      },
+      {
+        "level": 2,
+        "kind": "mlp",
+        "used": 1717,
+        "free": 7499
+      },
+      {
+        "level": 3,
+        "kind": "attn",
+        "used": 5,
+        "free": 11
+      },
+      {
+        "level": 4,
+        "kind": "mlp",
+        "used": 1633,
+        "free": 7583
+      },
+      {
+        "level": 5,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 6,
+        "kind": "mlp",
+        "used": 20,
+        "free": 9196
+      },
+      {
+        "level": 7,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 8,
+        "kind": "mlp",
+        "used": 4140,
+        "free": 5076
+      },
+      {
+        "level": 9,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      },
+      {
+        "level": 10,
+        "kind": "mlp",
+        "used": 9216,
+        "free": 0
+      },
+      {
+        "level": 11,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      },
+      {
+        "level": 12,
+        "kind": "mlp",
+        "used": 7908,
+        "free": 1308
+      },
+      {
+        "level": 13,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 14,
+        "kind": "mlp",
+        "used": 3752,
+        "free": 5464
+      },
+      {
+        "level": 15,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 16,
+        "kind": "mlp",
+        "used": 7924,
+        "free": 1292
+      },
+      {
+        "level": 17,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 18,
+        "kind": "mlp",
+        "used": 8149,
+        "free": 1067
+      },
+      {
+        "level": 19,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 20,
+        "kind": "mlp",
+        "used": 1604,
+        "free": 7612
+      },
+      {
+        "level": 21,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 22,
+        "kind": "mlp",
+        "used": 4,
+        "free": 9212
+      },
+      {
+        "level": 23,
+        "kind": "attn",
+        "used": 14,
+        "free": 2
+      },
+      {
+        "level": 24,
+        "kind": "mlp",
+        "used": 1465,
+        "free": 7751
+      }
+    ],
+    "tightest": [
+      {
+        "level": 5,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 7,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 10,
+        "kind": "mlp",
+        "used": 9216,
+        "free": 0
+      },
+      {
+        "level": 13,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 15,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 17,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 19,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 21,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 23,
+        "kind": "attn",
+        "used": 14,
+        "free": 2
+      },
+      {
+        "level": 9,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      }
+    ],
+    "published": {
+      "layers": 12,
+      "dims": 3753,
+      "heads": 164,
+      "ffn_units": 47532,
+      "max_units": 9216,
+      "max_heads": 16,
+      "slots": 1806
+    },
+    "allocator": {
+      "ok": true,
+      "slots": 1806,
+      "subtract": 1789,
+      "clears": {
+        "18": 133,
+        "20": 11,
+        "22": 13
+      }
+    },
+    "memory": {
+      "error": "argument 1: OverflowError: int too long to convert"
+    }
+  },
+  "namespace": {
+    "rv_vocab": 236469,
+    "text_marker": 16777216,
+    "ordinary_feature_mask": 65535,
+    "add8_ids_that_alias_rv": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "alias_count": 1024,
+    "candidate_above_text_marker_aliases_to": 51462,
+    "recovered_qwen_vocab": 248070
+  },
+  "devices": {
+    "add8": {
+      "layers": 2,
+      "dims": 37,
+      "heads": {
+        "1": 1
+      },
+      "ffn_units": 82,
+      "max_units": 60,
+      "max_heads": 1,
+      "units": {
+        "2": 22,
+        "4": 60
+      }
+    },
+    "sort4": {
+      "layers": 2,
+      "dims": 66,
+      "heads": {
+        "1": 1
+      },
+      "ffn_units": 437,
+      "max_units": 403,
+      "max_heads": 1,
+      "units": {
+        "2": 34,
+        "4": 403
+      }
+    },
+    "dadd": {
+      "layers": 2,
+      "dims": 14,
+      "heads": {
+        "1": 1
+      },
+      "ffn_units": 179,
+      "max_units": 163,
+      "max_heads": 1,
+      "units": {
+        "2": 16,
+        "4": 163
+      }
+    }
+  },
+  "experiments": [
+    {
+      "mode": "packed",
+      "device": "add8",
+      "packing": {
+        "ok": true,
+        "placements": [
+          {
+            "original_level": 1,
+            "level": 1,
+            "need": 1
+          },
+          {
+            "original_level": 2,
+            "level": 2,
+            "need": 22
+          },
+          {
+            "original_level": 4,
+            "level": 24,
+            "need": 60
+          }
+        ]
+      },
+      "stats": {
+        "layers": 12,
+        "dims": 3790,
+        "heads": 165,
+        "ffn_units": 47614,
+        "max_units": 9216,
+        "max_heads": 16
+      },
+      "tightest": [
+        {
+          "level": 5,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 7,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 10,
+          "kind": "mlp",
+          "used": 9216,
+          "free": 0
+        },
+        {
+          "level": 13,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 15,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 17,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 19,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 21,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 23,
+          "kind": "attn",
+          "used": 14,
+          "free": 2
+        },
+        {
+          "level": 9,
+          "kind": "attn",
+          "used": 12,
+          "free": 4
+        }
+      ],
+      "allocator": {
+        "ok": true,
+        "slots": 1835,
+        "subtract": 1797,
+        "clears": {
+          "18": 133,
+          "20": 11,
+          "22": 13
+        }
+      },
+      "fits_without_extra_layers": true,
+      "schedule": [
+        {
+          "name": "add8.prev_a",
+          "level": 1
+        },
+        {
+          "name": "add8.code.clear0",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear1",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear2",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear3",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear4",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear5",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear6",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear7",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear8",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear9",
+          "level": 2
+        },
+        {
+          "name": "add8.code.clear10",
+          "level": 2
+        },
+        {
+          "name": "exit.add8.exit.code0",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code1",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code2",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code3",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code4",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code5",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code6",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code7",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code8",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code9",
+          "level": 24
+        },
+        {
+          "name": "exit.add8.exit.code10",
+          "level": 24
+        }
+      ],
+      "emitted_units_including_clears_ballast": {
+        "2": 1823,
+        "4": 1766,
+        "6": 21,
+        "8": 4165,
+        "10": 9216,
+        "12": 8424,
+        "14": 3924,
+        "16": 8307,
+        "18": 8691,
+        "20": 1687,
+        "22": 19,
+        "24": 3326
+      }
+    },
+    {
+      "mode": "packed",
+      "device": "sort4",
+      "packing": {
+        "ok": true,
+        "placements": [
+          {
+            "original_level": 1,
+            "level": 1,
+            "need": 1
+          },
+          {
+            "original_level": 2,
+            "level": 2,
+            "need": 34
+          },
+          {
+            "original_level": 4,
+            "level": 24,
+            "need": 403
+          }
+        ]
+      },
+      "stats": {
+        "layers": 12,
+        "dims": 3819,
+        "heads": 165,
+        "ffn_units": 47969,
+        "max_units": 9216,
+        "max_heads": 16
+      },
+      "tightest": [
+        {
+          "level": 5,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 7,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 10,
+          "kind": "mlp",
+          "used": 9216,
+          "free": 0
+        },
+        {
+          "level": 13,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 15,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 17,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 19,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 21,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 23,
+          "kind": "attn",
+          "used": 14,
+          "free": 2
+        },
+        {
+          "level": 9,
+          "kind": "attn",
+          "used": 12,
+          "free": 4
+        }
+      ],
+      "allocator": {
+        "ok": true,
+        "slots": 1860,
+        "subtract": 1801,
+        "clears": {
+          "18": 133,
+          "20": 11,
+          "22": 13
+        }
+      },
+      "fits_without_extra_layers": true,
+      "schedule": [
+        {
+          "name": "sort4.snap",
+          "level": 1
+        },
+        {
+          "name": "sort4.cmp01",
+          "level": 2
+        },
+        {
+          "name": "sort4.cmp02",
+          "level": 2
+        },
+        {
+          "name": "sort4.cmp03",
+          "level": 2
+        },
+        {
+          "name": "sort4.cmp12",
+          "level": 2
+        },
+        {
+          "name": "sort4.cmp13",
+          "level": 2
+        },
+        {
+          "name": "sort4.cmp23",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear0",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear1",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear2",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear3",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear4",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear5",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear6",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear7",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear8",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear9",
+          "level": 2
+        },
+        {
+          "name": "sort4.code.clear10",
+          "level": 2
+        },
+        {
+          "name": "exit.sort4.exit.code0",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code1",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code2",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code3",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code4",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code5",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code6",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code7",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code8",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code9",
+          "level": 24
+        },
+        {
+          "name": "exit.sort4.exit.code10",
+          "level": 24
+        }
+      ],
+      "emitted_units_including_clears_ballast": {
+        "2": 1839,
+        "4": 1766,
+        "6": 21,
+        "8": 4165,
+        "10": 9216,
+        "12": 8424,
+        "14": 3924,
+        "16": 8307,
+        "18": 8691,
+        "20": 1687,
+        "22": 19,
+        "24": 3694
+      }
+    },
+    {
+      "mode": "packed",
+      "device": "dadd",
+      "packing": {
+        "ok": true,
+        "placements": [
+          {
+            "original_level": 1,
+            "level": 1,
+            "need": 1
+          },
+          {
+            "original_level": 2,
+            "level": 2,
+            "need": 16
+          },
+          {
+            "original_level": 4,
+            "level": 24,
+            "need": 163
+          }
+        ]
+      },
+      "stats": {
+        "layers": 12,
+        "dims": 3767,
+        "heads": 165,
+        "ffn_units": 47711,
+        "max_units": 9216,
+        "max_heads": 16
+      },
+      "tightest": [
+        {
+          "level": 5,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 7,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 10,
+          "kind": "mlp",
+          "used": 9216,
+          "free": 0
+        },
+        {
+          "level": 13,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 15,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 17,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 19,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 21,
+          "kind": "attn",
+          "used": 16,
+          "free": 0
+        },
+        {
+          "level": 23,
+          "kind": "attn",
+          "used": 14,
+          "free": 2
+        },
+        {
+          "level": 9,
+          "kind": "attn",
+          "used": 12,
+          "free": 4
+        }
+      ],
+      "allocator": {
+        "ok": true,
+        "slots": 1819,
+        "subtract": 1790,
+        "clears": {
+          "18": 133,
+          "20": 11,
+          "22": 13
+        }
+      },
+      "fits_without_extra_layers": true,
+      "schedule": [
+        {
+          "name": "dadd.prev_carry",
+          "level": 1
+        },
+        {
+          "name": "dadd.code.clear0",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear1",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear2",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear3",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear4",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear5",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear6",
+          "level": 2
+        },
+        {
+          "name": "dadd.code.clear7",
+          "level": 2
+        },
+        {
+          "name": "exit.dadd.exit.code0",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code1",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code2",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code3",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code4",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code5",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code6",
+          "level": 24
+        },
+        {
+          "name": "exit.dadd.exit.code7",
+          "level": 24
+        }
+      ],
+      "emitted_units_including_clears_ballast": {
+        "2": 1810,
+        "4": 1766,
+        "6": 21,
+        "8": 4165,
+        "10": 9216,
+        "12": 8424,
+        "14": 3924,
+        "16": 8307,
+        "18": 8691,
+        "20": 1687,
+        "22": 19,
+        "24": 3416
+      }
+    }
+  ],
+  "semantic_replay": {
+    "add8": {
+      "exact": true,
+      "private_code_equal": true,
+      "tokens": 3,
+      "host_owner_values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "sort4": {
+      "exact": true,
+      "private_code_equal": true,
+      "tokens": 8,
+      "host_owner_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "dadd": {
+      "exact": true,
+      "private_code_equal": true,
+      "tokens": 7,
+      "host_owner_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "combined": {
+    "stats": {
+      "layers": 12,
+      "dims": 3870,
+      "heads": 167,
+      "ffn_units": 48230,
+      "max_units": 9216,
+      "max_heads": 16
+    },
+    "sublayers": [
+      {
+        "level": 1,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      },
+      {
+        "level": 2,
+        "kind": "mlp",
+        "used": 1789,
+        "free": 7427
+      },
+      {
+        "level": 3,
+        "kind": "attn",
+        "used": 5,
+        "free": 11
+      },
+      {
+        "level": 4,
+        "kind": "mlp",
+        "used": 1633,
+        "free": 7583
+      },
+      {
+        "level": 5,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 6,
+        "kind": "mlp",
+        "used": 20,
+        "free": 9196
+      },
+      {
+        "level": 7,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 8,
+        "kind": "mlp",
+        "used": 4140,
+        "free": 5076
+      },
+      {
+        "level": 9,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      },
+      {
+        "level": 10,
+        "kind": "mlp",
+        "used": 9216,
+        "free": 0
+      },
+      {
+        "level": 11,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      },
+      {
+        "level": 12,
+        "kind": "mlp",
+        "used": 7908,
+        "free": 1308
+      },
+      {
+        "level": 13,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 14,
+        "kind": "mlp",
+        "used": 3752,
+        "free": 5464
+      },
+      {
+        "level": 15,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 16,
+        "kind": "mlp",
+        "used": 7924,
+        "free": 1292
+      },
+      {
+        "level": 17,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 18,
+        "kind": "mlp",
+        "used": 8149,
+        "free": 1067
+      },
+      {
+        "level": 19,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 20,
+        "kind": "mlp",
+        "used": 1604,
+        "free": 7612
+      },
+      {
+        "level": 21,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 22,
+        "kind": "mlp",
+        "used": 4,
+        "free": 9212
+      },
+      {
+        "level": 23,
+        "kind": "attn",
+        "used": 14,
+        "free": 2
+      },
+      {
+        "level": 24,
+        "kind": "mlp",
+        "used": 2091,
+        "free": 7125
+      }
+    ],
+    "tightest": [
+      {
+        "level": 5,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 7,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 10,
+        "kind": "mlp",
+        "used": 9216,
+        "free": 0
+      },
+      {
+        "level": 13,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 15,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 17,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 19,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 21,
+        "kind": "attn",
+        "used": 16,
+        "free": 0
+      },
+      {
+        "level": 23,
+        "kind": "attn",
+        "used": 14,
+        "free": 2
+      },
+      {
+        "level": 1,
+        "kind": "attn",
+        "used": 12,
+        "free": 4
+      }
+    ],
+    "allocator": {
+      "ok": true,
+      "slots": 1902,
+      "subtract": 1810,
+      "clears": {
+        "18": 133,
+        "20": 11,
+        "22": 13
+      }
+    }
+  },
+  "memory_final": {
+    "error": "argument 1: OverflowError: int too long to convert"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "config": {
+    "ask": "What's my locker code?",
+    "max_new": 120,
+    "memory": "gpu/out/s8_fp32_store.npz",
+    "output": "gpu/out/s8_fp32_get.json",
+    "head_trim": false,
+    "hf": false
+  },
+  "chip": "fp32 compact chip; bf16 boundary/Qwen",
+  "qwen": "lossless trim 2561 cols / 2560 rows",
+  "fast": true,
+  "cpu_load_s": 0.8536628730071243,
+  "zero_check": {
+    "checked_matrices": 248,
+    "nonzero_dropped": []
+  },
+  "trim": {
+    "qwen_dense_numel": 6424363008,
+    "qwen_trimmed_numel": 3570058752,
+    "saved_numel": 2854304256,
+    "slim_linear_count": 248
+  },
+  "compact": {
+    "dense_weights": 2305695744,
+    "compact_weights": 324708406,
+    "chip_deltanet_heads": [
+      [
+        18,
+        32
+      ],
+      [
+        10,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        24,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        28,
+        32
+      ]
+    ]
+  },
+  "fp32_chip": {
+    "enabled": true,
+    "layers": 12,
+    "fp32_bytes": 1300628248,
+    "output_dtype": "bf16",
+    "input_dtype": "fp32"
+  },
+  "param_bytes_cpu": 12910851864,
+  "buffer_bytes_cpu": 256,
+  "to_cuda_s": 67.68827504001092,
+  "load_s": 145.67970420900383,
+  "loaded_memory_bytes": 13020154880,
+  "all_parameters_cuda": true,
+  "init_s": 163.28421390999574,
+  "after_init_memory_bytes": 13410246656,
+  "prompt_len": 808,
+  "tokens": [
+    248058,
+    198,
+    27,
+    1628,
+    27362,
+    29,
+    198,
+    27,
+    15704,
+    37943,
+    29,
+    198,
+    90196,
+    4000,
+    198,
+    510,
+    15704,
+    29,
+    198,
+    510,
+    1628,
+    29,
+    198,
+    248059,
+    478843,
+    198,
+    248066,
+    198,
+    482740,
+    19,
+    19,
+    22,
+    16,
+    6481,
+    57,
+    198,
+    248067,
+    198,
+    248068,
+    198,
+    198,
+    248069,
+    198,
+    198,
+    7525,
+    33531,
+    1970,
+    369,
+    220,
+    19,
+    19,
+    22,
+    16,
+    6481,
+    57,
+    13,
+    248046
+  ],
+  "text_tokens": 54,
+  "chip_tokens": 2,
+  "seconds": 5.434471368789673,
+  "head_mismatch": 0,
+  "lock_error": null,
+  "verify_mismatch": null,
+  "chip_seconds": 0.03,
+  "text_seconds": 5.4,
+  "text": "<tool_call>\n<function=get>\n<parameter=name>\nlocker_code\n</parameter>\n</function>\n</tool_call>\n<tool_response>\n4471-AZ\n</tool_response>\n<think>\n\n</think>\n\nYour locker code is 4471-AZ.<|im_end|>",
+  "wall_s": 10.653205926006194,
+  "text_tokens_per_s": 9.93656904885424,
+  "wall_text_tokens_per_s": 5.068896665948913,
+  "memory_loaded": true,
+  "status": "ok",
+  "max_memory_allocated_bytes": 13851895808,
+  "max_memory_reserved_bytes": 14149484544
+}

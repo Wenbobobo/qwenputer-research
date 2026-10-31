@@ -1,0 +1,24 @@
+{
+  "n": 50,
+  "model_load_ms": 429.86810000729747,
+  "router_recall": {
+    "at_1": 0.58,
+    "at_3": 0.84,
+    "at_5": 0.96
+  },
+  "e2e_accuracy": {
+    "at_1": 0.58,
+    "at_3": 0.84,
+    "at_5": 0.96
+  },
+  "latency_ms": {
+    "bge_query_p50": 11.2393500021426,
+    "bge_query_p95": 12.09180999721866,
+    "store_get_p50": 0.5099499976495281
+  },
+  "store": {
+    "attempted": 100,
+    "accepted": 100,
+    "full": 0
+  }
+}

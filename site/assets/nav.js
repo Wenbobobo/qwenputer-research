@@ -13,6 +13,7 @@
         <a href="stage5.html">Stage 5</a>
         <a href="stage6.html">Stage 6</a>
         <a href="stage7.html">Stage 7</a>
+        <a href="stage8.html">Stage 8</a>
       </div>
     </div>
   `;

@@ -20,6 +20,7 @@
 | qwenputer-stage5.html | 阶段五：GPU 真跑发布模型 / H5（LongMemEval）/ SafeStore 键修复 | ✅ |
 | qwenputer-stage6.html | 阶段六：性能与量化 —— trim+FLA 把 put 从 73.6s 降到 4.1s（18×） | ✅ |
 | qwenputer-stage7.html | 阶段七：AMD 精确性边界 / selective FLA / H1 in-weights / int8 / 社区调研 | ✅ |
+| qwenputer-stage8.html | 阶段八：Pages 上线 / 速度矩阵与长序列正确性 / 计算增强 portfolio / 设备合并 / H5 e2e | ✅（已发布） |
 
 ## 研究（docs/research/）
 | 文件 | 内容 |

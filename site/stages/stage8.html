@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阶段八：上线、评估与设备合并</title>
+<style>
+:root{--bg:#080b10;--panel:#101823;--panel2:#0d141d;--line:#1d2a3a;--fg:#e6edf6;--muted:#93a4ba;--dim:#6b7c93;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--cyan:#22d3ee;--red:#f87171;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter','Noto Sans SC',system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 600px at 85% -10%,#0c2a2c 0%,transparent 55%),radial-gradient(900px 500px at 5% 0%,#101a2e 0%,transparent 50%),var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.75;font-size:16px}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3{line-height:1.3}code{font-family:var(--mono);font-size:.86em;background:#0a121b;border:1px solid var(--line);padding:.12em .4em;border-radius:5px;color:#bff3ff}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;max-width:1360px;margin:0 auto;padding:0 30px}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:30px 0 40px;border-right:1px solid var(--line)}
+nav .brand{font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan)}nav .sub{color:var(--dim);font-size:12px;margin:4px 0 22px}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:toc}nav li{counter-increment:toc;margin:2px 0}
+nav a{display:block;padding:5px 10px 5px 32px;border-left:2px solid transparent;color:var(--muted);font-size:13px;position:relative}
+nav a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:8px;color:var(--dim);font-size:11px;font-family:var(--mono)}
+nav a:hover{color:var(--fg);background:#0e1620;text-decoration:none}nav a.active{color:var(--cyan);border-left-color:var(--cyan);background:#0a1e22}
+main{padding:40px 0 110px;min-width:0}
+.hero{padding:42px 0 28px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.kicker{display:inline-flex;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid #155e63;background:#0a1a1d;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(30px,4vw,48px);margin:0 0 14px;font-weight:850;background:linear-gradient(92deg,#f8fafc 10%,#22d3ee 60%,#60a5fa 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:#b9c8da;max-width:840px;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--dim);font-size:13px;font-family:var(--mono)}
+section{margin:0 0 64px;scroll-margin-top:24px}h2{font-size:28px;margin:0 0 8px;display:flex;align-items:baseline;gap:14px}
+h2 .no{font-family:var(--mono);font-size:14px;color:var(--cyan);font-weight:600;letter-spacing:.1em}
+.sec-lede{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:880px}h3{font-size:20px;margin:32px 0 10px;color:#e2e8f0}
+p{color:#c3d0e0;margin:0 0 15px}ul,ol{color:#c3d0e0;padding-left:22px}li{margin:6px 0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#0d1622;color:#cfe0f2;font-weight:650;font-size:13px}tr:nth-child(even) td{background:#0a1119}
+.good{border-left:3px solid var(--green);background:#08150f;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#c2f0d4}
+.warn{border-left:3px solid var(--amber);background:#1a1408;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3dfb0}
+.bad{border-left:3px solid var(--red);background:#1a0c0c;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#f3c1c1}
+.note{border-left:3px solid var(--blue);background:#0b1622;padding:13px 17px;border-radius:0 10px 10px 0;margin:16px 0;color:#bfd3ea}
+.mono{font-family:var(--mono)}.small{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--dim);font-size:13px}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr;padding:0 20px}nav.toc{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px 0}nav ol{columns:2}main{padding-top:8px}}
+</style></head><body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Qwenputer · 阶段八</div>
+  <div class="sub">上线 / 评估 / 合并</div>
+  <ol>
+    <li><a href="#pages">GitHub Pages 上线</a></li>
+    <li><a href="#speed">速度矩阵与长序列正确性</a></li>
+    <li><a href="#portfolio">计算增强组合评估</a></li>
+    <li><a href="#merge">设备树合并：0 额外层</a></li>
+    <li><a href="#h5">H5 端到端原型</a></li>
+    <li><a href="#next">结论与 Stage 9 规划</a></li>
+  </ol>
+</div>
+<main>
+<div class="hero">
+  <div class="kicker">PAGES LIVE · FP32 CHIP · DEVICE MERGE 0 EXTRA LAYERS · H5 ROUTER</div>
+  <h1>把研究变成可点开的档案，把设备树塞进现有层</h1>
+  <p class="lede">阶段八做了四件事：<strong>把 stage1–7 全部报告发布到 GitHub Pages</strong>（可切换的分阶段站点）；
+  用专家评估把"计算增强"候选排出优先级；用同一串行矩阵确认<strong>fp32 chip 是长序列正确性的默认候选</strong>（bf16 3/12 → fp32 0/12 lock divergence）；
+  并证明 <strong>ADD8/SORT4/DADD 三个编译设备可以并入现有 12 个 chip 层、0 额外层</strong>（slots 1,899 < 2,029 容量，emit 成功）。</p>
+  <div class="meta"><span>环境：WSL ROCm 7.2.1 + RX 7900 XT</span><span>证据：site/、docs/notes/stage8-*.md、analysis/device/、gpu/out/s8_*</span></div>
+</div>
+
+<section id="pages">
+  <h2><span class="no">01</span>GitHub Pages 上线</h2>
+  <p class="sec-lede">仓库从零初始化（此前无 .git），清理垃圾目录、排除 20GB 数据与 upstream 克隆后，建立可切换的分阶段站点并自动部署。</p>
+  <table>
+    <tr><th>项</th><th>结果</th></tr>
+    <tr><td>仓库</td><td><a href="https://github.com/Wenbobobo/qwenputer-research">github.com/Wenbobobo/qwenputer-research</a>（public，6.07 MiB，790 文件）</td></tr>
+    <tr><td>站点</td><td><a href="https://wenbobobo.github.io/qwenputer-research/">wenbobobo.github.io/qwenputer-research/</a>（hub + stage1–8，全部 HTTP 200）</td></tr>
+    <tr><td>设计</td><td>深色主题 hub（阶段时间线 + 关键数字）＋ 每阶段独立页面；固定顶部阶段切换栏（nav.js 注入，不改原报告 CSS）</td></tr>
+    <tr><td>部署</td><td>.github/workflows/pages.yml（push main → Actions → Pages），首次部署 ~17s</td></tr>
+    <tr><td>更新流程</td><td>新报告 copy 到 site/stages/ → 更新 hub/nav → git commit/push → 自动发布（docs/notes/stage8-pages.md）</td></tr>
+  </table>
+  <div class="good">从此每个阶段的 HTML 报告都可以按同一流程上线；这份 Stage 8 报告就是按该流程发布的。</div>
+</section>
+
+<section id="speed">
+  <h2><span class="no">02</span>速度矩阵与长序列正确性</h2>
+  <p class="sec-lede">同一串行 session、单进程独占 GPU（避免此前并发 14GB 模型导致的显存 thrash），Hi（9 tokens）逐配置测量；长序列用 H1 的 recall-1/2/5 共 12 个历史会话门禁。</p>
+  <h3>2.1 六配置矩阵（Hi，cold，tok/s）</h3>
+  <table>
+    <tr><th>配置</th><th>Hi tok/s</th><th>head</th><th>备注</th></tr>
+    <tr><td>bf16 + no-FLA</td><td>8.51</td><td>0</td><td>精确 trim 基线</td></tr>
+    <tr><td>bf16 + selective FLA</td><td><strong>14.59</strong></td><td>0</td><td>chip reference + Qwen FLA</td></tr>
+    <tr><td>bf16 + full FLA</td><td>12.04</td><td>0</td><td>全层 FLA</td></tr>
+    <tr><td>fp32 chip + no-FLA</td><td>11.81</td><td>0</td><td>长序列正确性默认候选</td></tr>
+    <tr><td>fp32 chip + selective FLA</td><td>13.64</td><td>0</td><td></td></tr>
+    <tr><td>fp32 chip + full FLA</td><td>—</td><td>—</td><td>运行 465s 未完成（FLA 在 fp32 路径编译/数值异常），已终止</td></tr>
+  </table>
+  <p class="small">同一 session 内 put/get（fp32 no-FLA）：put 7.69 / get 9.94 tok/s（head 0、lock None、4471-AZ 正确）。与 C8 早前 15.72/14.69 的差异来自机器状态/热与测量波动，报告采用"同 session 相对比较"，绝对数仅供区间参考。</p>
+  <h3>2.2 长序列门禁（12 个历史会话）</h3>
+  <table>
+    <tr><th>配置</th><th>lock divergences</th><th>head mismatch</th></tr>
+    <tr><td>bf16 chip</td><td><strong>3/12</strong>（recall-1/s1、recall-2/s1、recall-5/s2）</td><td>0</td></tr>
+    <tr><td><strong>fp32 chip</strong></td><td><strong>0/12</strong>；原失败点 calc 完整执行（4077/2841/2704 chip tokens）</td><td>0</td></tr>
+  </table>
+  <div class="warn">fp32 gpucheck 部分通道：signext/call/memcpy 0 wrong tokens，rv32ui-lb prefill 1 wrong token → 未全过。结论：fp32 chip 修好了<b>长序列 lock 稳定性</b>，但不宣称全输入 bit-exact（AMD bf16/fp32 本身都有 1-ULP 级数值差异）。</div>
+</section>
+
+<section id="portfolio">
+  <h2><span class="no">03</span>计算增强组合评估（专家报告）</h2>
+  <p class="sec-lede">expert-model 对 stage1–7 的全部 brainstorm 做了可行性/人日/ROI/场景/风险/判定评估（docs/research/stage8-enhancement-portfolio.md）。</p>
+  <table>
+    <tr><th>优先级</th><th>候选</th><th>结论</th></tr>
+    <tr><td>Top 1</td><td>fp32 chip（局部化默认候选）</td><td>+0.65GB、−7~13% 速度换长序列 lock 3/12→0/12；建议只对 chip 敏感子层 fp32，不做全模型 fp32</td></tr>
+    <tr><td>Top 2</td><td>H5 语义路由 + exact get + SafeStore</td><td>Recall@5 87%（LongMemEval）、exact get 45 token vs RAG 12,140；价值来自语义入口+精确审计，不是 in-weights 介质本身</td></tr>
+    <tr><td>Top 3</td><td>设备树合并原型</td><td>优先 SORT4/ADD8/DADD；2 层、千级非零、IR exact、小 270–1150×</td></tr>
+  </table>
+  <div class="bad"><strong>Kill list：</strong>默认全 fp32、CPU-GPU 混合执行、NF4/无保护 INT8、通用 regex/大排序设备、跨模型共享 chip 层、"in-weights 天然更快"叙事、以 Recall@1 为产品指标。</div>
+  <div class="good"><strong>不倒退 gate：</strong>CPU bit-identical；GPU token-level + head_mismatch=0 + lock_error=None；回归用例集（put/get、长序列 1/2/5、fp32/bf16 对照）每次发布前跑一遍。</div>
+</section>
+
+<section id="merge">
+  <h2><span class="no">04</span>设备树合并：0 额外层</h2>
+  <p class="sec-lede">IR/allocator/emit 三层验证：把 ADD8、SORT4、DADD 追加到 RV core 的同一 Graph，看是否仍能塞进 12 个 chip 层。</p>
+  <table>
+    <tr><th>配置</th><th>Layers</th><th>Dims</th><th>Heads</th><th>FFN units</th><th>Slots</th><th>Nonzeros</th></tr>
+    <tr><td>RV baseline</td><td>12</td><td>3753</td><td>164</td><td>47532</td><td>1806</td><td>1,289,104</td></tr>
+    <tr><td>+ ADD8</td><td>12</td><td>3790</td><td>165</td><td>47614</td><td>1834</td><td>1,289,793</td></tr>
+    <tr><td>+ SORT4</td><td>12</td><td>3819</td><td>165</td><td>47969</td><td>1859</td><td>1,292,857</td></tr>
+    <tr><td>+ DADD</td><td>12</td><td>3767</td><td>165</td><td>47711</td><td>1818</td><td>1,290,288</td></tr>
+    <tr><td><strong>三者同时</strong></td><td><strong>12</strong></td><td>3870</td><td>167</td><td>48230</td><td><strong>1899</strong>（容量 2029）</td><td>1,294,730（+5,626）</td></tr>
+  </table>
+  <div class="good">IR check=True：ADD8(255+1)、SORT4([255,0,127,127])、DADD(999+1) 的 private output code 与独立设备一致；CPU emit 成功（SORT4/DADD）。<b>结论：0 额外层，slots 仍在布局容量内。</b></div>
+  <h3>生产级阻塞</h3>
+  <ul>
+    <li>新 token family 与 RV namespace 冲突：需要稳定 namespace、tokenizer 扩展、约 3,193 个 embedding rows；</li>
+    <li>RV、store、器件之间需要互斥 owner/exit dispatcher；器件运行期间冻结 RV counters/heads/capture/store；</li>
+    <li><code>code.clear</code> 必须早于统一 exit；必须共享 host 的 ONE/ballast（用 active detector 替代 ONE 会导致 bf16 精度失败，实测 −3.37e15 级权重）。</li>
+  </ul>
+  <p>下一步：<strong>ADD8-only → rv-tiny 端到端原型</strong>，再接 text bridge 的 RV core。</p>
+</section>
+
+<section id="h5">
+  <h2><span class="no">05</span>H5 端到端原型：语义发现 → 精确读取</h2>
+  <p class="sec-lede">CPU retrieval-level 原型（未加载 4B reader）：bge-small 路由 → SafeStore exact get → 审计字段。</p>
+  <table>
+    <tr><th>指标（合成数据 n=50）</th><th>@1</th><th>@3</th><th>@5</th></tr>
+    <tr><td>Router recall / E2E exact-get accuracy</td><td>58%</td><td>84%</td><td><strong>96%</strong></td></tr>
+  </table>
+  <table>
+    <tr><th>成本</th><th>值</th></tr>
+    <tr><td>bge-small query embedding（CPU）</td><td>p50 11.2ms / p95 12.1ms</td></tr>
+    <tr><td>SafeStore exact get</td><td>p50 0.51ms</td></tr>
+    <tr><td>对比 RAG paste</td><td>exact get 45 token vs LongMemEval RAG ~12,141 token（≈1/270）</td></tr>
+    <tr><td>SafeStore 碰撞保护</td><td>两个长名称 raw key 相同 → hash tag 消歧，两值完全隔离 ✅</td></tr>
+  </table>
+  <div class="warn"><strong>失败模式：</strong>Recall@1 仅 58%，top-1 不能当答案（需 top-3/5 + 重排 + 低分拒答）；LongMemEval 全量因每题重建 corpus embedding 超时（批处理/增量索引问题，非逻辑错误）。下一步：真实 4B reader 的 top-1/3/5 vs RAG 受控对照。</div>
+</section>
+
+<section id="next">
+  <h2><span class="no">06</span>结论与 Stage 9 规划</h2>
+  <div class="good"><strong>Stage 8 结论：</strong>
+  <ol>
+    <li>发布链路打通：每个阶段报告都能以同一流程上线 GitHub Pages；</li>
+    <li>正确性优先配置明确：<strong>fp32 chip + no-FLA</strong>（长序列 0/12 lock divergence，put/get 正确）；</li>
+    <li>速度优先候选：bf16 + selective FLA（Hi 14.59 tok/s，长序列待验证）；</li>
+    <li>设备树合并 IR 可行：<strong>0 额外层、slots 1899/2029</strong>，下一步做 ADD8-only rv-tiny 闭环；</li>
+    <li>H5 两阶段检索可行：Recall@5 96%、CPU 路由 11ms、exact get 0.5ms。</li>
+  </ol></div>
+  <h3>Stage 9 候选（按 ROI）</h3>
+  <ul>
+    <li><strong>ADD8-only rv-tiny 端到端原型</strong>：真实权重 merge + tokenizer/namespace + owner/exit dispatcher，验收 = 设备计算 token-level 正确且 RV32 回退可用；</li>
+    <li><strong>H5 reader 集成</strong>：4B reader 上跑 top-1/3/5 vs RAG 四组对照，加低分拒答与索引版本门禁；</li>
+    <li><strong>fp32 chip 局部化</strong>：只 fp32 敏感子层（chip attention/qkv/alpha/beta/exit），把 +0.65GB 与速度代价压到最小；</li>
+    <li><strong>速度 >20 tok/s</strong>：native int8 GEMV、tied embedding 量化、causal_conv1d Triton 短卷积（按风险逐个评估）；</li>
+    <li><strong>memory-disk v1</strong>：把 trim runtime + SafeStore + journal 打包成可用记忆盘 API。</li>
+  </ul>
+  <p class="small">证据：site/、docs/notes/stage8-{pages,speed,device-merge,h5-e2e,fp32chip}.md、docs/research/stage8-enhancement-portfolio.md、analysis/device/merge_probe.{py,json}、analysis/experiments/h5_e2e/、gpu/out/s8_*。</p>
+</section>
+<footer>Qcompute · 阶段八 · 2026-10-30 · 发布于 GitHub Pages · 数据来自 RX 7900 XT（WSL ROCm 7.2.1）与 CPU 实测</footer>
+</main></div>
+  <script src="../assets/nav.js"></script>
+</body></html>
